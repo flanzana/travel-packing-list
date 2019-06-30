@@ -7,7 +7,7 @@ import { data } from "./services/data";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
       <Main data={data} />
       <Footer />

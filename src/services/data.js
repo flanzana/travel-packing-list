@@ -1,14 +1,14 @@
 import {LIST} from "./consts";
 
 export const data = {
-  [LIST.BASICS]: [
+  [LIST.ESSENTIALS]: [
     "Passport/ID",
     "Cash",
     "Credit card",
     "Smart phone & charger",
     "Camera & charger",
     "Health/travel insurance card",
-    "Itinerary/reservations",
+    "Itinerary & reservations",
   ],
   [LIST.CLOTHES]: [
     "Underwear",
@@ -22,7 +22,7 @@ export const data = {
     "Skirts",
     "Sweaters",
     "Swimsuits",
-    "Coats/jackets/raincoats",
+    "Coats/jackets",
     "Laundry bag",
     "Leisure shoes",
     "Walking/sport shoes",
@@ -33,6 +33,7 @@ export const data = {
     "Belts",
     "Jewelry",
     "Purses",
+    "Towel",
   ],
   [LIST.TOILETRIES]: [
     "Toothbrush",
@@ -44,7 +45,7 @@ export const data = {
     "Brush",
     "Skin lotion/cream",
     "Sunscreen",
-    "Contact lenses/solution",
+    "Contact lenses & solution",
     "Shaving supplies",
     "Makeup",
     "Makeup remover",
@@ -54,15 +55,14 @@ export const data = {
     "Hand sanitizer",
     "First-aid kit",
     "Insect repellent",
-    "Pain relievers",
+    "Pain killers",
     "Medications",
-    "Travel towel",
   ],
   [LIST.OTHER]: [
     "Binoculars",
     "Sunglasses",
     "Laptop/tablet & charger",
-    "Earphones/headphones",
+    "Earphones",
     "Music player",
     "Books",
     "Board games",
@@ -70,12 +70,12 @@ export const data = {
     "Food/snacks/gum",
     "Travel pillow",
     "Travel blanket",
-    "Eye mask & Ear plugs",
+    "Eye mask & ear plugs",
     "Tissues",
-    "Guidebooks & Maps",
-    "Paper & Pen",
+    "Guidebooks & maps",
+    "Paper & pen",
     "Umbrella",
     "Cotton bag",
-    "Copies of Passport/Tickets/etc.",
+    "Copies of passport, tickets, etc.",
   ]
 };

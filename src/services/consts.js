@@ -1,5 +1,5 @@
 export const LIST = {
-  BASICS: "Basics",
+  ESSENTIALS: "Essentials",
   CLOTHES: "Clothes",
   TOILETRIES: "Toiletries",
   OTHER: "Other",

@@ -11,7 +11,7 @@ import TravelItem from "./TravelItem";
 
 function renderCardIcon(title) {
   switch (title) {
-    case LIST.BASICS:
+    case LIST.ESSENTIALS:
       return <Wallet />;
     case LIST.CLOTHES:
       return <Suitcase />;
@@ -29,7 +29,7 @@ function TravelCard({ title, data }) {
     <Card>
       <CardHeader title={title} icon={renderCardIcon(title)} />
       <CardSection>
-        <Stack direction="column" spacing="tight">
+        <Stack direction="column" spacing="condensed">
           {data.map((item, index) => (
             <TravelItem key={index} item={item} />
           ))}
