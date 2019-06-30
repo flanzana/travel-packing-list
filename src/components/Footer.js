@@ -6,14 +6,14 @@ import Text from "@kiwicom/orbit-components/lib/Text";
 import TextLink from "@kiwicom/orbit-components/lib/TextLink";
 
 const {
-  paletteProductDarkActive,
+  paletteInkLightActive,
   widthBreakpointLargeMobile,
   spaceSmall,
   spaceMedium,
 } = defaultTokens;
 
 const FooterWrapper = styled.div`
-  background-color: ${paletteProductDarkActive};
+  background-color: ${paletteInkLightActive};
   padding: ${spaceSmall};
   
   a {

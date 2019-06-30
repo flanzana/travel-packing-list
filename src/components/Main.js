@@ -6,14 +6,14 @@ import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
 import TravelCard from "./TravelCard";
 
 const {
-  paletteProductNormal,
+  paletteInkLighter,
   widthBreakpointLargeDesktop,
   spaceLarge,
   spaceXLarge,
 } = defaultTokens;
 
 const MainWrapper = styled.div`
-  background-color: ${paletteProductNormal};
+  background-color: ${paletteInkLighter};
   padding: ${spaceLarge};
   
   @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
