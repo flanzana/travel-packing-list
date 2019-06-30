@@ -1,19 +1,45 @@
 import React from 'react';
-import Stack from "@kiwicom/orbit-components/lib/Stack";
+import styled from "styled-components";
+import { defaultTokens } from "@kiwicom/orbit-design-tokens";
+import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
 
 import TravelCard from "./TravelCard";
 
+const {
+  paletteProductNormal,
+  widthBreakpointLargeDesktop,
+  spaceLarge,
+  spaceXLarge,
+} = defaultTokens;
+
+const MainWrapper = styled.div`
+  background-color: ${paletteProductNormal};
+  padding: ${spaceLarge};
+  
+  @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
+    padding: ${spaceXLarge};
+  };
+`;
+
 function Main({ data }) {
   return (
-    <Stack direction="column" dataTest="Main">
-      {Object.keys(data).map((list, index) => (
-        <TravelCard
-          key={index}
-          title={list}
-          data={data[list]}
-        />
-      ))}
-    </Stack>
+    <MainWrapper>
+      <Grid
+        columnGap={spaceLarge}
+        rowGap={spaceLarge}
+        largeMobile={{ columns: "1fr 1fr", rowGap: spaceLarge }}
+        desktop={{ columns: "1fr 1fr 1fr 1fr" }}
+        largeDesktop={{ columnGap: spaceXLarge }}
+      >
+        {Object.keys(data).map((list, index) => (
+          <TravelCard
+            key={index}
+            title={list}
+            data={data[list]}
+          />
+        ))}
+      </Grid>
+    </MainWrapper>
   );
 }
 
