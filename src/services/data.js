@@ -22,7 +22,7 @@ export const data = {
     "Shorts",
     "Dresses",
     "Skirts",
-    "Sweaters/sweatshirts",
+    "Sweaters, sweatshirts",
     "Swimsuits",
     "Coats/jackets",
     "Leisure shoes",

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox";
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink";
-import Close from "@kiwicom/orbit-components/lib/icons/Close";
-import Plus from "@kiwicom/orbit-components/lib/icons/Plus";
+import Edit from "@kiwicom/orbit-components/lib/icons/Edit";
+import EditOff from "@kiwicom/orbit-components/lib/icons/EditOff";
 
 const { heightCheckbox, widthCheckbox } = defaultTokens;
 
@@ -14,11 +14,25 @@ const StyledButtonLink = styled(ButtonLink)`
   width: ${widthCheckbox};
 `;
 
-function TravelItem({ item }) {
+function TravelItem({ item, shouldResetAll, onUndoReset }) {
   const [ active, setActive ] = useState(false);
   const [ disabled, setDisabled ] = useState(false);
 
-  const handleDisabled = () => {
+  useEffect(() => {
+    shouldResetAll && handleInitial()
+  });
+
+  const handleInitial = () => {
+    setActive(false);
+    setDisabled(false);
+    onUndoReset();
+  };
+
+  const handleCheckbox = () => {
+    setActive(!active);
+  };
+
+  const handleDisable = () => {
     setDisabled(!disabled);
     setActive(false);
   };
@@ -30,17 +44,17 @@ function TravelItem({ item }) {
         name={item}
         value={item}
         checked={!disabled && active}
-        onChange={() => setActive(!active)}
+        onChange={() => handleCheckbox()}
         disabled={disabled}
       />
       <StyledButtonLink
         type="secondary"
         size="small"
-        iconLeft={disabled ? <Plus color="secondary" /> : <Close color="critical" />}
-        title={disabled ? `Enable ${item}` : `Disable ${item}`}
+        iconLeft={disabled ? <Edit color="tertiary" /> : <EditOff color="tertiary" />}
+        title={disabled ? `Enable item ${item}` : `Disable item ${item}`}
         circled
         transparent
-        onClick={() => handleDisabled()}
+        onClick={() => handleDisable()}
       />
     </Stack>
   );
