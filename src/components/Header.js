@@ -23,7 +23,7 @@ function Header() {
   return (
     <HeaderWrapper>
       <Stack direction="column" align="center" dataTest="Header">
-        <Illustration name="Tours" size="small" />
+        <Illustration name="TimelinePick" size="small" />
         <Heading type="title2">TRAVEL PACKING LIST</Heading>
       </Stack>
     </HeaderWrapper>
