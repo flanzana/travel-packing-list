@@ -30,7 +30,7 @@ function TravelCard({ title, data }) {
   const [ resetAll, setResetAll ] = useState(false);
 
   return (
-    <Card>
+    <Card dataTest={`TravelCard-${title}`}>
       <CardHeader
         title={title}
         icon={renderCardIcon(title)}
@@ -52,7 +52,7 @@ function TravelCard({ title, data }) {
               key={index}
               item={item}
               shouldResetAll={resetAll}
-              onUndoReset={() => setResetAll(false)}
+              handleUnreset={() => setResetAll(false)}
             />
           ))}
         </Stack>

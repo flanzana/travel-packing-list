@@ -14,27 +14,33 @@ const StyledButtonLink = styled(ButtonLink)`
   width: ${widthCheckbox};
 `;
 
-function TravelItem({ item, shouldResetAll, onUndoReset }) {
-  const [ active, setActive ] = useState(false);
-  const [ disabled, setDisabled ] = useState(false);
+function TravelItem({ item, shouldResetAll, handleUnreset }) {
+  const initialChecked = () => (JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false);
+  const initialDisabled = () => (JSON.parse(window.localStorage.getItem(`${item}-disabled`)) || false);
+
+  const [ checked, setChecked ] = useState(initialChecked);
+  const [ disabled, setDisabled ] = useState(initialDisabled);
 
   useEffect(() => {
-    shouldResetAll && handleInitial()
-  });
+    // reset whole card after pressing button reset
+    if (shouldResetAll) {
+      setChecked(false);
+      setDisabled(false);
+      handleUnreset();
+    }
 
-  const handleInitial = () => {
-    setActive(false);
-    setDisabled(false);
-    onUndoReset();
-  };
+    // store in local storage
+    window.localStorage.setItem(`${item}-checked`, checked);
+    window.localStorage.setItem(`${item}-disabled`, disabled);
+  }, [shouldResetAll, handleUnreset, checked, disabled, item]);
 
   const handleCheckbox = () => {
-    setActive(!active);
+    setChecked(!checked);
   };
 
   const handleDisable = () => {
     setDisabled(!disabled);
-    setActive(false);
+    setChecked(false);
   };
 
   return (
@@ -43,8 +49,8 @@ function TravelItem({ item, shouldResetAll, onUndoReset }) {
         label={item}
         name={item}
         value={item}
-        checked={!disabled && active}
-        onChange={() => handleCheckbox()}
+        checked={!disabled && checked}
+        onChange={handleCheckbox}
         disabled={disabled}
       />
       <StyledButtonLink
@@ -54,7 +60,7 @@ function TravelItem({ item, shouldResetAll, onUndoReset }) {
         title={disabled ? `Enable item ${item}` : `Disable item ${item}`}
         circled
         transparent
-        onClick={() => handleDisable()}
+        onClick={handleDisable}
       />
     </Stack>
   );

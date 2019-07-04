@@ -9,7 +9,7 @@ export const data = {
     "Camera & charger",
     "Powerbank",
     "Health/travel insurance card",
-    "Itinerary & reservations",
+    "Tickets & reservations",
   ],
   [LIST.CLOTHES]: [
     "Underwear",
@@ -22,6 +22,7 @@ export const data = {
     "Shorts",
     "Dresses",
     "Skirts",
+    "Sports clothes",
     "Sweaters, sweatshirts",
     "Swimsuits",
     "Coats/jackets",
