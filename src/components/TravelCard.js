@@ -46,7 +46,7 @@ function TravelCard({ title, data }) {
         }
       />
       <CardSection>
-        <Stack direction="column" spacing="condensed">
+        <Stack direction="column" spacing="natural" tablet={{ spacing: "condensed" }}>
           {data.map((item, index) => (
             <TravelItem
               key={index}
