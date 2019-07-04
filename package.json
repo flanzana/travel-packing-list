@@ -11,6 +11,8 @@
     "styled-components": "^4.3.2"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -30,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "homepage": "https://flanzana.github.io/travel-packing-list",
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
   }
 }
