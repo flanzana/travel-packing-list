@@ -44,12 +44,16 @@ function TravelCard({ title, cardData }) {
     window.localStorage.setItem(`data-${title}`, JSON.stringify(data));
   }, [data, title]);
 
-  const handleDeleteItem = (index, data) => {
-    setData(prevData => prevData.filter(item => item !== data[index]));
+  const handleDeleteItem = (item) => {
+    // update data
+    setData(data.filter(i => i !== item));
+    // remove item from local storage
+    window.localStorage.removeItem(`${item}-checked`);
   };
 
   const handleReset = () => {
     setResetAll(true);
+    // set data to default
     setData(cardData);
   };
 
@@ -95,13 +99,13 @@ function TravelCard({ title, cardData }) {
       />
       <CardSection>
         <Stack direction="column" spacing="natural" tablet={{ spacing: "condensed" }}>
-          {data.map((item, index) => (
+          {data.map(item => (
             <TravelItem
-              key={index}
+              key={item}
               item={item}
               shouldResetAll={resetAll}
               handleUnreset={() => setResetAll(false)}
-              handleDeleteItem={() => handleDeleteItem(index, data)}
+              handleDeleteItem={() => handleDeleteItem(item)}
             />
           ))}
           {showInput ?
