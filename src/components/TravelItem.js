@@ -13,33 +13,20 @@ const StyledButtonLink = styled(ButtonLink)`
   width: ${widthCheckbox};
 `;
 
-function TravelItem({ item, shouldResetAll, handleUnreset }) {
+function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem }) {
   const initialChecked = () => (JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false);
-  const initialDeleted = () => (JSON.parse(window.localStorage.getItem(`${item}-deleted`)) || false);
-
   const [ checked, setChecked ] = useState(initialChecked);
-  const [ deleted, setDeleted ] = useState(initialDeleted);
 
   useEffect(() => {
+    // store in local storage
+    window.localStorage.setItem(`${item}-checked`, checked);
+
     // reset whole card after pressing button reset
     if (shouldResetAll) {
       setChecked(false);
-      setDeleted(false);
       handleUnreset();
     }
-
-    // store in local storage
-    window.localStorage.setItem(`${item}-checked`, checked);
-    window.localStorage.setItem(`${item}-deleted`, deleted);
-  }, [shouldResetAll, handleUnreset, checked, deleted, item]);
-
-  const handleCheckbox = () => {
-    setChecked(!checked);
-  };
-
-  if (deleted) {
-    return <></>
-  }
+  }, [shouldResetAll, handleUnreset, checked, item]);
 
   return (
     <Stack direction="row" align="start" justify="between" spacing="natural">
@@ -48,7 +35,7 @@ function TravelItem({ item, shouldResetAll, handleUnreset }) {
         name={item}
         value={item}
         checked={checked}
-        onChange={handleCheckbox}
+        onChange={() => setChecked(!checked)}
       />
       <StyledButtonLink
         type="secondary"
@@ -56,7 +43,7 @@ function TravelItem({ item, shouldResetAll, handleUnreset }) {
         iconLeft={<Remove color="critical" />}
         title={`Delete item ${item}`}
         transparent
-        onClick={() => setDeleted(true)}
+        onClick={handleDeleteItem}
       />
     </Stack>
   );

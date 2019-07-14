@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card, { CardHeader, CardSection } from "@kiwicom/orbit-components/lib/Card";
 import Button from "@kiwicom/orbit-components/lib/Button";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
+import InputField from "@kiwicom/orbit-components/lib/InputField";
 import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet";
 import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase";
 import Spa from "@kiwicom/orbit-components/lib/icons/Spa";
 import Map from "@kiwicom/orbit-components/lib/icons/Map";
-import Reload from "@kiwicom/orbit-components/lib/icons/Reload";
 
 import { LIST } from "../services/consts";
 import TravelItem from "./TravelItem";
@@ -26,17 +26,54 @@ function renderCardIcon(title) {
   }
 }
 
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+}
+
 function TravelCard({ title, cardData }) {
-  const [ data, setData ] = useState(cardData);
+  const initialData = () => (JSON.parse(window.localStorage.getItem(`data-${title}`)) || cardData);
+
+  const [ data, setData ] = useState(initialData);
   const [ resetAll, setResetAll ] = useState(false);
+  const [ showInput, setShowInput ] = useState(false);
+  const [ newItem, setNewItem ] = useState("");
+  const [ error, setError ] = useState(false);
+
+  useEffect(() => {
+    // store data in local storage
+    window.localStorage.setItem(`data-${title}`, JSON.stringify(data));
+  }, [data, title]);
 
   const handleDeleteItem = (index, data) => {
-    setData(prevData => prevData.filter(item => item !== data[index]))
+    setData(prevData => prevData.filter(item => item !== data[index]));
   };
 
   const handleReset = () => {
     setResetAll(true);
     setData(cardData);
+  };
+
+  const handleSubmitNewItem = e => {
+    if (newItem !== "") {
+      e.preventDefault();
+      // update data
+      setData(prevData => [...prevData, newItem]);
+
+      // clear states
+      setShowInput(false);
+      setNewItem("");
+    }
+  };
+
+  const handleInputChange = e => {
+    const newValue = e.target.value;
+    setError(false);
+    setNewItem(capitalize(newValue));
+
+    // show error if the new value already exists on the list
+    if (data.find(item => item === newValue)) {
+        setError(true)
+    }
   };
 
   return (
@@ -50,9 +87,10 @@ function TravelCard({ title, cardData }) {
             bordered
             size="small"
             onClick={handleReset}
-            iconLeft={<Reload />}
             title={`Reset the list ${title}`}
-          />
+          >
+            Reset
+          </Button>
         }
       />
       <CardSection>
@@ -66,6 +104,36 @@ function TravelCard({ title, cardData }) {
               handleDeleteItem={() => handleDeleteItem(index, data)}
             />
           ))}
+          {showInput ?
+            (
+              <Stack direction="row" spacing="condensed">
+                <InputField
+                  name="New item"
+                  size="small"
+                  placeholder="Type item..."
+                  value={newItem}
+                  onChange={handleInputChange}
+                  error={error && "Item already exists."}
+                />
+                <Button
+                  size="small"
+                  onClick={handleSubmitNewItem}
+                  disabled={newItem === "" || error}
+                  title="Submit new item"
+                >
+                  Submit
+                </Button>
+              </Stack>
+            ) : (
+              <Button
+                size="small"
+                onClick={() => setShowInput(true)}
+                title="Add new item"
+              >
+                Add item
+              </Button>
+            )
+          }
         </Stack>
       </CardSection>
     </Card>
