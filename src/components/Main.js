@@ -4,6 +4,7 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
 
 import TravelCard from "./TravelCard";
+import { data } from "../services/data";
 
 const {
   borderColorCard,
@@ -21,7 +22,7 @@ const MainWrapper = styled.div`
   };
 `;
 
-function Main({ data }) {
+function Main() {
   return (
     <MainWrapper>
       <Grid
@@ -35,7 +36,7 @@ function Main({ data }) {
           <TravelCard
             key={index}
             title={list}
-            data={data[list]}
+            cardData={data[list]}
           />
         ))}
       </Grid>

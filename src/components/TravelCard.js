@@ -6,7 +6,7 @@ import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet";
 import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase";
 import Spa from "@kiwicom/orbit-components/lib/icons/Spa";
 import Map from "@kiwicom/orbit-components/lib/icons/Map";
-import Remove from "@kiwicom/orbit-components/lib/icons/Remove";
+import Reload from "@kiwicom/orbit-components/lib/icons/Reload";
 
 import { LIST } from "../services/consts";
 import TravelItem from "./TravelItem";
@@ -26,8 +26,18 @@ function renderCardIcon(title) {
   }
 }
 
-function TravelCard({ title, data }) {
+function TravelCard({ title, cardData }) {
+  const [ data, setData ] = useState(cardData);
   const [ resetAll, setResetAll ] = useState(false);
+
+  const handleDeleteItem = (index, data) => {
+    setData(prevData => prevData.filter(item => item !== data[index]))
+  };
+
+  const handleReset = () => {
+    setResetAll(true);
+    setData(cardData);
+  };
 
   return (
     <Card dataTest={`TravelCard-${title}`}>
@@ -39,8 +49,8 @@ function TravelCard({ title, data }) {
             type="critical"
             bordered
             size="small"
-            onClick={() => setResetAll(true)}
-            iconLeft={<Remove />}
+            onClick={handleReset}
+            iconLeft={<Reload />}
             title={`Reset the list ${title}`}
           />
         }
@@ -53,6 +63,7 @@ function TravelCard({ title, data }) {
               item={item}
               shouldResetAll={resetAll}
               handleUnreset={() => setResetAll(false)}
+              handleDeleteItem={() => handleDeleteItem(index, data)}
             />
           ))}
         </Stack>

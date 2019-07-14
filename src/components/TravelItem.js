@@ -4,8 +4,7 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox";
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink";
-import Edit from "@kiwicom/orbit-components/lib/icons/Edit";
-import EditOff from "@kiwicom/orbit-components/lib/icons/EditOff";
+import Remove from "@kiwicom/orbit-components/lib/icons/Remove";
 
 const { heightCheckbox, widthCheckbox } = defaultTokens;
 
@@ -16,32 +15,31 @@ const StyledButtonLink = styled(ButtonLink)`
 
 function TravelItem({ item, shouldResetAll, handleUnreset }) {
   const initialChecked = () => (JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false);
-  const initialDisabled = () => (JSON.parse(window.localStorage.getItem(`${item}-disabled`)) || false);
+  const initialDeleted = () => (JSON.parse(window.localStorage.getItem(`${item}-deleted`)) || false);
 
   const [ checked, setChecked ] = useState(initialChecked);
-  const [ disabled, setDisabled ] = useState(initialDisabled);
+  const [ deleted, setDeleted ] = useState(initialDeleted);
 
   useEffect(() => {
     // reset whole card after pressing button reset
     if (shouldResetAll) {
       setChecked(false);
-      setDisabled(false);
+      setDeleted(false);
       handleUnreset();
     }
 
     // store in local storage
     window.localStorage.setItem(`${item}-checked`, checked);
-    window.localStorage.setItem(`${item}-disabled`, disabled);
-  }, [shouldResetAll, handleUnreset, checked, disabled, item]);
+    window.localStorage.setItem(`${item}-deleted`, deleted);
+  }, [shouldResetAll, handleUnreset, checked, deleted, item]);
 
   const handleCheckbox = () => {
     setChecked(!checked);
   };
 
-  const handleDisable = () => {
-    setDisabled(!disabled);
-    setChecked(false);
-  };
+  if (deleted) {
+    return <></>
+  }
 
   return (
     <Stack direction="row" align="start" justify="between" spacing="natural">
@@ -49,18 +47,16 @@ function TravelItem({ item, shouldResetAll, handleUnreset }) {
         label={item}
         name={item}
         value={item}
-        checked={!disabled && checked}
+        checked={checked}
         onChange={handleCheckbox}
-        disabled={disabled}
       />
       <StyledButtonLink
         type="secondary"
         size="small"
-        iconLeft={disabled ? <Edit color="tertiary" /> : <EditOff color="tertiary" />}
-        title={disabled ? `Enable item ${item}` : `Disable item ${item}`}
-        circled
+        iconLeft={<Remove color="critical" />}
+        title={`Delete item ${item}`}
         transparent
-        onClick={handleDisable}
+        onClick={() => setDeleted(true)}
       />
     </Stack>
   );
