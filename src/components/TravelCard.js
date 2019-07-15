@@ -118,6 +118,7 @@ function TravelCard({ title, cardData }) {
                   value={newItem}
                   onChange={handleInputChange}
                   error={error && "Item already exists."}
+                  ref={input => input && input.focus()}
                 />
                 <Button
                   size="small"
