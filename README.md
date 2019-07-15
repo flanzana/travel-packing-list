@@ -1,68 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Travel Packing List
 
-## Available Scripts
+Before going on a trip to Italy, I was looking for some packing list app, but all I found was a bunch of different 
+packing lists in pdf format only. I got an idea to create my own packing list and eventually an idea turned into a real
+[Travel Packing List](https://flanzana.github.io/travel-packing-list/) app. Project turned out to be really useful, 
+because you cannot forget to pack any important item into your suitcase, either for short weekend trips or longer travels.
 
-In the project directory, you can run:
 
-### `npm start`
+## Installation
+- open project [Travel Packing List](https://flanzana.github.io/travel-packing-list/) directly in your browser (Google Chrome recommended)
+- or clone project [travel-packing-list](https://github.com/flanzana/travel-packing-list) from GitHub and
+run `cd travel-packing-list && yarn install && yarn start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Features
+App Travel Packing List offers you many different possibilities of usage:
+- check items you have already packed
+- delete item in case you will not need it
+- add new item to the list
+- automatic capitalization of new item
+- reset whole card to default items
+- store all items into LocalStorage
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Sources
+- [Create React App](https://github.com/facebook/create-react-app)
+- [React Hooks CheatSheet](https://react-hooks-cheatsheet.com/)
+- [Design system Orbit](https://orbit.kiwi/)
+- [LocalStorage](https://javascript.info/localstorage)
+- [TheUltimatePackingList.pdf](https://www.smartertravel.com/uploads/2019/05/The-Ultimate-Packing-List_Interactive-FINAL.pdf)
+- [PackingChecklist.pdf](https://images.eaglecreek.com/is/content/eaglecreek/2019_Packing_Checklist.pdf)
