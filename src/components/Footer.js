@@ -10,11 +10,12 @@ const {
   widthBreakpointLargeMobile,
   spaceSmall,
   spaceMedium,
+  spaceXXLarge,
 } = defaultTokens;
 
 const FooterWrapper = styled.div`
   background-color: ${paletteInkLightActive};
-  padding: ${spaceSmall};
+  padding: ${spaceSmall} ${spaceXXLarge};
   
   a {
     color: white !important;
@@ -28,9 +29,9 @@ const FooterWrapper = styled.div`
 function Footer() {
   return (
     <FooterWrapper>
-      <Stack direction="column" align="center" dataTest="Footer">
-        <Text size="small" type="white">
-          <TextLink href="https://flanzana.github.io/" external>Žana Flander</TextLink> & <TextLink href="https://orbit.kiwi" external>Orbit</TextLink> © 2019
+      <Stack direction="column" align="center" justify="center" dataTest="Footer">
+        <Text size="small" type="white" align="center">
+          Coded and designed with <TextLink href="https://orbit.kiwi" external>Orbit</TextLink> by <TextLink href="https://flanzana.github.io/" external>Žana Flander</TextLink> © 2019
         </Text>
       </Stack>
     </FooterWrapper>
