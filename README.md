@@ -20,6 +20,7 @@ App Travel Packing List offers you many different possibilities of usage:
 - automatic capitalization of new item
 - reset whole card to default items
 - store all items into LocalStorage
+- responsive design
 
 
 ## Sources
