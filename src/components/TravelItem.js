@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
+import { useTranslation } from 'react-i18next';
 import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox";
@@ -28,10 +29,12 @@ function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem }) {
     }
   }, [shouldResetAll, handleUnreset, checked, item]);
 
+  const { t } = useTranslation();
+
   return (
     <Stack direction="row" align="start" justify="between" spacing="natural">
       <Checkbox
-        label={item}
+        label={t(item)}
         name={item}
         value={item}
         checked={checked}

@@ -30,8 +30,8 @@ function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
 }
 
-function TravelCard({ title, cardData }) {
-  const initialData = () => (JSON.parse(window.localStorage.getItem(`data-${title}`)) || cardData);
+function TravelCard({ heading, category, cardData }) {
+  const initialData = () => (JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData);
 
   const [ data, setData ] = useState(initialData);
   const [ resetAll, setResetAll ] = useState(false);
@@ -41,8 +41,8 @@ function TravelCard({ title, cardData }) {
 
   useEffect(() => {
     // store data in local storage
-    window.localStorage.setItem(`data-${title}`, JSON.stringify(data));
-  }, [data, title]);
+    window.localStorage.setItem(`data-${category}`, JSON.stringify(data));
+  }, [data, category]);
 
   const handleDeleteItem = (item) => {
     // update data
@@ -81,17 +81,17 @@ function TravelCard({ title, cardData }) {
   };
 
   return (
-    <Card dataTest={`TravelCard-${title}`}>
+    <Card dataTest={`TravelCard-${category}`}>
       <CardHeader
-        title={title}
-        icon={renderCardIcon(title)}
+        title={heading}
+        icon={renderCardIcon(category)}
         actions={
           <Button
             type="critical"
             bordered
             size="small"
             onClick={handleReset}
-            title={`Reset the list ${title}`}
+            title={`Reset the list ${category}`}
           >
             Reset
           </Button>

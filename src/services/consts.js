@@ -4,3 +4,6 @@ export const LIST = {
   TOILETRIES: "Toiletries",
   OTHER: "Other",
 };
+
+export const ENGLISH = "en"
+export const SLOVENIAN = "si"

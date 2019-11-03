@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
 
 import TravelCard from "./TravelCard";
-import { data } from "../services/data";
+import { tKeysLists } from "../services/data";
 
 const {
   borderColorCard,
@@ -23,6 +24,7 @@ const MainWrapper = styled.div`
 `;
 
 function Main() {
+  const { t } = useTranslation();
   return (
     <MainWrapper>
       <Grid
@@ -32,13 +34,17 @@ function Main() {
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
         largeDesktop={{ columnGap: spaceXLarge }}
       >
-        {Object.keys(data).map((list, index) => (
-          <TravelCard
-            key={index}
-            title={list}
-            cardData={data[list]}
-          />
-        ))}
+        {tKeysLists.map((list, index) => {
+          console.log(list)
+          return (
+            <TravelCard
+              key={index}
+              category={list.category}
+              heading={t(list.title)}
+              cardData={list.items}
+            />
+          )
+        })}
       </Grid>
     </MainWrapper>
   );
