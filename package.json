@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@kiwicom/orbit-components": "^0.48.0",
-    "@kiwicom/orbit-design-tokens": "^0.6.4",
+    "@kiwicom/orbit-components": "^0.66.0",
+    "@kiwicom/orbit-design-tokens": "^0.8.0",
+    "i18next": "^19.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-i18next": "^11.0.1",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.2"
   },
