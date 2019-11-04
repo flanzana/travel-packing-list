@@ -5,7 +5,7 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox";
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink";
-import Remove from "@kiwicom/orbit-components/lib/icons/Remove";
+import Close from "@kiwicom/orbit-components/lib/icons/Close";
 
 const { heightCheckbox, widthCheckbox } = defaultTokens;
 
@@ -14,7 +14,7 @@ const StyledButtonLink = styled(ButtonLink)`
   width: ${widthCheckbox};
 `;
 
-function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem }) {
+function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, showDelete }) {
   const initialChecked = () => (JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false);
   const [ checked, setChecked ] = useState(initialChecked);
 
@@ -39,15 +39,18 @@ function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem }) {
         value={item}
         checked={checked}
         onChange={() => setChecked(!checked)}
+        disabled={showDelete}
       />
-      <StyledButtonLink
-        type="secondary"
-        size="small"
-        iconLeft={<Remove color="critical" />}
-        title={`Delete item ${item}`}
-        transparent
-        onClick={handleDeleteItem}
-      />
+      {showDelete && (
+        <StyledButtonLink
+          type="secondary"
+          size="small"
+          iconLeft={<Close color="critical" />}
+          title={`Delete item ${item}`}
+          transparent
+          onClick={handleDeleteItem}
+        />
+      )}
     </Stack>
   );
 }

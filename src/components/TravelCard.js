@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
 import Card, { CardHeader, CardSection } from "@kiwicom/orbit-components/lib/Card";
 import Button from "@kiwicom/orbit-components/lib/Button";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
@@ -6,10 +7,12 @@ import InputField from "@kiwicom/orbit-components/lib/InputField";
 import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet";
 import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase";
 import Spa from "@kiwicom/orbit-components/lib/icons/Spa";
-import Map from "@kiwicom/orbit-components/lib/icons/Map";
+import Camera from "@kiwicom/orbit-components/lib/icons/Camera";
+import Plus from "@kiwicom/orbit-components/lib/icons/Plus";
 
 import { LIST } from "../services/consts";
 import TravelItem from "./TravelItem";
+import Settings from "./Settings";
 
 function renderCardIcon(title) {
   switch (title) {
@@ -20,7 +23,7 @@ function renderCardIcon(title) {
     case LIST.TOILETRIES:
       return <Spa />;
     case LIST.OTHER:
-      return <Map />;
+      return <Camera />;
     default:
       return null
   }
@@ -31,11 +34,14 @@ function capitalize(text) {
 }
 
 function TravelCard({ heading, category, cardData }) {
+  const { t } = useTranslation();
   const initialData = () => (JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData);
 
   const [ data, setData ] = useState(initialData);
   const [ resetAll, setResetAll ] = useState(false);
+  const [ showSettingsPopover, setShowSettingsPopover ] = useState(false);
   const [ showInput, setShowInput ] = useState(false);
+  const [ showDelete, setShowDelete ] = useState(false);
   const [ newItem, setNewItem ] = useState("");
   const [ error, setError ] = useState(false);
 
@@ -43,6 +49,10 @@ function TravelCard({ heading, category, cardData }) {
     // store data in local storage
     window.localStorage.setItem(`data-${category}`, JSON.stringify(data));
   }, [data, category]);
+
+  const togglePopover = () => {
+    setShowSettingsPopover(!showSettingsPopover);
+  };
 
   const handleDeleteItem = (item) => {
     // update data
@@ -55,6 +65,7 @@ function TravelCard({ heading, category, cardData }) {
     setResetAll(true);
     // set data to default
     setData(cardData);
+    setShowSettingsPopover(false);
   };
 
   const handleSubmitNewItem = e => {
@@ -75,10 +86,15 @@ function TravelCard({ heading, category, cardData }) {
     setNewItem(capitalize(newValue));
 
     // show error if the new value already exists on the list
-    if (data.find(item => item === newValue)) {
+    if (data.find(item => t(item) === newValue)) {
         setError(true)
     }
   };
+
+  const toggleShowDelete = () => {
+    setShowDelete(true);
+    setShowSettingsPopover(false);
+  }
 
   return (
     <Card dataTest={`TravelCard-${category}`}>
@@ -86,15 +102,15 @@ function TravelCard({ heading, category, cardData }) {
         title={heading}
         icon={renderCardIcon(category)}
         actions={
-          <Button
-            type="critical"
-            bordered
-            size="small"
-            onClick={handleReset}
-            title={`Reset the list ${category}`}
-          >
-            Reset
-          </Button>
+          <Settings
+            category={category}
+            togglePopover={togglePopover}
+            toggleShowDelete={toggleShowDelete}
+            handleReset={handleReset}
+            showDelete={showDelete}
+            showInput={showInput}
+            showSettingsPopover={showSettingsPopover}
+          />
         }
       />
       <CardSection>
@@ -106,39 +122,50 @@ function TravelCard({ heading, category, cardData }) {
               shouldResetAll={resetAll}
               handleUnreset={() => setResetAll(false)}
               handleDeleteItem={() => handleDeleteItem(item)}
+              showDelete={showDelete}
             />
           ))}
-          {showInput ?
-            (
-              <Stack direction="row" spacing="condensed">
-                <InputField
-                  name="New item"
-                  size="small"
-                  placeholder="Type item..."
-                  value={newItem}
-                  onChange={handleInputChange}
-                  error={error && "Item already exists."}
-                  ref={input => input && input.focus()}
-                />
-                <Button
-                  size="small"
-                  onClick={handleSubmitNewItem}
-                  disabled={newItem === "" || error}
-                  title="Submit new item"
-                >
-                  Submit
-                </Button>
-              </Stack>
-            ) : (
+          {showInput ? (
+            <Stack direction="row" spacing="condensed">
+              <InputField
+                name="New item"
+                size="small"
+                placeholder="Type item..."
+                value={newItem}
+                onChange={handleInputChange}
+                error={error && "Item already exists."}
+                ref={input => input && input.focus()}
+              />
               <Button
                 size="small"
+                onClick={handleSubmitNewItem}
+                disabled={newItem === "" || error}
+              >
+                Submit
+              </Button>
+            </Stack>
+          ) : (
+            <Stack direction="row" justify="between">
+              <Button
+                type="primary"
+                iconLeft={<Plus />}
+                size="small"
                 onClick={() => setShowInput(true)}
-                title="Add new item"
+                disabled={showDelete}
               >
                 Add item
               </Button>
-            )
-          }
+              {showDelete && (
+                <Button
+                  type="critical"
+                  size="small"
+                  onClick={() => setShowDelete(false)}
+                >
+                  Save
+                </Button>
+              )}
+            </Stack>
+          )}
         </Stack>
       </CardSection>
     </Card>
