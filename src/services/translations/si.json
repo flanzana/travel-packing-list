@@ -88,8 +88,13 @@
     "item.flashlight": "Flashlight",
     "item.bag": "Cotton shopping bag",
     "item.copies": "Copies of passport, tickets, etc.",
-    "button.reset": "Reset",
-    "button.add_item": "Add item",
-    "button.submit": "Submit",
-    "placeholder.type_item": "Type item..."
+    "button.reset_list": "Ponastavi seznam {{category}}",
+    "button.add_item": "Dodaj stvar",
+    "button.submit": "Shrani",
+    "button.save": "Shrani",
+    "button.remove_items": "Izberi in izbriši stvari",
+    "button.settings": "Nastavitve",
+    "placeholder.type_item": "Vnesi stvar...",
+    "input.error": "Predmet že obstaja.",
+    "footer.text": "Avtorske pravice © 2019. <1>Žana Flander</1> in <3>Orbit</3>"
 }

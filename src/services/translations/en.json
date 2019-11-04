@@ -88,8 +88,13 @@
     "item.flashlight": "Flashlight",
     "item.bag": "Cotton shopping bag",
     "item.copies": "Copies of passport, tickets, etc.",
-    "button.reset": "Reset",
+    "button.reset_list": "Reset the list {{category}}",
     "button.add_item": "Add item",
     "button.submit": "Submit",
-    "placeholder.type_item": "Type item..."
+    "button.save": "Save",
+    "button.remove_items": "Select and remove items",
+    "button.settings": "Settings",
+    "placeholder.type_item": "Enter item...",
+    "input.error": "Item already exists.",
+    "footer.text": "Copyright © 2019. <1>Žana Flander</1> and <3>Orbit</3>"
 }

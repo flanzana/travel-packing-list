@@ -103,7 +103,7 @@ function TravelCard({ heading, category, cardData }) {
         icon={renderCardIcon(category)}
         actions={
           <Settings
-            category={category}
+            translatedCategory={heading}
             togglePopover={togglePopover}
             handleShowDelete={handleShowDelete}
             handleReset={handleReset}
@@ -130,10 +130,10 @@ function TravelCard({ heading, category, cardData }) {
               <InputField
                 name="New item"
                 size="small"
-                placeholder="Type item..."
+                placeholder={t("placeholder.type_item")}
                 value={newItem}
                 onChange={handleInputChange}
-                error={error && "Item already exists."}
+                error={error && t("input.error")}
                 ref={input => input && input.focus()}
               />
               <Button
@@ -141,7 +141,7 @@ function TravelCard({ heading, category, cardData }) {
                 onClick={handleSubmitNewItem}
                 disabled={newItem === "" || error}
               >
-                Submit
+                {t("button.submit")}
               </Button>
             </Stack>
           ) : (
@@ -153,7 +153,7 @@ function TravelCard({ heading, category, cardData }) {
                 onClick={() => setShowInput(true)}
                 disabled={showDelete}
               >
-                Add item
+                {t("button.add_item")}
               </Button>
               {showDelete && (
                 <Button
@@ -161,7 +161,7 @@ function TravelCard({ heading, category, cardData }) {
                   size="small"
                   onClick={() => setShowDelete(false)}
                 >
-                  Save
+                  {t("button.save")}
                 </Button>
               )}
             </Stack>
