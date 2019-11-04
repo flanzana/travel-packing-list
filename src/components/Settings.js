@@ -7,7 +7,7 @@ import Popover from "@kiwicom/orbit-components/lib/Popover";
 import Replace from "@kiwicom/orbit-components/lib/icons/Replace";
 import SettingsIcon from "@kiwicom/orbit-components/lib/icons/Settings";
 
-function Settings({ category, togglePopover, toggleShowDelete, handleReset, showDelete, showInput, showSettingsPopover }) {
+function Settings({ category, togglePopover, handleShowDelete, handleReset, showDelete, showInput, showSettingsPopover }) {
   const { t } = useTranslation();
 
   return (
@@ -18,7 +18,7 @@ function Settings({ category, togglePopover, toggleShowDelete, handleReset, show
             type="secondary"
             iconLeft={<Remove />}
             size="small"
-            onClick={toggleShowDelete}
+            onClick={handleShowDelete}
           >
             Select and remove items
           </Button>
@@ -33,6 +33,7 @@ function Settings({ category, togglePopover, toggleShowDelete, handleReset, show
         </Stack>
       }
       opened={showSettingsPopover}
+      onClose={togglePopover}
     >
       <Button
         size="small"

@@ -1,6 +1,6 @@
 import {LIST} from "./consts";
 
-export const tKeysLists = [
+export const lists = [
   {
     category: LIST.ESSENTIALS,
     title: "category.essentials",

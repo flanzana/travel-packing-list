@@ -5,7 +5,7 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens";
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
 
 import TravelCard from "./TravelCard";
-import { tKeysLists } from "../services/data";
+import { lists } from "../services/data";
 
 const {
   borderColorCard,
@@ -34,17 +34,14 @@ function Main() {
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
         largeDesktop={{ columnGap: spaceXLarge }}
       >
-        {tKeysLists.map((list, index) => {
-          console.log(list)
-          return (
-            <TravelCard
-              key={index}
-              category={list.category}
-              heading={t(list.title)}
-              cardData={list.items}
-            />
-          )
-        })}
+        {lists.map((list, index) => (
+          <TravelCard
+            key={index}
+            category={list.category}
+            heading={t(list.title)}
+            cardData={list.items}
+          />
+        ))}
       </Grid>
     </MainWrapper>
   );

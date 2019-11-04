@@ -47,7 +47,7 @@ function Header() {
       </FlagWrapper>
       <Stack direction="column" align="center" dataTest="Header">
         <Illustration name="TimelinePick" size="small" />
-        <Heading type="title2">{t("title")}</Heading>
+        <Heading type="title2" element="h1">{t("title")}</Heading>
       </Stack>
     </HeaderWrapper>
   );

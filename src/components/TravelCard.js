@@ -91,7 +91,7 @@ function TravelCard({ heading, category, cardData }) {
     }
   };
 
-  const toggleShowDelete = () => {
+  const handleShowDelete = () => {
     setShowDelete(true);
     setShowSettingsPopover(false);
   }
@@ -105,7 +105,7 @@ function TravelCard({ heading, category, cardData }) {
           <Settings
             category={category}
             togglePopover={togglePopover}
-            toggleShowDelete={toggleShowDelete}
+            handleShowDelete={handleShowDelete}
             handleReset={handleReset}
             showDelete={showDelete}
             showInput={showInput}
