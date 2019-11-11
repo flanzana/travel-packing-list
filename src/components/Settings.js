@@ -19,6 +19,7 @@ function Settings({ translatedCategory, togglePopover, handleShowDelete, handleR
             iconLeft={<Remove />}
             size="small"
             onClick={handleShowDelete}
+            fullWidth
           >
             {t("button.remove_items")}
           </Button>
@@ -27,6 +28,7 @@ function Settings({ translatedCategory, togglePopover, handleShowDelete, handleR
               iconLeft={<Replace />}
               size="small"
               onClick={handleReset}
+              fullWidth
             >
               {t("button.reset_list", { category: translatedCategory })}
           </Button>
