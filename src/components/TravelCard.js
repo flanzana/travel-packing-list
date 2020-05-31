@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
-import Card, { CardHeader, CardSection } from "@kiwicom/orbit-components/lib/Card";
+import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card";
 import Button from "@kiwicom/orbit-components/lib/Button";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import InputField from "@kiwicom/orbit-components/lib/InputField";
@@ -97,22 +97,22 @@ function TravelCard({ heading, category, cardData }) {
   }
 
   return (
-    <Card dataTest={`TravelCard-${category}`}>
-      <CardHeader
-        title={heading}
-        icon={renderCardIcon(category)}
-        actions={
-          <Settings
-            translatedCategory={heading}
-            togglePopover={togglePopover}
-            handleShowDelete={handleShowDelete}
-            handleReset={handleReset}
-            showDelete={showDelete}
-            showInput={showInput}
-            showSettingsPopover={showSettingsPopover}
-          />
-        }
-      />
+    <Card
+      dataTest={`TravelCard-${category}`}
+      title={heading}
+      icon={renderCardIcon(category)}
+      actions={
+        <Settings
+          translatedCategory={heading}
+          togglePopover={togglePopover}
+          handleShowDelete={handleShowDelete}
+          handleReset={handleReset}
+          showDelete={showDelete}
+          showInput={showInput}
+          showSettingsPopover={showSettingsPopover}
+        />
+      }
+    >
       <CardSection>
         <Stack direction="column" spacing="natural" tablet={{ spacing: "condensed" }}>
           {data.map(item => (
@@ -147,7 +147,7 @@ function TravelCard({ heading, category, cardData }) {
           ) : (
             <Stack direction="row" justify="between">
               <Button
-                type="primary"
+                type="secondary"
                 iconLeft={<Plus />}
                 size="small"
                 onClick={() => setShowInput(true)}

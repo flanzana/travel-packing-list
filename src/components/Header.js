@@ -9,7 +9,7 @@ import Illustration from "@kiwicom/orbit-components/lib/Illustration";
 import LangPicker from "./LangPicker";
 
 const {
-  widthBreakpointLargeDesktop,
+  widthBreakpointDesktop,
   spaceMedium,
   spaceXLarge,
 } = defaultTokens;
@@ -21,7 +21,7 @@ const HeaderWrapper = styled.div`
     text-align: center;
   };
   
-  @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
+  @media screen and (min-width: ${widthBreakpointDesktop}px) {
     padding: ${spaceXLarge};
   };
 `;
@@ -31,7 +31,7 @@ const FlagWrapper = styled.div`
   top: 2px;
   right: 2px;
 
-  @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
+  @media screen and (min-width: ${widthBreakpointDesktop}px) {
     top: 12px;
     right: 12px;
   };
@@ -46,8 +46,8 @@ function Header() {
         <LangPicker />
       </FlagWrapper>
       <Stack direction="column" align="center" dataTest="Header">
-        <Illustration name="TimelinePick" size="small" />
-        <Heading type="title2" element="h1">{t("title")}</Heading>
+        <Illustration name="TimelinePick" size="extraSmall" />
+        <Heading type="title2" as="h1">{t("title")}</Heading>
       </Stack>
     </HeaderWrapper>
   );

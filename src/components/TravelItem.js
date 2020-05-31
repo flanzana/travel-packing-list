@@ -9,9 +9,11 @@ import Close from "@kiwicom/orbit-components/lib/icons/Close";
 
 const { heightCheckbox, widthCheckbox } = defaultTokens;
 
-const StyledButtonLink = styled(ButtonLink)`
+const StyledButtonLink = styled.div`
+button {
   height: ${heightCheckbox};
   width: ${widthCheckbox};
+}
 `;
 
 function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, showDelete }) {
@@ -42,14 +44,16 @@ function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, sho
         disabled={showDelete}
       />
       {showDelete && (
-        <StyledButtonLink
-          type="secondary"
-          size="small"
-          iconLeft={<Close color="critical" />}
-          title={`Delete item ${item}`}
-          transparent
-          onClick={handleDeleteItem}
-        />
+        <StyledButtonLink>
+          <ButtonLink
+            type="secondary"
+            size="small"
+            iconLeft={<Close color="critical" />}
+            title={`Delete item ${item}`}
+            transparent
+            onClick={handleDeleteItem}
+          />
+        </StyledButtonLink>
       )}
     </Stack>
   );

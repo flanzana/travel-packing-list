@@ -24,13 +24,13 @@ function LangPicker() {
   return (
     <Stack direction="row" spacing="extraTight" tablet={{ spacing: "condensed" }}>
       <ButtonLink 
-        icon={<CountryFlag code="gb" name="English" />} 
+        iconLeft={<CountryFlag code="gb" name="English" />}
         onClick={() => changeLanguage(ENGLISH)}
         size="small"
         title="English"
       />
       <ButtonLink 
-        icon={<CountryFlag code="si" name="Slovenščina" />} 
+        iconLeft={<CountryFlag code="si" name="Slovenščina" />}
         onClick={() => changeLanguage(SLOVENIAN)}
         size="small"
         title="Slovenščina"
