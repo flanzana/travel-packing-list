@@ -2,15 +2,19 @@
   "name": "travel-packing-list",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://flanzana.github.io/travel-packing-list",
   "dependencies": {
-    "@kiwicom/orbit-components": "^0.66.0",
-    "@kiwicom/orbit-design-tokens": "^0.8.0",
-    "i18next": "^19.0.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-i18next": "^11.0.1",
-    "react-scripts": "3.0.1",
-    "styled-components": "^4.3.2"
+    "@kiwicom/orbit-components": "^0.85.2",
+    "@kiwicom/orbit-design-tokens": "^0.10.0",
+    "i18next": "^19.4.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.5.0",
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   },
   "scripts": {
     "predeploy": "yarn build",
@@ -34,9 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://flanzana.github.io/travel-packing-list",
-  "devDependencies": {
-    "gh-pages": "^2.0.1"
   }
 }
