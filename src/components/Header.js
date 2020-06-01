@@ -6,7 +6,7 @@ import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Heading from "@kiwicom/orbit-components/lib/Heading";
 import Illustration from "@kiwicom/orbit-components/lib/Illustration";
 
-import LangPicker from "./LangPicker";
+import LanguagePicker from "./LanguagePicker";
 
 const {
   widthBreakpointDesktop,
@@ -28,8 +28,8 @@ const HeaderWrapper = styled.div`
 
 const FlagWrapper = styled.div`
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 4px;
+  right: 4px;
 
   @media screen and (min-width: ${widthBreakpointDesktop}px) {
     top: 12px;
@@ -43,7 +43,7 @@ function Header() {
   return (
     <HeaderWrapper>
       <FlagWrapper>
-        <LangPicker />
+        <LanguagePicker />
       </FlagWrapper>
       <Stack direction="column" align="center" dataTest="Header">
         <Illustration name="TimelinePick" size="extraSmall" />
