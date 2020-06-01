@@ -1,30 +1,25 @@
-import React from 'react';
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
-import { defaultTokens } from "@kiwicom/orbit-design-tokens";
-import Grid from "@kiwicom/orbit-components/lib/utils/Grid";
+import React from "react"
+import styled from "styled-components"
+import { useTranslation } from "react-i18next"
+import { defaultTokens } from "@kiwicom/orbit-design-tokens"
+import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
 
-import TravelCard from "./TravelCard";
-import { lists } from "../services/data";
+import TravelCard from "./TravelCard"
+import { lists } from "../services/data"
 
-const {
-  borderColorCard,
-  widthBreakpointLargeDesktop,
-  spaceLarge,
-  spaceXLarge,
-} = defaultTokens;
+const { borderColorCard, widthBreakpointLargeDesktop, spaceLarge, spaceXLarge } = defaultTokens
 
 const MainWrapper = styled.div`
   background-color: ${borderColorCard};
   padding: ${spaceLarge};
-  
+
   @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
     padding: ${spaceXLarge};
-  };
-`;
+  }
+`
 
 function Main() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <MainWrapper>
       <Grid
@@ -34,9 +29,9 @@ function Main() {
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
         largeDesktop={{ columnGap: spaceXLarge }}
       >
-        {lists.map((list, index) => (
+        {lists.map(list => (
           <TravelCard
-            key={index}
+            key={list.category}
             category={list.category}
             heading={t(list.title)}
             cardData={list.items}
@@ -44,7 +39,7 @@ function Main() {
         ))}
       </Grid>
     </MainWrapper>
-  );
+  )
 }
 
-export default Main;
+export default Main

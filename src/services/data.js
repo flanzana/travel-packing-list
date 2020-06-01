@@ -1,4 +1,4 @@
-import {LIST} from "./consts";
+import { LIST } from "./consts"
 
 export const lists = [
   {
@@ -110,5 +110,5 @@ export const lists = [
       "item.flashlight",
       "item.bag",
     ],
-  }
-];
+  },
+]

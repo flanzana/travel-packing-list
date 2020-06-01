@@ -3,7 +3,7 @@ export const LIST = {
   CLOTHES: "Clothes",
   TOILETRIES: "Toiletries",
   OTHER: "Other",
-};
+}
 
 export const ENGLISH = "en"
 export const SLOVENIAN = "si"
@@ -18,5 +18,5 @@ export const LANGUAGES = {
     value: SLOVENIAN,
     flagCode: "si",
     title: "Slovenščina",
-  }
+  },
 }

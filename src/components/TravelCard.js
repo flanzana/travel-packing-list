@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from "react-i18next";
-import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card";
-import Button from "@kiwicom/orbit-components/lib/Button";
-import Stack from "@kiwicom/orbit-components/lib/Stack";
-import InputField from "@kiwicom/orbit-components/lib/InputField";
-import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet";
-import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase";
-import Spa from "@kiwicom/orbit-components/lib/icons/Spa";
-import Camera from "@kiwicom/orbit-components/lib/icons/Camera";
-import Plus from "@kiwicom/orbit-components/lib/icons/Plus";
+import React, { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
+import Button from "@kiwicom/orbit-components/lib/Button"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
+import InputField from "@kiwicom/orbit-components/lib/InputField"
+import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet"
+import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase"
+import Spa from "@kiwicom/orbit-components/lib/icons/Spa"
+import Camera from "@kiwicom/orbit-components/lib/icons/Camera"
+import Plus from "@kiwicom/orbit-components/lib/icons/Plus"
 
-import { LIST } from "../services/consts";
-import TravelItem from "./TravelItem";
-import Settings from "./Settings";
+import { LIST } from "../services/consts"
+import TravelItem from "./TravelItem"
+import Settings from "./Settings"
 
 function renderCardIcon(title) {
   switch (title) {
     case LIST.ESSENTIALS:
-      return <Wallet />;
+      return <Wallet />
     case LIST.CLOTHES:
-      return <Suitcase />;
+      return <Suitcase />
     case LIST.TOILETRIES:
-      return <Spa />;
+      return <Spa />
     case LIST.OTHER:
-      return <Camera />;
+      return <Camera />
     default:
       return null
   }
@@ -34,66 +34,66 @@ function capitalize(text) {
 }
 
 function TravelCard({ heading, category, cardData }) {
-  const { t } = useTranslation();
-  const initialData = () => (JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData);
+  const { t } = useTranslation()
+  const initialData = () => JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData
 
-  const [ data, setData ] = useState(initialData);
-  const [ resetAll, setResetAll ] = useState(false);
-  const [ showSettingsPopover, setShowSettingsPopover ] = useState(false);
-  const [ showInput, setShowInput ] = useState(false);
-  const [ showDelete, setShowDelete ] = useState(false);
-  const [ newItem, setNewItem ] = useState("");
-  const [ error, setError ] = useState(false);
+  const [data, setData] = useState(initialData)
+  const [resetAll, setResetAll] = useState(false)
+  const [showSettingsPopover, setShowSettingsPopover] = useState(false)
+  const [showInput, setShowInput] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+  const [newItem, setNewItem] = useState("")
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     // store data in local storage
-    window.localStorage.setItem(`data-${category}`, JSON.stringify(data));
-  }, [data, category]);
+    window.localStorage.setItem(`data-${category}`, JSON.stringify(data))
+  }, [data, category])
 
   const togglePopover = () => {
-    setShowSettingsPopover(!showSettingsPopover);
-  };
+    setShowSettingsPopover(!showSettingsPopover)
+  }
 
-  const handleDeleteItem = (item) => {
+  const handleDeleteItem = item => {
     // update data
-    setData(data.filter(i => i !== item));
+    setData(data.filter(i => i !== item))
     // remove item from local storage
-    window.localStorage.removeItem(`${item}-checked`);
-  };
+    window.localStorage.removeItem(`${item}-checked`)
+  }
 
   const handleReset = () => {
-    setResetAll(true);
+    setResetAll(true)
     // set data to default
-    setData(cardData);
-    setShowSettingsPopover(false);
-  };
+    setData(cardData)
+    setShowSettingsPopover(false)
+  }
 
   const handleSubmitNewItem = e => {
     if (newItem !== "") {
-      e.preventDefault();
+      e.preventDefault()
       // update data
-      setData(prevData => [...prevData, newItem]);
+      setData(prevData => [...prevData, newItem])
 
       // clear states
-      setShowInput(false);
-      setNewItem("");
+      setShowInput(false)
+      setNewItem("")
     }
-  };
+  }
 
   const handleInputChange = e => {
-    const newValue = e.target.value;
-    setError(false);
-    setNewItem(capitalize(newValue));
+    const newValue = e.target.value
+    setError(false)
+    setNewItem(capitalize(newValue))
 
     // show error if the new value already exists on the list
     if (data.find(item => t(item) === newValue)) {
-        setError(true)
+      setError(true)
     }
-  };
+  }
 
   const handleShowDelete = () => {
-    setShowDelete(true);
-    setShowSettingsPopover(false);
+    setShowDelete(true)
+    setShowSettingsPopover(false)
   }
 
   return (
@@ -136,11 +136,7 @@ function TravelCard({ heading, category, cardData }) {
                 error={error && t("input.error")}
                 ref={input => input && input.focus()}
               />
-              <Button
-                size="small"
-                onClick={handleSubmitNewItem}
-                disabled={newItem === "" || error}
-              >
+              <Button size="small" onClick={handleSubmitNewItem} disabled={newItem === "" || error}>
                 {t("button.submit")}
               </Button>
             </Stack>
@@ -156,11 +152,7 @@ function TravelCard({ heading, category, cardData }) {
                 {t("button.add_item")}
               </Button>
               {showDelete && (
-                <Button
-                  type="critical"
-                  size="small"
-                  onClick={() => setShowDelete(false)}
-                >
+                <Button type="critical" size="small" onClick={() => setShowDelete(false)}>
                   {t("button.save")}
                 </Button>
               )}
@@ -169,7 +161,7 @@ function TravelCard({ heading, category, cardData }) {
         </Stack>
       </CardSection>
     </Card>
-  );
+  )
 }
 
-export default TravelCard;
+export default TravelCard
