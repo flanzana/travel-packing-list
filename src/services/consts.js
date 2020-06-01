@@ -1,8 +1,8 @@
 export const LIST = {
-  ESSENTIALS: "Essentials",
-  CLOTHES: "Clothes",
-  TOILETRIES: "Toiletries",
-  OTHER: "Other",
+  ESSENTIALS: "essentials",
+  CLOTHES: "clothes",
+  TOILETRIES: "toiletries",
+  OTHER: "other",
 }
 
 export const ENGLISH = "en"

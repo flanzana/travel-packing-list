@@ -5,7 +5,7 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
 
 import TravelCard from "./TravelCard"
-import { lists } from "../services/data"
+import data from "../services/data.json"
 
 const { borderColorCard, widthBreakpointLargeDesktop, spaceLarge, spaceXLarge } = defaultTokens
 
@@ -29,7 +29,7 @@ function Main() {
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
         largeDesktop={{ columnGap: spaceXLarge }}
       >
-        {lists.map(list => (
+        {data.map(list => (
           <TravelCard
             key={list.category}
             category={list.category}

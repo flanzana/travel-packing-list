@@ -1,23 +1,21 @@
-import { LIST } from "./consts"
-
-export const lists = [
-  {
-    category: LIST.ESSENTIALS,
-    title: "category.essentials",
-    items: [
+[
+ {
+    "category": "essentials",
+    "title": "category.essentials",
+    "items": [
       "item.passport",
       "item.cash",
       "item.credit_card",
       "item.phone_charger",
       "item.insurance",
       "item.tickets",
-      "item.copies",
-    ],
+      "item.copies"
+    ]
   },
   {
-    category: LIST.CLOTHES,
-    title: "category.clothes",
-    items: [
+    "category": "clothes",
+    "title": "category.clothes",
+    "items": [
       "item.underwear",
       "item.socks",
       "item.bras",
@@ -46,13 +44,13 @@ export const lists = [
       "item.jewelry",
       "item.purses",
       "item.towel",
-      "item.laundry_bag",
-    ],
+      "item.laundry_bag"
+    ]
   },
   {
-    category: LIST.TOILETRIES,
-    title: "category.toiletries",
-    items: [
+    "category": "toiletries",
+    "title": "category.toiletries",
+    "items": [
       "item.toothbrush",
       "item.toothpaste",
       "item.floss",
@@ -81,13 +79,13 @@ export const lists = [
       "item.repellent",
       "item.pain_killers",
       "item.medications",
-      "item.laundry_kit",
-    ],
+      "item.laundry_kit"
+    ]
   },
   {
-    category: LIST.OTHER,
-    title: "category.other",
-    items: [
+    "category": "other",
+    "title": "category.other",
+    "items": [
       "item.binoculars",
       "item.sunglasses",
       "item.camera_charger",
@@ -108,7 +106,7 @@ export const lists = [
       "item.umbrella",
       "item.locks",
       "item.flashlight",
-      "item.bag",
-    ],
-  },
+      "item.bag"
+    ]
+  }
 ]
