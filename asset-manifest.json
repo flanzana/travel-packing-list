@@ -1,15 +1,22 @@
 {
   "files": {
     "main.css": "/travel-packing-list/static/css/main.34de6062.chunk.css",
-    "main.js": "/travel-packing-list/static/js/main.db2fda2f.chunk.js",
-    "main.js.map": "/travel-packing-list/static/js/main.db2fda2f.chunk.js.map",
-    "runtime~main.js": "/travel-packing-list/static/js/runtime~main.0702185b.js",
-    "runtime~main.js.map": "/travel-packing-list/static/js/runtime~main.0702185b.js.map",
-    "static/js/2.5b857e26.chunk.js": "/travel-packing-list/static/js/2.5b857e26.chunk.js",
-    "static/js/2.5b857e26.chunk.js.map": "/travel-packing-list/static/js/2.5b857e26.chunk.js.map",
+    "main.js": "/travel-packing-list/static/js/main.bbf2dcba.chunk.js",
+    "main.js.map": "/travel-packing-list/static/js/main.bbf2dcba.chunk.js.map",
+    "runtime-main.js": "/travel-packing-list/static/js/runtime-main.88ebbf19.js",
+    "runtime-main.js.map": "/travel-packing-list/static/js/runtime-main.88ebbf19.js.map",
+    "static/js/2.3d6143cf.chunk.js": "/travel-packing-list/static/js/2.3d6143cf.chunk.js",
+    "static/js/2.3d6143cf.chunk.js.map": "/travel-packing-list/static/js/2.3d6143cf.chunk.js.map",
     "index.html": "/travel-packing-list/index.html",
-    "precache-manifest.9936e9964479659e17d20e161e7d645e.js": "/travel-packing-list/precache-manifest.9936e9964479659e17d20e161e7d645e.js",
+    "precache-manifest.b997e55eb7a8ec89dc459abc2bd77e07.js": "/travel-packing-list/precache-manifest.b997e55eb7a8ec89dc459abc2bd77e07.js",
     "service-worker.js": "/travel-packing-list/service-worker.js",
-    "static/css/main.34de6062.chunk.css.map": "/travel-packing-list/static/css/main.34de6062.chunk.css.map"
-  }
+    "static/css/main.34de6062.chunk.css.map": "/travel-packing-list/static/css/main.34de6062.chunk.css.map",
+    "static/js/2.3d6143cf.chunk.js.LICENSE.txt": "/travel-packing-list/static/js/2.3d6143cf.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.88ebbf19.js",
+    "static/js/2.3d6143cf.chunk.js",
+    "static/css/main.34de6062.chunk.css",
+    "static/js/main.bbf2dcba.chunk.js"
+  ]
 }
