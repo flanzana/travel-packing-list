@@ -1,3 +1,4 @@
+// @flow
 import React from "react"
 import { useTranslation } from "react-i18next"
 import Button from "@kiwicom/orbit-components/lib/Button"
@@ -7,6 +8,16 @@ import Popover from "@kiwicom/orbit-components/lib/Popover"
 import Replace from "@kiwicom/orbit-components/lib/icons/Replace"
 import SettingsIcon from "@kiwicom/orbit-components/lib/icons/Settings"
 
+type Props = {
+  translatedCategory: string,
+  togglePopover: () => void,
+  handleShowDelete: () => void,
+  handleReset: () => void,
+  showDelete: boolean,
+  showInput: boolean,
+  showSettingsPopover: boolean,
+}
+
 function Settings({
   translatedCategory,
   togglePopover,
@@ -15,7 +26,7 @@ function Settings({
   showDelete,
   showInput,
   showSettingsPopover,
-}) {
+}: Props) {
   const { t } = useTranslation()
 
   return (

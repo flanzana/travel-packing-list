@@ -1,3 +1,4 @@
+// @flow
 import React, { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
@@ -10,30 +11,37 @@ import Spa from "@kiwicom/orbit-components/lib/icons/Spa"
 import Camera from "@kiwicom/orbit-components/lib/icons/Camera"
 import Plus from "@kiwicom/orbit-components/lib/icons/Plus"
 
-import { LIST } from "../services/consts"
+import { LIST_CATEGORIES } from "../services/consts"
 import TravelItem from "./TravelItem"
 import Settings from "./Settings"
+import type { ListCategory } from "../services/types"
 
-function renderCardIcon(title) {
+function renderCardIcon(title: ListCategory) {
   switch (title) {
-    case LIST.ESSENTIALS:
+    case LIST_CATEGORIES.ESSENTIALS:
       return <Wallet />
-    case LIST.CLOTHES:
+    case LIST_CATEGORIES.CLOTHES:
       return <Suitcase />
-    case LIST.TOILETRIES:
+    case LIST_CATEGORIES.TOILETRIES:
       return <Spa />
-    case LIST.OTHER:
+    case LIST_CATEGORIES.OTHER:
       return <Camera />
     default:
       return null
   }
 }
 
-function capitalize(text) {
+function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
 }
 
-function TravelCard({ heading, category, cardData }) {
+type Props = {
+  heading: string,
+  category: ListCategory,
+  cardData: Array<string>,
+}
+
+function TravelCard({ heading, category, cardData }: Props) {
   const { t } = useTranslation()
   const initialData = () => JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData
 

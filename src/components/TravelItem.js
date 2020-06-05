@@ -1,3 +1,4 @@
+// @flow
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
@@ -16,7 +17,15 @@ const StyledButtonLink = styled.div`
   }
 `
 
-function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, showDelete }) {
+type Props = {
+  item: string,
+  shouldResetAll: boolean,
+  showDelete: boolean,
+  handleUnreset: () => void,
+  handleDeleteItem: () => void,
+}
+
+function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, showDelete }: Props) {
   const initialChecked = () => JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false
   const [checked, setChecked] = useState(initialChecked)
 

@@ -1,0 +1,11 @@
+[ignore]
+<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/public/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]

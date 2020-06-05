@@ -1,3 +1,4 @@
+// @flow
 import React, { useState, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
@@ -7,10 +8,10 @@ import Button from "@kiwicom/orbit-components/lib/Button"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
 
-import { ENGLISH, LANGUAGES } from "../services/consts"
+import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
 
 function LanguagePicker() {
-  const initialLanguage = () => window.localStorage.getItem("language") || ENGLISH
+  const initialLanguage = () => window.localStorage.getItem("language") || LANGUAGES.ENGLISH
   const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
@@ -37,18 +38,21 @@ function LanguagePicker() {
       onClose={() => setIsPopoverOpen(false)}
       content={
         <Stack direction="column" spacing="condensed" tablet={{ spacing: "tight" }}>
-          {Object.keys(LANGUAGES).map(lang => (
+          {Object.keys(LANGUAGES_DATA).map(lang => (
             <ButtonLink
               key={lang}
               iconLeft={
-                <CountryFlag code={LANGUAGES[lang].flagCode} name={LANGUAGES[lang].title} />
+                <CountryFlag
+                  code={LANGUAGES_DATA[lang].flagCode}
+                  name={LANGUAGES_DATA[lang].title}
+                />
               }
               onClick={() => changeLanguage(lang)}
               size="small"
               type="secondary"
               width="100%"
             >
-              {LANGUAGES[lang].title}
+              {LANGUAGES_DATA[lang].title}
             </ButtonLink>
           ))}
         </Stack>
@@ -59,11 +63,11 @@ function LanguagePicker() {
         iconRight={isPopoverOpen ? <ChevronUp /> : <ChevronDown />}
         type="secondary"
         size="small"
-        title={LANGUAGES[selectedLanguage].title}
+        title={LANGUAGES_DATA[selectedLanguage].title}
       >
         <CountryFlag
-          code={LANGUAGES[selectedLanguage].flagCode}
-          name={LANGUAGES[selectedLanguage].title}
+          code={LANGUAGES_DATA[selectedLanguage].flagCode}
+          name={LANGUAGES_DATA[selectedLanguage].title}
         />
       </Button>
     </Popover>
