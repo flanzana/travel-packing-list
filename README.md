@@ -20,8 +20,18 @@ App Travel Packing List offers you many different possibilities of usage:
 - automatic capitalization of new item
 - reset whole list to default items
 - store all items into LocalStorage
-- switch between English and Slovenian version of the app
+- switch between English, Spanish and Slovenian version of the app
 - responsive design
+
+## Dependencies used in project
+- `create-react-app`
+- `styled-components`
+- `@kiwicom/orbit-components` and `@kiwicom/orbit-design-tokens`
+- `i18next` and `react-i18next`
+- `eslint` with many eslint plugins
+- `prettier`
+- `flow-bin`
+- `@testing-library` WIP
 
 
 ## Sources
@@ -33,3 +43,4 @@ App Travel Packing List offers you many different possibilities of usage:
 - [React i18next](https://react.i18next.com/)
 - [TheUltimatePackingList.pdf](https://www.smartertravel.com/uploads/2019/05/The-Ultimate-Packing-List_Interactive-FINAL.pdf)
 - [PackingChecklist.pdf](https://images.eaglecreek.com/is/content/eaglecreek/2019_Packing_Checklist.pdf)
+- [PONS Online Dictionary](https://en.pons.com/translate)
