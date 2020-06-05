@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next"
 
 import enTranslations from "./services/translations/en.json"
 import siTranslations from "./services/translations/si.json"
+import esTranslations from "./services/translations/es.json"
 import { LANGUAGES } from "./services/consts"
 
 // the translations
@@ -11,6 +12,9 @@ import { LANGUAGES } from "./services/consts"
 const resources = {
   [LANGUAGES.ENGLISH]: {
     translations: enTranslations,
+  },
+  [LANGUAGES.SPANISH]: {
+    translations: esTranslations,
   },
   [LANGUAGES.SLOVENIAN]: {
     translations: siTranslations,

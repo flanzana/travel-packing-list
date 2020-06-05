@@ -9,6 +9,7 @@ export const LIST_CATEGORIES = {
 export const LANGUAGES = {
   ENGLISH: "en",
   SLOVENIAN: "si",
+  SPANISH: "es",
 }
 
 export const LANGUAGES_DATA = {
@@ -16,6 +17,11 @@ export const LANGUAGES_DATA = {
     value: LANGUAGES.ENGLISH,
     flagCode: "gb",
     title: "English",
+  },
+  [LANGUAGES.SPANISH]: {
+    value: LANGUAGES.SPANISH,
+    flagCode: "es",
+    title: "Español",
   },
   [LANGUAGES.SLOVENIAN]: {
     value: LANGUAGES.SLOVENIAN,
