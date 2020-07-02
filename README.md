@@ -44,3 +44,5 @@ App Travel Packing List offers you many different possibilities of usage:
 - [TheUltimatePackingList.pdf](https://www.smartertravel.com/uploads/2019/05/The-Ultimate-Packing-List_Interactive-FINAL.pdf)
 - [PackingChecklist.pdf](https://images.eaglecreek.com/is/content/eaglecreek/2019_Packing_Checklist.pdf)
 - [PONS Online Dictionary](https://en.pons.com/translate)
+- [luggage photo](https://unsplash.com/photos/TVllFyGaLEA)
+- [Open Graph protocol](https://ogp.me/)
