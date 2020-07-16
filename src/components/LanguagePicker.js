@@ -7,6 +7,7 @@ import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
+import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
 
@@ -14,6 +15,7 @@ function LanguagePicker() {
   const initialLanguage = () => window.localStorage.getItem("language") || LANGUAGES.ENGLISH
   const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+  const { isLargeMobile } = useMediaQuery()
 
   useEffect(() => {
     window.localStorage.setItem("language", selectedLanguage)
@@ -65,10 +67,13 @@ function LanguagePicker() {
         size="small"
         title={LANGUAGES_DATA[selectedLanguage].title}
       >
-        <CountryFlag
-          code={LANGUAGES_DATA[selectedLanguage].flagCode}
-          name={LANGUAGES_DATA[selectedLanguage].title}
-        />
+        <Stack direction="row" align="center" spacing="condensed">
+          <CountryFlag
+            code={LANGUAGES_DATA[selectedLanguage].flagCode}
+            name={LANGUAGES_DATA[selectedLanguage].title}
+          />
+          {isLargeMobile && <span>{LANGUAGES_DATA[selectedLanguage].title}</span>}
+        </Stack>
       </Button>
     </Popover>
   )
