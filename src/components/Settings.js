@@ -3,6 +3,7 @@ import React from "react"
 import { useTranslation } from "react-i18next"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
+import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Remove from "@kiwicom/orbit-components/lib/icons/Remove"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import Replace from "@kiwicom/orbit-components/lib/icons/Replace"
@@ -33,6 +34,9 @@ function Settings({
     <Popover
       content={
         <Stack direction="column" spacing="natural" dataTest="Settings-popover">
+          <Heading type="title4" as="h3">
+            {t("title.settings_list", { category: translatedCategory })}
+          </Heading>
           <Button
             type="secondary"
             iconLeft={<Remove />}
@@ -43,18 +47,19 @@ function Settings({
             {t("button.remove_items")}
           </Button>
           <Button
-            type="critical"
+            type="criticalSubtle"
             iconLeft={<Replace />}
             size="small"
             onClick={handleReset}
             fullWidth
           >
-            {t("button.reset_list", { category: translatedCategory })}
+            {t("button.reset_list")}
           </Button>
         </Stack>
       }
       opened={showSettingsPopover}
       onClose={togglePopover}
+      width="250px"
     >
       <Button
         size="small"

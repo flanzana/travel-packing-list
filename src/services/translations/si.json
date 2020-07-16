@@ -100,6 +100,7 @@
     "button.save": "Shrani",
     "button.remove_items": "Izberi in izbriši stvari",
     "button.settings": "Nastavitve",
+    "title.settings_list": "Nastavitve za seznam {{category}}",
     "placeholder.type_item": "Vnesi stvar...",
     "input.error": "Predmet že obstaja.",
     "footer.text": "© 2019-2020 <1>Žana Flander</1> in <3>Orbit</3>"
