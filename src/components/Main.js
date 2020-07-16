@@ -8,14 +8,25 @@ import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
 import TravelCard from "./TravelCard"
 import data from "../services/data.json"
 
-const { borderColorCard, widthBreakpointLargeDesktop, spaceLarge, spaceXLarge } = defaultTokens
+const {
+  borderColorCard,
+  widthBreakpointLargeMobile,
+  widthBreakpointLargeDesktop,
+  spaceSmall,
+  spaceMedium,
+  spaceLarge,
+} = defaultTokens
 
 const MainWrapper = styled.div`
   background-color: ${borderColorCard};
-  padding: ${spaceLarge};
+  padding: ${spaceSmall};
+
+  @media screen and (min-width: ${widthBreakpointLargeMobile}px) {
+    padding: ${spaceMedium};
+  }
 
   @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
-    padding: ${spaceXLarge};
+    padding: ${spaceLarge};
   }
 `
 
@@ -24,11 +35,11 @@ function Main() {
   return (
     <MainWrapper>
       <Grid
-        columnGap={spaceLarge}
-        rowGap={spaceLarge}
-        largeMobile={{ columns: "1fr 1fr", rowGap: spaceLarge }}
+        columnGap={spaceMedium}
+        rowGap={spaceSmall}
+        largeMobile={{ columns: "1fr 1fr", rowGap: spaceMedium }}
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
-        largeDesktop={{ columnGap: spaceXLarge }}
+        largeDesktop={{ rowGap: spaceLarge, columnGap: spaceLarge }}
       >
         {data.map(list => (
           <TravelCard

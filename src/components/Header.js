@@ -9,7 +9,7 @@ import Illustration from "@kiwicom/orbit-components/lib/Illustration"
 
 import LanguagePicker from "./LanguagePicker"
 
-const { widthBreakpointDesktop, spaceMedium, spaceXLarge } = defaultTokens
+const { widthBreakpointDesktop, spaceMedium, spaceLarge } = defaultTokens
 
 const HeaderWrapper = styled.div`
   padding: ${spaceMedium};
@@ -19,7 +19,7 @@ const HeaderWrapper = styled.div`
   }
 
   @media screen and (min-width: ${widthBreakpointDesktop}px) {
-    padding: ${spaceXLarge};
+    padding: ${spaceLarge};
   }
 `
 
