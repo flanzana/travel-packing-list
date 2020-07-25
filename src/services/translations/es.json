@@ -94,6 +94,8 @@
     "item.flashlight": "Linterna",
     "item.bag": "Bolsa de tela",
     "item.copies": "Copia de pasaporte",
+    "item.face_mask": "Mascarilla",
+    "item.backpack": "Mochila",
     "button.reset_list": "Volver a lista inicial",
     "button.add_item": "Añadir el objeto",
     "button.submit": "Enviar",

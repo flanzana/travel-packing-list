@@ -94,6 +94,8 @@
     "item.flashlight": "Flashlight",
     "item.bag": "Cotton shopping bag",
     "item.copies": "Copy of passport",
+    "item.face_mask": "Face mask",
+    "item.backpack": "Backpack",
     "button.reset_list": "Reset the list",
     "button.add_item": "Add item",
     "button.submit": "Submit",

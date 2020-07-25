@@ -94,6 +94,8 @@
     "item.flashlight": "Baterijska svetilka",
     "item.bag": "Nakupovalna vrečka iz blaga",
     "item.copies": "Kopija potnega lista",
+    "item.face_mask": "Obrazna maska",
+    "item.backpack": "Nahrbtnik",
     "button.reset_list": "Ponastavi seznam {{category}}",
     "button.add_item": "Dodaj stvar",
     "button.submit": "Shrani",

@@ -44,7 +44,6 @@
       "item.belts",
       "item.ties",
       "item.jewelry",
-      "item.purses",
       "item.towel",
       "item.laundry_bag"
     ]
@@ -88,6 +87,7 @@
     "category": "other",
     "title": "category.other",
     "items": [
+      "item.face_mask",
       "item.binoculars",
       "item.sunglasses",
       "item.camera_charger",
@@ -109,7 +109,9 @@
       "item.umbrella",
       "item.locks",
       "item.flashlight",
-      "item.bag"
+      "item.bag",
+      "item.purses",
+      "item.backpack"
     ]
   }
 ]
