@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5d5220cf3f363573a6e21029eac73a78",
+    "revision": "2f9a6b420245caf8c631b4bd34f4f3cf",
     "url": "/travel-packing-list/index.html"
   },
   {
-    "revision": "254529bd52692a8aa1d7",
+    "revision": "fdef02ff9f1b606704b7",
     "url": "/travel-packing-list/static/css/main.34de6062.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/travel-packing-list/static/js/2.d7a75387.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "254529bd52692a8aa1d7",
-    "url": "/travel-packing-list/static/js/main.90b0441e.chunk.js"
+    "revision": "fdef02ff9f1b606704b7",
+    "url": "/travel-packing-list/static/js/main.a22b7029.chunk.js"
   },
   {
     "revision": "beca73bd545fde14bd5a",
