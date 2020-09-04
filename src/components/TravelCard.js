@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
 import Button from "@kiwicom/orbit-components/lib/Button"
@@ -15,6 +15,7 @@ import { LIST_CATEGORIES } from "../services/consts"
 import TravelItem from "./TravelItem"
 import Settings from "./Settings"
 import type { ListCategory } from "../services/types"
+import useLocalStorage from "../services/useLocalStorage"
 
 function renderCardIcon(title: ListCategory) {
   switch (title) {
@@ -43,9 +44,8 @@ type Props = {
 
 function TravelCard({ heading, category, cardData }: Props) {
   const { t } = useTranslation()
-  const initialData = () => JSON.parse(window.localStorage.getItem(`data-${category}`)) || cardData
+  const [data, setData] = useLocalStorage(`data-${category}`, cardData)
 
-  const [data, setData] = useState(initialData)
   const [resetAll, setResetAll] = useState(false)
   const [showSettingsPopover, setShowSettingsPopover] = useState(false)
   const [showInput, setShowInput] = useState(false)
@@ -53,20 +53,12 @@ function TravelCard({ heading, category, cardData }: Props) {
   const [newItem, setNewItem] = useState("")
   const [error, setError] = useState(false)
 
-  useEffect(() => {
-    // store data in local storage
-    window.localStorage.setItem(`data-${category}`, JSON.stringify(data))
-  }, [data, category])
-
   const togglePopover = () => {
     setShowSettingsPopover(!showSettingsPopover)
   }
 
-  const handleDeleteItem = item => {
-    // update data
+  const handleDeleteItemFromData = item => {
     setData(data.filter(i => i !== item))
-    // remove item from local storage
-    window.localStorage.removeItem(`${item}-checked`)
   }
 
   const handleReset = () => {
@@ -80,7 +72,7 @@ function TravelCard({ heading, category, cardData }: Props) {
     if (newItem !== "") {
       e.preventDefault()
       // update data
-      setData(prevData => [...prevData, newItem])
+      setData([...data, newItem])
 
       // clear states
       setShowInput(false)
@@ -129,7 +121,7 @@ function TravelCard({ heading, category, cardData }: Props) {
               item={item}
               shouldResetAll={resetAll}
               handleUnreset={() => setResetAll(false)}
-              handleDeleteItem={() => handleDeleteItem(item)}
+              handleDeleteItemFromData={handleDeleteItemFromData}
               showDelete={showDelete}
             />
           ))}

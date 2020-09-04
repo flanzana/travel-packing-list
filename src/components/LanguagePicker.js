@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
@@ -10,17 +10,12 @@ import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
+import useLocalStorage from "../services/useLocalStorage"
 
 function LanguagePicker() {
-  const initialLanguage = () => window.localStorage.getItem("language") || LANGUAGES.ENGLISH
-  const [selectedLanguage, setSelectedLanguage] = useState(initialLanguage)
+  const [selectedLanguage, setSelectedLanguage] = useLocalStorage("language", LANGUAGES.ENGLISH)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
   const { isLargeMobile } = useMediaQuery()
-
-  useEffect(() => {
-    window.localStorage.setItem("language", selectedLanguage)
-  }, [selectedLanguage])
-
   const { i18n } = useTranslation()
 
   const changeLanguage = lang => {

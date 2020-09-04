@@ -25,7 +25,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: window.localStorage.getItem("language") || LANGUAGES.ENGLISH,
+    lng: JSON.parse(window.localStorage.getItem("language")) || LANGUAGES.ENGLISH,
     fallbackLng: LANGUAGES.ENGLISH,
 
     // have a common namespace used around the full app

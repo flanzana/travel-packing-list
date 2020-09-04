@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 import { defaultTokens } from "@kiwicom/orbit-design-tokens"
@@ -7,6 +7,7 @@ import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import Close from "@kiwicom/orbit-components/lib/icons/Close"
+import useLocalStorage from "../services/useLocalStorage"
 
 const { heightCheckbox, widthCheckbox } = defaultTokens
 
@@ -22,25 +23,31 @@ type Props = {
   shouldResetAll: boolean,
   showDelete: boolean,
   handleUnreset: () => void,
-  handleDeleteItem: () => void,
+  handleDeleteItemFromData: string => void,
 }
 
-function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, showDelete }: Props) {
-  const initialChecked = () => JSON.parse(window.localStorage.getItem(`${item}-checked`)) || false
-  const [checked, setChecked] = useState(initialChecked)
+function TravelItem({
+  item,
+  shouldResetAll,
+  handleUnreset,
+  handleDeleteItemFromData,
+  showDelete,
+}: Props) {
+  const [checked, setChecked, removeItem] = useLocalStorage(`${item}-checked`, false)
+  const { t } = useTranslation()
 
   useEffect(() => {
-    // store in local storage
-    window.localStorage.setItem(`${item}-checked`, checked)
-
     // reset whole card after pressing button reset
     if (shouldResetAll) {
       setChecked(false)
       handleUnreset()
     }
-  }, [shouldResetAll, handleUnreset, checked, item])
+  }, [shouldResetAll, handleUnreset, setChecked, item])
 
-  const { t } = useTranslation()
+  const handleDeleteItem = item => {
+    handleDeleteItemFromData(item)
+    removeItem()
+  }
 
   return (
     <Stack direction="row" align="start" justify="between" spacing="natural">
@@ -60,7 +67,7 @@ function TravelItem({ item, shouldResetAll, handleUnreset, handleDeleteItem, sho
             iconLeft={<Close color="critical" />}
             title={`Delete item ${item}`}
             transparent
-            onClick={handleDeleteItem}
+            onClick={() => handleDeleteItem(item)}
           />
         </StyledButtonLink>
       )}
