@@ -10,17 +10,18 @@ import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
-import useLocalStorage from "../services/useLocalStorage"
+import useLocalStorage from "../services/hooks/useLocalStorage"
+import type { Language } from "../services/types"
 
-function LanguagePicker() {
+const LanguagePicker = () => {
   const [selectedLanguage, setSelectedLanguage] = useLocalStorage("language", LANGUAGES.ENGLISH)
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
   const { isLargeMobile } = useMediaQuery()
   const { i18n } = useTranslation()
 
-  const changeLanguage = lang => {
-    setSelectedLanguage(lang)
-    i18n.changeLanguage(lang)
+  const handleChangeLanguage = (language: Language) => {
+    setSelectedLanguage(language)
+    i18n.changeLanguage(language)
     setIsPopoverOpen(false)
   }
 
@@ -35,25 +36,26 @@ function LanguagePicker() {
       onClose={() => setIsPopoverOpen(false)}
       content={
         <Stack direction="column" spacing="condensed" tablet={{ spacing: "tight" }}>
-          {Object.keys(LANGUAGES_DATA).map(lang => (
+          {Object.keys(LANGUAGES_DATA).map(language => (
             <ButtonLink
-              key={lang}
+              key={language}
               iconLeft={
                 <CountryFlag
-                  code={LANGUAGES_DATA[lang].flagCode}
-                  name={LANGUAGES_DATA[lang].title}
+                  code={LANGUAGES_DATA[language].flagCode}
+                  name={LANGUAGES_DATA[language].title}
                 />
               }
-              onClick={() => changeLanguage(lang)}
+              onClick={() => handleChangeLanguage(language)}
               size="small"
               type="secondary"
               width="100%"
             >
-              {LANGUAGES_DATA[lang].title}
+              {LANGUAGES_DATA[language].title}
             </ButtonLink>
           ))}
         </Stack>
       }
+      preferredAlign="end"
     >
       <Button
         onClick={togglePopover}

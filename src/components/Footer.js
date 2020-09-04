@@ -24,7 +24,7 @@ const FooterWrapper = styled.div`
   }
 `
 
-function Footer() {
+const Footer = () => {
   const { t } = useTranslation("translations")
   return (
     <FooterWrapper>

@@ -20,8 +20,6 @@ const useLocalStorage = (key: string, initialValue: any) => {
     window.localStorage.removeItem(key)
   }
 
-  console.log({ key, initialValue, storedValue })
-
   return [storedValue, setValue, removeValue]
 }
 

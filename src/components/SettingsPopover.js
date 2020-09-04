@@ -4,36 +4,30 @@ import { useTranslation } from "react-i18next"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
-import Remove from "@kiwicom/orbit-components/lib/icons/Remove"
+import { Remove, Replace, Settings } from "@kiwicom/orbit-components/lib/icons"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
-import Replace from "@kiwicom/orbit-components/lib/icons/Replace"
-import SettingsIcon from "@kiwicom/orbit-components/lib/icons/Settings"
 
-type Props = {
+type Props = {|
   translatedCategory: string,
   togglePopover: () => void,
   handleShowDelete: () => void,
-  handleReset: () => void,
-  showDelete: boolean,
-  showInput: boolean,
-  showSettingsPopover: boolean,
-}
+  handleResetCard: () => void,
+  shouldShowSettingsPopover: boolean,
+|}
 
-function Settings({
+const SettingsPopover = ({
   translatedCategory,
   togglePopover,
   handleShowDelete,
-  handleReset,
-  showDelete,
-  showInput,
-  showSettingsPopover,
-}: Props) {
+  handleResetCard,
+  shouldShowSettingsPopover,
+}: Props) => {
   const { t } = useTranslation()
 
   return (
     <Popover
       content={
-        <Stack direction="column" spacing="natural" dataTest="Settings-popover">
+        <Stack direction="column" spacing="natural" dataTest="SettingsPopover">
           <Heading type="title4" as="h3">
             {t("title.settings_list", { category: translatedCategory })}
           </Heading>
@@ -50,27 +44,26 @@ function Settings({
             type="criticalSubtle"
             iconLeft={<Replace />}
             size="small"
-            onClick={handleReset}
+            onClick={handleResetCard}
             fullWidth
           >
             {t("button.reset_list")}
           </Button>
         </Stack>
       }
-      opened={showSettingsPopover}
+      opened={shouldShowSettingsPopover}
       onClose={togglePopover}
       width="250px"
     >
       <Button
         size="small"
         type="secondary"
-        iconLeft={<SettingsIcon />}
+        iconLeft={<Settings />}
         title={t("button.settings")}
         onClick={togglePopover}
-        disabled={showDelete || showInput}
       />
     </Popover>
   )
 }
 
-export default Settings
+export default SettingsPopover

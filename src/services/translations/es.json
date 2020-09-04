@@ -98,12 +98,12 @@
     "item.backpack": "Mochila",
     "button.reset_list": "Volver a lista inicial",
     "button.add_item": "Añadir el objeto",
-    "button.submit": "Enviar",
     "button.save": "Guardar",
     "button.remove_items": "Selecciona y elimina los objetos",
     "button.settings": "Configuración",
     "title.settings_list": "Configuración de la lista {{category}}",
-    "placeholder.type_item": "Entra el objeto...",
-    "input.error": "Este objeto ya existe.",
+    "placeholder.type_item": "Añade el objeto...",
+    "input.error.already_exist": "Este objeto ya existe.",
+    "input.error.enter_item": "Por favor añade el objeto.",
     "footer.text": "© 2019-2020 <1>Žana Flander</1> y <3>Orbit</3>"
 }

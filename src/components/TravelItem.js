@@ -6,8 +6,8 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
-import Close from "@kiwicom/orbit-components/lib/icons/Close"
-import useLocalStorage from "../services/useLocalStorage"
+import { Close } from "@kiwicom/orbit-components/lib/icons"
+import useLocalStorage from "../services/hooks/useLocalStorage"
 
 const { heightCheckbox, widthCheckbox } = defaultTokens
 
@@ -18,31 +18,31 @@ const StyledButtonLink = styled.div`
   }
 `
 
-type Props = {
+type Props = {|
   item: string,
-  shouldResetAll: boolean,
-  showDelete: boolean,
-  handleUnreset: () => void,
+  shouldResetCard: boolean,
+  shouldShowDelete: boolean,
+  setShouldResetCard: boolean => void,
   handleDeleteItemFromData: string => void,
-}
+|}
 
-function TravelItem({
+const TravelItem = ({
   item,
-  shouldResetAll,
-  handleUnreset,
+  shouldResetCard,
+  setShouldResetCard,
   handleDeleteItemFromData,
-  showDelete,
-}: Props) {
+  shouldShowDelete,
+}: Props) => {
   const [checked, setChecked, removeItem] = useLocalStorage(`${item}-checked`, false)
   const { t } = useTranslation()
 
   useEffect(() => {
     // reset whole card after pressing button reset
-    if (shouldResetAll) {
+    if (shouldResetCard) {
       setChecked(false)
-      handleUnreset()
+      setShouldResetCard(false)
     }
-  }, [shouldResetAll, handleUnreset, setChecked, item])
+  }, [shouldResetCard, setShouldResetCard, setChecked, item])
 
   const handleDeleteItem = item => {
     handleDeleteItemFromData(item)
@@ -57,9 +57,9 @@ function TravelItem({
         value={item}
         checked={checked}
         onChange={() => setChecked(!checked)}
-        disabled={showDelete}
+        disabled={shouldShowDelete}
       />
-      {showDelete && (
+      {shouldShowDelete && (
         <StyledButtonLink>
           <ButtonLink
             type="secondary"

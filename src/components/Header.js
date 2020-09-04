@@ -9,7 +9,7 @@ import Illustration from "@kiwicom/orbit-components/lib/Illustration"
 
 import LanguagePicker from "./LanguagePicker"
 
-const { widthBreakpointDesktop, spaceMedium, spaceLarge } = defaultTokens
+const { widthBreakpointDesktop, spaceXXSmall, spaceSmall, spaceMedium, spaceLarge } = defaultTokens
 
 const HeaderWrapper = styled.div`
   padding: ${spaceMedium};
@@ -25,16 +25,16 @@ const HeaderWrapper = styled.div`
 
 const FlagWrapper = styled.div`
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: ${spaceXXSmall};
+  right: ${spaceXXSmall};
 
   @media screen and (min-width: ${widthBreakpointDesktop}px) {
-    top: 12px;
-    right: 12px;
+    top: ${spaceSmall};
+    right: ${spaceSmall};
   }
 `
 
-function Header() {
+const Header = () => {
   const { t } = useTranslation()
 
   return (

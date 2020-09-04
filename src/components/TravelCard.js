@@ -5,95 +5,74 @@ import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import InputField from "@kiwicom/orbit-components/lib/InputField"
-import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet"
-import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase"
-import Spa from "@kiwicom/orbit-components/lib/icons/Spa"
-import Camera from "@kiwicom/orbit-components/lib/icons/Camera"
-import Plus from "@kiwicom/orbit-components/lib/icons/Plus"
-
-import { LIST_CATEGORIES } from "../services/consts"
+import { Plus } from "@kiwicom/orbit-components/lib/icons"
 import TravelItem from "./TravelItem"
-import Settings from "./Settings"
+import SettingsPopover from "./SettingsPopover"
 import type { ListCategory } from "../services/types"
-import useLocalStorage from "../services/useLocalStorage"
+import useLocalStorage from "../services/hooks/useLocalStorage"
+import { capitalize, renderCardIcon } from "../services/helpers"
 
-function renderCardIcon(title: ListCategory) {
-  switch (title) {
-    case LIST_CATEGORIES.ESSENTIALS:
-      return <Wallet />
-    case LIST_CATEGORIES.CLOTHES:
-      return <Suitcase />
-    case LIST_CATEGORIES.TOILETRIES:
-      return <Spa />
-    case LIST_CATEGORIES.OTHER:
-      return <Camera />
-    default:
-      return null
-  }
-}
-
-function capitalize(text: string) {
-  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
-}
-
-type Props = {
+type Props = {|
   heading: string,
   category: ListCategory,
   cardData: Array<string>,
-}
+|}
 
-function TravelCard({ heading, category, cardData }: Props) {
+const TravelCard = ({ heading, category, cardData }: Props) => {
   const { t } = useTranslation()
   const [data, setData] = useLocalStorage(`data-${category}`, cardData)
 
-  const [resetAll, setResetAll] = useState(false)
-  const [showSettingsPopover, setShowSettingsPopover] = useState(false)
-  const [showInput, setShowInput] = useState(false)
-  const [showDelete, setShowDelete] = useState(false)
+  const [shouldResetCard, setShouldResetCard] = useState(false)
+  const [shouldShowSettingsPopover, setShouldShowSettingsPopover] = useState(false)
+  const [shouldShowInput, setShouldShowInput] = useState(false)
+  const [shouldShowDelete, setShouldShowDelete] = useState(false)
   const [newItem, setNewItem] = useState("")
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(null)
 
   const togglePopover = () => {
-    setShowSettingsPopover(!showSettingsPopover)
+    setShouldShowSettingsPopover(!shouldShowSettingsPopover)
+    setShouldShowInput(false)
   }
 
   const handleDeleteItemFromData = item => {
     setData(data.filter(i => i !== item))
   }
 
-  const handleReset = () => {
-    setResetAll(true)
+  const handleResetCard = () => {
+    setShouldResetCard(true)
+    setShouldShowInput(false)
+    setShouldShowDelete(false)
     // set data to default
     setData(cardData)
-    setShowSettingsPopover(false)
+    setShouldShowSettingsPopover(false)
   }
 
   const handleSubmitNewItem = e => {
-    if (newItem !== "") {
+    // show error if field is empty
+    if (newItem === "") {
+      setError(t("input.error.enter_item"))
+      // show error if the new value already exists on the list
+    } else if (data.find(item => t(item) === newItem)) {
+      setError(t("input.error.already_exist"))
+    } else {
       e.preventDefault()
       // update data
       setData([...data, newItem])
 
       // clear states
-      setShowInput(false)
+      setShouldShowInput(false)
       setNewItem("")
     }
   }
 
   const handleInputChange = e => {
-    const newValue = e.target.value
-    setError(false)
-    setNewItem(capitalize(newValue))
-
-    // show error if the new value already exists on the list
-    if (data.find(item => t(item) === newValue)) {
-      setError(true)
-    }
+    setNewItem(capitalize(e.target.value))
+    setError(null)
   }
 
   const handleShowDelete = () => {
-    setShowDelete(true)
-    setShowSettingsPopover(false)
+    setShouldShowDelete(true)
+    setShouldShowSettingsPopover(false)
   }
 
   return (
@@ -102,14 +81,12 @@ function TravelCard({ heading, category, cardData }: Props) {
       title={heading}
       icon={renderCardIcon(category)}
       actions={
-        <Settings
+        <SettingsPopover
           translatedCategory={heading}
           togglePopover={togglePopover}
           handleShowDelete={handleShowDelete}
-          handleReset={handleReset}
-          showDelete={showDelete}
-          showInput={showInput}
-          showSettingsPopover={showSettingsPopover}
+          handleResetCard={handleResetCard}
+          shouldShowSettingsPopover={shouldShowSettingsPopover}
         />
       }
     >
@@ -119,13 +96,13 @@ function TravelCard({ heading, category, cardData }: Props) {
             <TravelItem
               key={item}
               item={item}
-              shouldResetAll={resetAll}
-              handleUnreset={() => setResetAll(false)}
+              shouldResetCard={shouldResetCard}
+              setShouldResetCard={setShouldResetCard}
               handleDeleteItemFromData={handleDeleteItemFromData}
-              showDelete={showDelete}
+              shouldShowDelete={shouldShowDelete}
             />
           ))}
-          {showInput ? (
+          {shouldShowInput ? (
             <Stack direction="row" spacing="condensed">
               <InputField
                 name="New item"
@@ -133,11 +110,11 @@ function TravelCard({ heading, category, cardData }: Props) {
                 placeholder={t("placeholder.type_item")}
                 value={newItem}
                 onChange={handleInputChange}
-                error={error && t("input.error")}
+                error={error}
                 ref={input => input && input.focus()}
               />
-              <Button size="small" onClick={handleSubmitNewItem} disabled={newItem === "" || error}>
-                {t("button.submit")}
+              <Button size="small" onClick={handleSubmitNewItem}>
+                {t("button.save")}
               </Button>
             </Stack>
           ) : (
@@ -146,13 +123,13 @@ function TravelCard({ heading, category, cardData }: Props) {
                 type="secondary"
                 iconLeft={<Plus />}
                 size="small"
-                onClick={() => setShowInput(true)}
-                disabled={showDelete}
+                onClick={() => setShouldShowInput(true)}
+                disabled={shouldShowDelete}
               >
                 {t("button.add_item")}
               </Button>
-              {showDelete && (
-                <Button type="critical" size="small" onClick={() => setShowDelete(false)}>
+              {shouldShowDelete && (
+                <Button type="critical" size="small" onClick={() => setShouldShowDelete(false)}>
                   {t("button.save")}
                 </Button>
               )}

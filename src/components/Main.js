@@ -30,7 +30,7 @@ const MainWrapper = styled.div`
   }
 `
 
-function Main() {
+const Main = () => {
   const { t } = useTranslation()
   return (
     <MainWrapper>
