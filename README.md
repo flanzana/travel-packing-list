@@ -31,7 +31,7 @@ App Travel Packing List offers you many different possibilities of usage:
 - `eslint` with many eslint plugins
 - `prettier`
 - `flow-bin`
-- `@testing-library` WIP
+- `@testing-library`
 
 
 ## Sources
