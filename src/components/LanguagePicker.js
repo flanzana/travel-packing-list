@@ -14,7 +14,10 @@ import useLocalStorage from "../services/hooks/useLocalStorage"
 import type { Language } from "../services/types"
 
 const LanguagePicker = () => {
-  const [selectedLanguage, setSelectedLanguage] = useLocalStorage("language", LANGUAGES.ENGLISH)
+  const [selectedLanguage, setSelectedLanguage] = useLocalStorage(
+    "selected-language",
+    LANGUAGES.ENGLISH,
+  )
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
   const { isLargeMobile } = useMediaQuery()
   const { i18n } = useTranslation()
