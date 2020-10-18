@@ -8,6 +8,8 @@ import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import { Close } from "@kiwicom/orbit-components/lib/icons"
 import useLocalStorage from "../services/hooks/useLocalStorage"
+import type { EditMode } from "../services/types"
+import { EDIT_MODE } from "../services/consts"
 
 const { heightCheckbox, widthCheckbox } = defaultTokens
 
@@ -20,29 +22,22 @@ const StyledButtonLink = styled.div`
 
 type Props = {|
   item: string,
-  shouldResetCard: boolean,
-  shouldShowDelete: boolean,
-  setShouldResetCard: boolean => void,
+  editMode: EditMode,
+  setEditMode: EditMode => void,
   handleDeleteItemFromData: string => void,
 |}
 
-const TravelItem = ({
-  item,
-  shouldResetCard,
-  setShouldResetCard,
-  handleDeleteItemFromData,
-  shouldShowDelete,
-}: Props) => {
+const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: Props) => {
   const [checked, setChecked, removeItem] = useLocalStorage(`${item}-checked`, false)
   const { t } = useTranslation()
 
   useEffect(() => {
     // reset whole card after pressing button reset
-    if (shouldResetCard) {
+    if (editMode === EDIT_MODE.RESET_CARD) {
       setChecked(false)
-      setShouldResetCard(false)
+      setEditMode(EDIT_MODE.DEFAULT)
     }
-  }, [shouldResetCard, setShouldResetCard, setChecked, item])
+  }, [editMode, setEditMode, setChecked])
 
   const handleDeleteItem = item => {
     handleDeleteItemFromData(item)
@@ -57,9 +52,9 @@ const TravelItem = ({
         value={item}
         checked={checked}
         onChange={() => setChecked(!checked)}
-        disabled={shouldShowDelete}
+        disabled={editMode === EDIT_MODE.REMOVE_ITEMS}
       />
-      {shouldShowDelete && (
+      {editMode === EDIT_MODE.REMOVE_ITEMS && (
         <StyledButtonLink>
           <ButtonLink
             type="secondary"

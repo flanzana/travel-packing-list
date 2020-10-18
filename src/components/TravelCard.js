@@ -11,6 +11,7 @@ import SettingsPopover from "./SettingsPopover"
 import type { ListCategory } from "../services/types"
 import useLocalStorage from "../services/hooks/useLocalStorage"
 import { capitalize, renderCardIcon } from "../services/helpers"
+import { EDIT_MODE } from "../services/consts"
 
 type Props = {|
   heading: string,
@@ -21,17 +22,15 @@ type Props = {|
 const TravelCard = ({ heading, category, cardData }: Props) => {
   const { t } = useTranslation()
   const [data, setData] = useLocalStorage(`data-${category}`, cardData)
-
-  const [shouldResetCard, setShouldResetCard] = useState(false)
-  const [shouldShowSettingsPopover, setShouldShowSettingsPopover] = useState(false)
-  const [shouldShowInput, setShouldShowInput] = useState(false)
-  const [shouldShowDelete, setShouldShowDelete] = useState(false)
-  const [newItem, setNewItem] = useState("")
-  const [error, setError] = useState(null)
+  const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
+  const [newItem, setNewItem] = useState({ value: "", error: null })
 
   const togglePopover = () => {
-    setShouldShowSettingsPopover(!shouldShowSettingsPopover)
-    setShouldShowInput(false)
+    if (editMode === EDIT_MODE.OPEN_SETTINGS) {
+      setEditMode(EDIT_MODE.DEFAULT)
+    } else {
+      setEditMode(EDIT_MODE.OPEN_SETTINGS)
+    }
   }
 
   const handleDeleteItemFromData = item => {
@@ -39,40 +38,34 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
   }
 
   const handleResetCard = () => {
-    setShouldResetCard(true)
-    setShouldShowInput(false)
-    setShouldShowDelete(false)
-    // set data to default
-    setData(cardData)
-    setShouldShowSettingsPopover(false)
+    setEditMode(EDIT_MODE.RESET_CARD)
+    setData(cardData) // set data to default
   }
 
   const handleSubmitNewItem = e => {
     // show error if field is empty
-    if (newItem === "") {
-      setError(t("input.error.enter_item"))
+    if (newItem.value === "") {
+      setNewItem({ ...newItem, error: t("input.error.enter_item") })
       // show error if the new value already exists on the list
-    } else if (data.find(item => t(item) === newItem)) {
-      setError(t("input.error.already_exist"))
+    } else if (data.find(item => t(item) === newItem.value)) {
+      setNewItem({ ...newItem, error: t("input.error.already_exist") })
     } else {
       e.preventDefault()
       // update data
-      setData([...data, newItem])
+      setData([...data, newItem.value])
 
       // clear states
-      setShouldShowInput(false)
-      setNewItem("")
+      setEditMode(EDIT_MODE.DEFAULT)
+      setNewItem({ value: "", error: null })
     }
   }
 
   const handleInputChange = e => {
-    setNewItem(capitalize(e.target.value))
-    setError(null)
+    setNewItem({ ...newItem, value: capitalize(e.target.value) })
   }
 
   const handleShowDelete = () => {
-    setShouldShowDelete(true)
-    setShouldShowSettingsPopover(false)
+    setEditMode(EDIT_MODE.REMOVE_ITEMS)
   }
 
   return (
@@ -86,7 +79,7 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
           togglePopover={togglePopover}
           handleShowDelete={handleShowDelete}
           handleResetCard={handleResetCard}
-          shouldShowSettingsPopover={shouldShowSettingsPopover}
+          editMode={editMode}
         />
       }
     >
@@ -96,21 +89,20 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
             <TravelItem
               key={item}
               item={item}
-              shouldResetCard={shouldResetCard}
-              setShouldResetCard={setShouldResetCard}
+              editMode={editMode}
+              setEditMode={setEditMode}
               handleDeleteItemFromData={handleDeleteItemFromData}
-              shouldShowDelete={shouldShowDelete}
             />
           ))}
-          {shouldShowInput ? (
+          {editMode === EDIT_MODE.ADD_ITEM ? (
             <Stack direction="row" spacing="condensed">
               <InputField
                 name="New item"
                 size="small"
                 placeholder={t("placeholder.type_item")}
-                value={newItem}
+                value={newItem.value}
                 onChange={handleInputChange}
-                error={error}
+                error={newItem.error}
                 ref={input => input && input.focus()}
               />
               <Button size="small" onClick={handleSubmitNewItem}>
@@ -123,13 +115,13 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
                 type="secondary"
                 iconLeft={<Plus />}
                 size="small"
-                onClick={() => setShouldShowInput(true)}
-                disabled={shouldShowDelete}
+                onClick={() => setEditMode(EDIT_MODE.ADD_ITEM)}
+                disabled={editMode === EDIT_MODE.REMOVE_ITEMS}
               >
                 {t("button.add_item")}
               </Button>
-              {shouldShowDelete && (
-                <Button type="critical" size="small" onClick={() => setShouldShowDelete(false)}>
+              {editMode === EDIT_MODE.REMOVE_ITEMS && (
+                <Button type="critical" size="small" onClick={() => setEditMode(EDIT_MODE.DEFAULT)}>
                   {t("button.save")}
                 </Button>
               )}

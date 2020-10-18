@@ -6,13 +6,15 @@ import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
 import { Remove, Replace, Settings } from "@kiwicom/orbit-components/lib/icons"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
+import type { EditMode } from "../services/types"
+import { EDIT_MODE } from "../services/consts"
 
 type Props = {|
   translatedCategory: string,
   togglePopover: () => void,
   handleShowDelete: () => void,
   handleResetCard: () => void,
-  shouldShowSettingsPopover: boolean,
+  editMode: EditMode,
 |}
 
 const SettingsPopover = ({
@@ -20,7 +22,7 @@ const SettingsPopover = ({
   togglePopover,
   handleShowDelete,
   handleResetCard,
-  shouldShowSettingsPopover,
+  editMode,
 }: Props) => {
   const { t } = useTranslation()
 
@@ -51,7 +53,7 @@ const SettingsPopover = ({
           </Button>
         </Stack>
       }
-      opened={shouldShowSettingsPopover}
+      opened={editMode === EDIT_MODE.OPEN_SETTINGS}
       onClose={togglePopover}
       width="250px"
     >
