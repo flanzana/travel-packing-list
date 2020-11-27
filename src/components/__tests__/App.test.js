@@ -1,15 +1,15 @@
 // @flow
 import React from "react"
 import { screen, fireEvent } from "@testing-library/react"
-import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 import renderWithI18Next from "../../services/test-utils/renderWithI18Next"
 import App from "../../App"
 
-jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
+jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery", () => () => ({
+  isLargeMobile: true,
+}))
 
 describe("App", () => {
   beforeEach(() => {
-    useMediaQuery.mockReturnValue({ isLargeMobile: true })
     renderWithI18Next(<App />)
   })
 
