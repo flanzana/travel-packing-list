@@ -4,14 +4,14 @@
   "private": true,
   "homepage": "https://flanzana.github.io/travel-packing-list",
   "dependencies": {
-    "@kiwicom/orbit-components": "^0.85.2",
-    "@kiwicom/orbit-design-tokens": "^0.10.0",
+    "@kiwicom/orbit-components": "^0.103.0",
+    "@kiwicom/orbit-design-tokens": "^0.12.2",
     "i18next": "^19.4.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.5.0",
     "react-scripts": "3.4.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.24.1",

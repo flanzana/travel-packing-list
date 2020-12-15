@@ -84,7 +84,7 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
       }
     >
       <CardSection>
-        <Stack direction="column" spacing="natural" tablet={{ spacing: "condensed" }}>
+        <Stack direction="column" spacing="medium" tablet={{ spacing: "XSmall" }}>
           {data.map(item => (
             <TravelItem
               key={item}
@@ -95,7 +95,7 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
             />
           ))}
           {editMode === EDIT_MODE.ADD_ITEM ? (
-            <Stack direction="row" spacing="condensed">
+            <Stack direction="row" spacing="XSmall">
               <InputField
                 name="New item"
                 size="small"

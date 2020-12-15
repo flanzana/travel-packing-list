@@ -45,7 +45,7 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
   }
 
   return (
-    <Stack direction="row" align="start" justify="between" spacing="natural">
+    <Stack direction="row" align="start" justify="between" spacing="medium">
       <Checkbox
         label={t(item)}
         name={item}
@@ -61,7 +61,6 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
             size="small"
             iconLeft={<Close color="critical" />}
             title={`Delete item ${item}`}
-            transparent
             onClick={() => handleDeleteItem(item)}
           />
         </StyledButtonLink>

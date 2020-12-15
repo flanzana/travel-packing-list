@@ -38,7 +38,7 @@ const LanguagePicker = () => {
       onOpen={() => setIsPopoverOpen(true)}
       onClose={() => setIsPopoverOpen(false)}
       content={
-        <Stack direction="column" spacing="condensed" tablet={{ spacing: "tight" }}>
+        <Stack direction="column" spacing="XSmall" tablet={{ spacing: "XXSmall" }}>
           {Object.keys(LANGUAGES_DATA).map(language => (
             <ButtonLink
               key={language}
@@ -67,7 +67,7 @@ const LanguagePicker = () => {
         size="small"
         title={LANGUAGES_DATA[selectedLanguage].title}
       >
-        <Stack direction="row" align="center" spacing="condensed">
+        <Stack direction="row" align="center" spacing="XSmall">
           <CountryFlag
             code={LANGUAGES_DATA[selectedLanguage].flagCode}
             name={LANGUAGES_DATA[selectedLanguage].title}
