@@ -1,27 +1,19 @@
 // @flow
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { Trans, useTranslation } from "react-i18next"
-import { defaultTokens } from "@kiwicom/orbit-design-tokens"
+import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Text from "@kiwicom/orbit-components/lib/Text"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
 
-const {
-  borderColorCard,
-  widthBreakpointLargeMobile,
-  spaceSmall,
-  spaceMedium,
-  spaceXXLarge,
-} = defaultTokens
-
 const FooterWrapper = styled.div`
-  background-color: ${borderColorCard};
-  padding: 0 ${spaceXXLarge} ${spaceSmall};
+  background-color: ${({ theme }) => theme.orbit.borderColorCard};
+  padding: ${({ theme }) => `0 ${theme.orbit.spaceXXLarge} ${theme.orbit.spaceSmall}`};
 
-  @media screen and (min-width: ${widthBreakpointLargeMobile}px) {
-    padding: 0 ${spaceMedium} ${spaceMedium};
-  }
+  ${media.largeMobile(css`
+    padding: ${({ theme }) => `0 ${theme.orbit.spaceMedium} ${theme.orbit.spaceMedium}`};
+  `)};
 `
 
 const Footer = () => {

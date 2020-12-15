@@ -1,7 +1,7 @@
 // @flow
 import React from "react"
 import { screen, fireEvent } from "@testing-library/react"
-import renderWithI18Next from "../../services/test-utils/renderWithI18Next"
+import renderWithProviders from "../../services/test-utils/renderWithProviders"
 import App from "../../App"
 
 jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery", () => () => ({
@@ -10,7 +10,7 @@ jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery", () => () => ({
 
 describe("App", () => {
   beforeEach(() => {
-    renderWithI18Next(<App />)
+    renderWithProviders(<App />)
   })
 
   it("renders all text in English", () => {

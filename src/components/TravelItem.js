@@ -2,7 +2,6 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
-import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
@@ -11,12 +10,10 @@ import useLocalStorage from "../services/hooks/useLocalStorage"
 import type { EditMode } from "../services/types"
 import { EDIT_MODE } from "../services/consts"
 
-const { heightCheckbox, widthCheckbox } = defaultTokens
-
 const StyledButtonLink = styled.div`
   button {
-    height: ${heightCheckbox};
-    width: ${widthCheckbox};
+    height: ${({ theme }) => theme.orbit.heightCheckbox};
+    width: ${({ theme }) => theme.orbit.widthCheckbox};
   }
 `
 

@@ -84,7 +84,7 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
       }
     >
       <CardSection>
-        <Stack direction="column" spacing="medium" tablet={{ spacing: "XSmall" }}>
+        <Stack direction="column" spacing="medium" desktop={{ spacing: "XSmall" }}>
           {data.map(item => (
             <TravelItem
               key={item}

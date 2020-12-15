@@ -1,37 +1,35 @@
 // @flow
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { useTranslation } from "react-i18next"
-import { defaultTokens } from "@kiwicom/orbit-design-tokens"
+import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Illustration from "@kiwicom/orbit-components/lib/Illustration"
 
 import LanguagePicker from "./LanguagePicker"
 
-const { widthBreakpointDesktop, spaceXXSmall, spaceSmall, spaceMedium, spaceLarge } = defaultTokens
-
 const HeaderWrapper = styled.div`
-  padding: ${spaceMedium};
+  padding: ${({ theme }) => theme.orbit.spaceMedium};
 
   h1 {
     text-align: center;
   }
 
-  @media screen and (min-width: ${widthBreakpointDesktop}px) {
-    padding: ${spaceLarge};
-  }
+  ${media.desktop(css`
+    padding: ${({ theme }) => theme.orbit.spaceLarge};
+  `)};
 `
 
 const FlagWrapper = styled.div`
   position: absolute;
-  top: ${spaceXXSmall};
-  right: ${spaceXXSmall};
+  top: ${({ theme }) => theme.orbit.spaceXXSmall};
+  right: ${({ theme }) => theme.orbit.spaceXXSmall};
 
-  @media screen and (min-width: ${widthBreakpointDesktop}px) {
-    top: ${spaceSmall};
-    right: ${spaceSmall};
-  }
+  ${media.desktop(css`
+    top: ${({ theme }) => theme.orbit.spaceSmall};
+    right: ${({ theme }) => theme.orbit.spaceSmall};
+  `)};
 `
 
 const Header = () => {

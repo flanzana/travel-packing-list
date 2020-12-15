@@ -1,13 +1,13 @@
 // @flow
 import React from "react"
 import { screen, fireEvent } from "@testing-library/react"
-import renderWithI18Next from "../../services/test-utils/renderWithI18Next"
+import renderWithProviders from "../../services/test-utils/renderWithProviders"
 import TravelCard from "../TravelCard"
 import { LIST_CATEGORIES } from "../../services/consts"
 
 describe("TravelCard", () => {
   beforeEach(() => {
-    renderWithI18Next(
+    renderWithProviders(
       <TravelCard
         heading="Essentials"
         category={LIST_CATEGORIES.ESSENTIALS}

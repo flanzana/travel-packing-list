@@ -1,33 +1,27 @@
 // @flow
 import React from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { useTranslation } from "react-i18next"
 import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
+import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
 
 import TravelCard from "./TravelCard"
 import data from "../services/data.json"
 
-const {
-  borderColorCard,
-  widthBreakpointLargeMobile,
-  widthBreakpointLargeDesktop,
-  spaceSmall,
-  spaceMedium,
-  spaceLarge,
-} = defaultTokens
+const { spaceSmall, spaceMedium, spaceLarge } = defaultTokens
 
 const MainWrapper = styled.div`
-  background-color: ${borderColorCard};
-  padding: ${spaceSmall};
+  background-color: ${({ theme }) => theme.orbit.borderColorCard};
+  padding: ${({ theme }) => theme.orbit.spaceSmall};
 
-  @media screen and (min-width: ${widthBreakpointLargeMobile}px) {
-    padding: ${spaceMedium};
-  }
+  ${media.largeMobile(css`
+    padding: ${({ theme }) => theme.orbit.spaceMedium};
+  `)};
 
-  @media screen and (min-width: ${widthBreakpointLargeDesktop}px) {
-    padding: ${spaceLarge};
-  }
+  ${media.largeDesktop(css`
+    padding: ${({ theme }) => theme.orbit.spaceLarge};
+  `)};
 `
 
 const Main = () => {
