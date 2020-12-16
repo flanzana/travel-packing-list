@@ -8,15 +8,14 @@ import { LIST_CATEGORIES } from "./consts"
 export const renderCardIcon = (title: ListCategory): ?React$Node => {
   switch (title) {
     case LIST_CATEGORIES.ESSENTIALS:
-      return <Wallet />
-    case LIST_CATEGORIES.CLOTHES:
-      return <Suitcase />
+      return <Wallet ariaHidden />
     case LIST_CATEGORIES.TOILETRIES:
-      return <Spa />
+      return <Spa ariaHidden />
     case LIST_CATEGORIES.OTHER:
-      return <Camera />
+      return <Camera ariaHidden />
+    case LIST_CATEGORIES.CLOTHES:
     default:
-      return null
+      return <Suitcase ariaHidden />
   }
 }
 

@@ -113,7 +113,7 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
             <Stack direction="row" justify="between">
               <Button
                 type="secondary"
-                iconLeft={<Plus />}
+                iconLeft={<Plus ariaHidden />}
                 size="small"
                 onClick={() => setEditMode(EDIT_MODE.ADD_ITEM)}
                 disabled={editMode === EDIT_MODE.REMOVE_ITEMS}

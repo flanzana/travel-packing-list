@@ -35,23 +35,18 @@ const LanguagePicker = () => {
   return (
     <Popover
       opened={isPopoverOpen}
-      onOpen={() => setIsPopoverOpen(true)}
       onClose={() => setIsPopoverOpen(false)}
       content={
         <Stack direction="column" spacing="XSmall" tablet={{ spacing: "XXSmall" }}>
           {Object.keys(LANGUAGES_DATA).map(language => (
             <ButtonLink
               key={language}
-              iconLeft={
-                <CountryFlag
-                  code={LANGUAGES_DATA[language].flagCode}
-                  name={LANGUAGES_DATA[language].title}
-                />
-              }
+              iconLeft={<CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />}
               onClick={() => handleChangeLanguage(language)}
               size="small"
               type="secondary"
               width="100%"
+              title={LANGUAGES_DATA[language].title}
             >
               {LANGUAGES_DATA[language].title}
             </ButtonLink>
@@ -62,16 +57,13 @@ const LanguagePicker = () => {
     >
       <Button
         onClick={togglePopover}
-        iconRight={isPopoverOpen ? <ChevronUp /> : <ChevronDown />}
+        iconRight={isPopoverOpen ? <ChevronUp ariaHidden /> : <ChevronDown ariaHidden />}
         type="secondary"
         size="small"
         title={LANGUAGES_DATA[selectedLanguage].title}
       >
         <Stack direction="row" align="center" spacing="XSmall">
-          <CountryFlag
-            code={LANGUAGES_DATA[selectedLanguage].flagCode}
-            name={LANGUAGES_DATA[selectedLanguage].title}
-          />
+          <CountryFlag code={LANGUAGES_DATA[selectedLanguage].flagCode} name="" />
           {isLargeMobile && <span>{LANGUAGES_DATA[selectedLanguage].title}</span>}
         </Stack>
       </Button>

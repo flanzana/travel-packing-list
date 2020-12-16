@@ -7,7 +7,7 @@ import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Text from "@kiwicom/orbit-components/lib/Text"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   background-color: ${({ theme }) => theme.orbit.borderColorCard};
   padding: ${({ theme }) => `0 ${theme.orbit.spaceXXLarge} ${theme.orbit.spaceSmall}`};
 

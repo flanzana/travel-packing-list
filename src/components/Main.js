@@ -11,7 +11,7 @@ import data from "../services/data.json"
 
 const { spaceSmall, spaceMedium, spaceLarge } = defaultTokens
 
-const MainWrapper = styled.div`
+const MainWrapper = styled.main`
   background-color: ${({ theme }) => theme.orbit.borderColorCard};
   padding: ${({ theme }) => theme.orbit.spaceSmall};
 

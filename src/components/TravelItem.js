@@ -41,6 +41,12 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
     removeItem()
   }
 
+  const toggleCheckItem = () => {
+    setChecked(!checked)
+    // to close settings popover in case it is still open
+    setEditMode(EDIT_MODE.DEFAULT)
+  }
+
   return (
     <Stack direction="row" align="start" justify="between" spacing="medium">
       <Checkbox
@@ -48,7 +54,7 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
         name={item}
         value={item}
         checked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={toggleCheckItem}
         disabled={editMode === EDIT_MODE.REMOVE_ITEMS}
       />
       {editMode === EDIT_MODE.REMOVE_ITEMS && (
@@ -56,8 +62,8 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
           <ButtonLink
             type="secondary"
             size="small"
-            iconLeft={<Close color="critical" />}
-            title={`Delete item ${item}`}
+            iconLeft={<Close color="critical" ariaHidden />}
+            title={`Delete item ${t(item)}`}
             onClick={() => handleDeleteItem(item)}
           />
         </StyledButtonLink>

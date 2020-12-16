@@ -24,7 +24,7 @@ describe("TravelCard", () => {
     expect(screen.getByRole("checkbox", { name: "Credit card" })).toBeInTheDocument()
 
     expect(screen.getByRole("button", { name: "Add item" })).toBeVisible()
-    expect(screen.getByRole("button", { name: "Settings" })).toBeVisible()
+    expect(screen.getByRole("button", { name: "Settings of the list Essentials" })).toBeVisible()
   })
 
   it("can check checkbox", () => {
@@ -36,10 +36,10 @@ describe("TravelCard", () => {
   it("can toggle settings popover", () => {
     expect(screen.queryByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeNull()
 
-    fireEvent.click(screen.getByRole("button", { name: "Settings" }))
+    fireEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" }))
     expect(screen.getByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeVisible()
 
-    fireEvent.click(screen.getByRole("button", { name: "Settings" }))
+    fireEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" }))
     // popover stays open in test (test failing), but in reality it closes
     // expect(screen.queryByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeNull()
   })
@@ -78,7 +78,7 @@ describe("TravelCard", () => {
     expect(screen.getAllByRole("checkbox")).toHaveLength(4)
 
     // click remove items
-    fireEvent.click(screen.getByRole("button", { name: "Settings" }))
+    fireEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" }))
     expect(screen.getByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeVisible()
     fireEvent.click(screen.getByRole("button", { name: "Select and remove items" }))
 
@@ -87,7 +87,7 @@ describe("TravelCard", () => {
     expect(screen.getByRole("button", { name: "Add item" })).toBeDisabled()
 
     // deletes Cash and clicks Save
-    fireEvent.click(screen.getByRole("button", { name: "Delete item item.cash" }))
+    fireEvent.click(screen.getByRole("button", { name: "Delete item Cash" }))
     fireEvent.click(screen.getByRole("button", { name: "Save" }))
 
     // item is removed, the rest stays the same
@@ -107,7 +107,7 @@ describe("TravelCard", () => {
     expect(screen.getByRole("checkbox", { name: "Insurance" })).toBeChecked()
 
     // click reset card
-    fireEvent.click(screen.getByRole("button", { name: "Settings" }))
+    fireEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" }))
     expect(screen.getByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeVisible()
     fireEvent.click(screen.getByRole("button", { name: "Reset the list" }))
 

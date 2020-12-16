@@ -1,6 +1,7 @@
 // @flow
 import React from "react"
 import { screen, fireEvent } from "@testing-library/react"
+import { within } from "@testing-library/dom"
 import renderWithProviders from "../../services/test-utils/renderWithProviders"
 import App from "../../App"
 
@@ -15,7 +16,9 @@ describe("App", () => {
 
   it("renders all text in English", () => {
     //language picker
-    expect(screen.getByRole("button", { name: "English" })).toBeVisible()
+    expect(
+      within(screen.getByRole("banner")).getByRole("button", { name: "English" }),
+    ).toBeVisible()
 
     // main title
     expect(screen.getByRole("heading", { name: /travel packing list/i })).toBeVisible()
@@ -31,13 +34,15 @@ describe("App", () => {
   })
 
   it("changes all text to Spanish after selecting Spanish language", () => {
-    expect(screen.queryByRole("button", { name: /español español/i })).toBeNull()
+    expect(within(screen.getByRole("banner")).queryByRole("button", { name: "Español" })).toBeNull()
     fireEvent.click(screen.getByRole("button", { name: "English" }))
-    expect(screen.getByRole("tooltip")).toBeInTheDocument()
-    fireEvent.click(screen.getByRole("button", { name: /español español/i }))
+    expect(screen.getByRole("tooltip")).toBeVisible()
+    fireEvent.click(screen.getByRole("button", { name: "Español" }))
 
     // language picker
-    expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
+    expect(
+      within(screen.getByRole("banner")).getByRole("button", { name: "Español" }),
+    ).toBeVisible()
 
     // main title
     expect(
@@ -55,13 +60,17 @@ describe("App", () => {
   })
 
   it("changes all text to Slovenian after selecting Slovenian language", () => {
-    expect(screen.queryByRole("button", { name: /slovenščina slovenščina/i })).toBeNull()
+    expect(
+      within(screen.getByRole("banner")).queryByRole("button", { name: "Slovenščina" }),
+    ).toBeNull()
     fireEvent.click(screen.getByRole("button", { name: "Español" }))
-    expect(screen.getByRole("tooltip")).toBeInTheDocument()
-    fireEvent.click(screen.getByRole("button", { name: /slovenščina slovenščina/i }))
+    expect(screen.getByRole("tooltip")).toBeVisible()
+    fireEvent.click(screen.getByRole("button", { name: "Slovenščina" }))
 
     // language picker
-    expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()
+    expect(
+      within(screen.getByRole("banner")).getByRole("button", { name: "Slovenščina" }),
+    ).toBeVisible()
 
     // main title
     expect(screen.getByRole("heading", { name: /potovalni pakirni seznam/i })).toBeVisible()

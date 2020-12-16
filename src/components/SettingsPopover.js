@@ -35,7 +35,7 @@ const SettingsPopover = ({
           </Heading>
           <Button
             type="secondary"
-            iconLeft={<Remove />}
+            iconLeft={<Remove ariaHidden />}
             size="small"
             onClick={handleShowDelete}
             fullWidth
@@ -44,7 +44,7 @@ const SettingsPopover = ({
           </Button>
           <Button
             type="criticalSubtle"
-            iconLeft={<Replace />}
+            iconLeft={<Replace ariaHidden />}
             size="small"
             onClick={handleResetCard}
             fullWidth
@@ -60,8 +60,8 @@ const SettingsPopover = ({
       <Button
         size="small"
         type="secondary"
-        iconLeft={<Settings />}
-        title={t("button.settings")}
+        iconLeft={<Settings ariaHidden />}
+        title={t("title.settings_list", { category: translatedCategory })}
         onClick={togglePopover}
       />
     </Popover>

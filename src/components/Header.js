@@ -9,7 +9,7 @@ import Illustration from "@kiwicom/orbit-components/lib/Illustration"
 
 import LanguagePicker from "./LanguagePicker"
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.header`
   padding: ${({ theme }) => theme.orbit.spaceMedium};
 
   h1 {
@@ -40,8 +40,8 @@ const Header = () => {
       <FlagWrapper>
         <LanguagePicker />
       </FlagWrapper>
-      <Stack direction="column" align="center" dataTest="Header">
-        <Illustration name="TimelinePick" size="extraSmall" />
+      <Stack direction="column" align="center">
+        <Illustration name="TimelinePick" size="extraSmall" alt="" />
         <Heading type="title2" as="h1">
           {t("title")}
         </Heading>
