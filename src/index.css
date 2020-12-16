@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+[data-test='NavigationBar'] {
+  transform: translate3d(0,0,0) !important;
+}

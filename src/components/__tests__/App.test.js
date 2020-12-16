@@ -17,11 +17,16 @@ describe("App", () => {
   it("renders all text in English", () => {
     //language picker
     expect(
-      within(screen.getByRole("banner")).getByRole("button", { name: "English" }),
+      within(screen.getByRole("navigation")).getByRole("button", { name: "English" }),
     ).toBeVisible()
 
-    // main title
-    expect(screen.getByRole("heading", { name: /travel packing list/i })).toBeVisible()
+    // title in header
+    expect(
+      within(screen.getByRole("banner")).getByRole("heading", { name: "Travel packing list" }),
+    ).toBeVisible()
+
+    // title in navbar
+    expect(within(screen.getByRole("navigation")).getByText("Travel packing list")).toBeVisible()
 
     // card headings
     expect(screen.getByRole("heading", { name: "Essentials" })).toBeVisible()
@@ -34,20 +39,25 @@ describe("App", () => {
   })
 
   it("changes all text to Spanish after selecting Spanish language", () => {
-    expect(within(screen.getByRole("banner")).queryByRole("button", { name: "Español" })).toBeNull()
-    fireEvent.click(screen.getByRole("button", { name: "English" }))
+    expect(
+      within(screen.getByRole("navigation")).queryByRole("button", { name: "Español" }),
+    ).toBeNull()
+    fireEvent.click(within(screen.getByRole("navigation")).getByRole("button", { name: "English" }))
     expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(screen.getByRole("button", { name: "Español" }))
+    fireEvent.click(within(screen.getByRole("tooltip")).getByRole("button", { name: "Español" }))
 
     // language picker
     expect(
-      within(screen.getByRole("banner")).getByRole("button", { name: "Español" }),
+      within(screen.getByRole("navigation")).getByRole("button", { name: "Español" }),
     ).toBeVisible()
 
-    // main title
+    // title in header
     expect(
-      screen.getByRole("heading", { name: /lista para hacer la maleta de viaje/i }),
+      within(screen.getByRole("banner")).getByRole("heading", { name: "Lista de viaje" }),
     ).toBeVisible()
+
+    // title in navbar
+    expect(within(screen.getByRole("navigation")).getByText("Lista de viaje")).toBeVisible()
 
     // card headings
     expect(screen.getByRole("heading", { name: "Esenciales" })).toBeVisible()
@@ -61,19 +71,26 @@ describe("App", () => {
 
   it("changes all text to Slovenian after selecting Slovenian language", () => {
     expect(
-      within(screen.getByRole("banner")).queryByRole("button", { name: "Slovenščina" }),
+      within(screen.getByRole("navigation")).queryByRole("button", { name: "Slovenščina" }),
     ).toBeNull()
-    fireEvent.click(screen.getByRole("button", { name: "Español" }))
+    fireEvent.click(within(screen.getByRole("navigation")).getByRole("button", { name: "Español" }))
     expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(screen.getByRole("button", { name: "Slovenščina" }))
+    fireEvent.click(
+      within(screen.getByRole("tooltip")).getByRole("button", { name: "Slovenščina" }),
+    )
 
     // language picker
     expect(
-      within(screen.getByRole("banner")).getByRole("button", { name: "Slovenščina" }),
+      within(screen.getByRole("navigation")).getByRole("button", { name: "Slovenščina" }),
     ).toBeVisible()
 
-    // main title
-    expect(screen.getByRole("heading", { name: /potovalni pakirni seznam/i })).toBeVisible()
+    // title in header
+    expect(
+      within(screen.getByRole("banner")).getByRole("heading", { name: "Potovalni seznam" }),
+    ).toBeVisible()
+
+    // title in navbar
+    expect(within(screen.getByRole("navigation")).getByText("Potovalni seznam")).toBeVisible()
 
     // card headings
     expect(screen.getByRole("heading", { name: "Osnovne potrebščine" })).toBeVisible()

@@ -7,28 +7,21 @@ import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Illustration from "@kiwicom/orbit-components/lib/Illustration"
 
-import LanguagePicker from "./LanguagePicker"
-
 const HeaderWrapper = styled.header`
+  margin-top: 52px; // because of navbar
   padding: ${({ theme }) => theme.orbit.spaceMedium};
 
   h1 {
     text-align: center;
+    text-transform: uppercase;
   }
+
+  ${media.tablet(css`
+    margin-top: 64px; // because of navbar
+  `)};
 
   ${media.desktop(css`
     padding: ${({ theme }) => theme.orbit.spaceLarge};
-  `)};
-`
-
-const FlagWrapper = styled.div`
-  position: absolute;
-  top: ${({ theme }) => theme.orbit.spaceXXSmall};
-  right: ${({ theme }) => theme.orbit.spaceXXSmall};
-
-  ${media.desktop(css`
-    top: ${({ theme }) => theme.orbit.spaceSmall};
-    right: ${({ theme }) => theme.orbit.spaceSmall};
   `)};
 `
 
@@ -37,9 +30,6 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <FlagWrapper>
-        <LanguagePicker />
-      </FlagWrapper>
       <Stack direction="column" align="center">
         <Illustration name="TimelinePick" size="extraSmall" alt="" />
         <Heading type="title2" as="h1">
