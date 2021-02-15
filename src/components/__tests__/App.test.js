@@ -16,9 +16,7 @@ describe("App", () => {
 
   it("renders all text in English", () => {
     //language picker
-    expect(
-      within(screen.getByRole("navigation")).getByRole("button", { name: "English" }),
-    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "English" })).toBeVisible()
 
     // title in header
     expect(
@@ -39,17 +37,13 @@ describe("App", () => {
   })
 
   it("changes all text to Spanish after selecting Spanish language", () => {
-    expect(
-      within(screen.getByRole("navigation")).queryByRole("button", { name: "Español" }),
-    ).toBeNull()
-    fireEvent.click(within(screen.getByRole("navigation")).getByRole("button", { name: "English" }))
+    expect(screen.queryByRole("button", { name: "Español" })).toBeNull()
+    fireEvent.click(screen.getByRole("button", { name: "English" }))
     expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(within(screen.getByRole("tooltip")).getByRole("button", { name: "Español" }))
+    fireEvent.click(screen.getByRole("link", { name: "Español" }))
 
     // language picker
-    expect(
-      within(screen.getByRole("navigation")).getByRole("button", { name: "Español" }),
-    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
 
     // title in header
     expect(
@@ -70,19 +64,13 @@ describe("App", () => {
   })
 
   it("changes all text to Slovenian after selecting Slovenian language", () => {
-    expect(
-      within(screen.getByRole("navigation")).queryByRole("button", { name: "Slovenščina" }),
-    ).toBeNull()
-    fireEvent.click(within(screen.getByRole("navigation")).getByRole("button", { name: "Español" }))
+    expect(screen.queryByRole("button", { name: "Slovenščina" })).toBeNull()
+    fireEvent.click(screen.getByRole("button", { name: "Español" }))
     expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(
-      within(screen.getByRole("tooltip")).getByRole("button", { name: "Slovenščina" }),
-    )
+    fireEvent.click(screen.getByRole("link", { name: "Slovenščina" }))
 
     // language picker
-    expect(
-      within(screen.getByRole("navigation")).getByRole("button", { name: "Slovenščina" }),
-    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()
 
     // title in header
     expect(

@@ -1,17 +1,16 @@
 // @flow
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
-import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
+import LinkList from "@kiwicom/orbit-components/lib/LinkList"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
-import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
 import useLocalStorage from "../services/hooks/useLocalStorage"
 import type { Language } from "../services/types"
+import LanguageLink from "./LanguageLink"
 
 const LanguagePicker = () => {
   const [selectedLanguage, setSelectedLanguage] = useLocalStorage(
@@ -19,7 +18,6 @@ const LanguagePicker = () => {
     LANGUAGES.ENGLISH,
   )
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-  const { isLargeMobile } = useMediaQuery()
   const { i18n } = useTranslation()
 
   const handleChangeLanguage = (language: Language) => {
@@ -37,21 +35,11 @@ const LanguagePicker = () => {
       opened={isPopoverOpen}
       onClose={() => setIsPopoverOpen(false)}
       content={
-        <Stack direction="column" spacing="XSmall" tablet={{ spacing: "XXSmall" }}>
-          {Object.keys(LANGUAGES_DATA).map(language => (
-            <ButtonLink
-              key={language}
-              iconLeft={<CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />}
-              onClick={() => handleChangeLanguage(language)}
-              size="small"
-              type="secondary"
-              width="100%"
-              title={LANGUAGES_DATA[language].title}
-            >
-              {LANGUAGES_DATA[language].title}
-            </ButtonLink>
+        <LinkList spacing="none">
+          {Object.keys(LANGUAGES_DATA).map(lang => (
+            <LanguageLink key={lang} language={lang} onClick={() => handleChangeLanguage(lang)} />
           ))}
-        </Stack>
+        </LinkList>
       }
       preferredAlign="end"
     >
@@ -62,10 +50,7 @@ const LanguagePicker = () => {
         size="small"
         title={LANGUAGES_DATA[selectedLanguage].title}
       >
-        <Stack direction="row" align="center" spacing="XSmall">
-          <CountryFlag code={LANGUAGES_DATA[selectedLanguage].flagCode} name="" />
-          {isLargeMobile && <span>{LANGUAGES_DATA[selectedLanguage].title}</span>}
-        </Stack>
+        <CountryFlag code={LANGUAGES_DATA[selectedLanguage].flagCode} name="" />
       </Button>
     </Popover>
   )
