@@ -1,28 +1,22 @@
 // @flow
 import React, { useState } from "react"
-import { useTranslation } from "react-i18next"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
 import LinkList from "@kiwicom/orbit-components/lib/LinkList"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
 
-import { LANGUAGES, LANGUAGES_DATA } from "../services/consts"
-import useLocalStorage from "../services/hooks/useLocalStorage"
+import { LANGUAGES_DATA } from "../services/consts"
 import type { Language } from "../services/types"
+import { useLanguage } from "../services/providers/LanguageProvider"
 import LanguageLink from "./LanguageLink"
 
 const LanguagePicker = () => {
-  const [selectedLanguage, setSelectedLanguage] = useLocalStorage(
-    "selected-language",
-    LANGUAGES.ENGLISH,
-  )
+  const { language, setLanguage } = useLanguage()
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
-  const { i18n } = useTranslation()
 
-  const handleChangeLanguage = (language: Language) => {
-    setSelectedLanguage(language)
-    i18n.changeLanguage(language)
+  const handleChangeLanguage = (lang: Language) => {
+    setLanguage(lang)
     setIsPopoverOpen(false)
   }
 
@@ -48,9 +42,9 @@ const LanguagePicker = () => {
         iconRight={isPopoverOpen ? <ChevronUp ariaHidden /> : <ChevronDown ariaHidden />}
         type="secondary"
         size="small"
-        title={LANGUAGES_DATA[selectedLanguage].title}
+        title={LANGUAGES_DATA[language].title}
       >
-        <CountryFlag code={LANGUAGES_DATA[selectedLanguage].flagCode} name="" />
+        <CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />
       </Button>
     </Popover>
   )
