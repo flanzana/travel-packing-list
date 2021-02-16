@@ -19,9 +19,7 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "English" })).toBeVisible()
 
     // title in header
-    expect(
-      within(screen.getByRole("banner")).getByRole("heading", { name: "Travel packing list" }),
-    ).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Travel packing list" })).toBeVisible()
 
     // title in navbar
     expect(within(screen.getByRole("navigation")).getByText("Travel packing list")).toBeVisible()
@@ -46,9 +44,7 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
 
     // title in header
-    expect(
-      within(screen.getByRole("banner")).getByRole("heading", { name: "Lista de viaje" }),
-    ).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
 
     // title in navbar
     expect(within(screen.getByRole("navigation")).getByText("Lista de viaje")).toBeVisible()
@@ -73,9 +69,7 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()
 
     // title in header
-    expect(
-      within(screen.getByRole("banner")).getByRole("heading", { name: "Potovalni seznam" }),
-    ).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Potovalni seznam" })).toBeVisible()
 
     // title in navbar
     expect(within(screen.getByRole("navigation")).getByText("Potovalni seznam")).toBeVisible()
@@ -90,17 +84,41 @@ describe("App", () => {
     expect(screen.getByRole("checkbox", { name: "Potni list" })).toBeInTheDocument()
   })
 
-  it("displays link to my portfolio and to Orbit website", () => {
-    expect(screen.getByRole("link", { name: "Žana Flander" })).toBeVisible()
+  it("displays link to my portfolio in the footer", () => {
     expect(screen.getByRole("link", { name: "Žana Flander" })).toHaveAttribute(
       "href",
       "https://flanzana.github.io/",
     )
+  })
 
-    expect(screen.getByRole("link", { name: "Orbit" })).toBeVisible()
-    expect(screen.getByRole("link", { name: "Orbit" })).toHaveAttribute(
+  it("displays sidebar", () => {
+    expect(screen.queryByTestId("SidebarContent")).not.toBeVisible()
+
+    // open sidebar
+    fireEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
+    const sidebar = screen.getByTestId("SidebarContent")
+    expect(sidebar).toBeVisible()
+
+    // language
+    expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
+    expect(within(sidebar).getByRole("link", { name: "English" })).toBeVisible()
+    expect(within(sidebar).getByRole("link", { name: "Español" })).toBeVisible()
+    expect(within(sidebar).getByRole("link", { name: "Slovenščina" })).toBeVisible()
+
+    // more about
+    expect(within(sidebar).getByText(/več o/i)).toBeVisible()
+    expect(within(sidebar).getByRole("link", { name: "Žana Flander" })).toHaveAttribute(
+      "href",
+      "https://flanzana.github.io/",
+    )
+    expect(within(sidebar).getByRole("link", { name: "Design system Orbit" })).toHaveAttribute(
       "href",
       "https://orbit.kiwi",
     )
+
+    // click language closes sidebar and changes language
+    expect(screen.queryByRole("heading", { name: "Lista de viaje" })).toBeNull()
+    fireEvent.click(within(sidebar).getByRole("link", { name: "Español" }))
+    expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
   })
 })

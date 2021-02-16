@@ -6,7 +6,7 @@ import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
 import Header from "./components/Header"
 import Main from "./components/Main"
 import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
+import NavbarWithSidebar from "./components/NavbarWithSidebar/NavbarWithSidebar"
 import LanguageProvider from "./services/providers/LanguageProvider"
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider theme={defaultTheme}>
       <LanguageProvider>
         <>
-          <Navbar />
+          <NavbarWithSidebar />
           <Header />
           <Main />
           <Footer />

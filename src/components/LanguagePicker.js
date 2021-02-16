@@ -2,9 +2,8 @@
 import React, { useState } from "react"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
 import LinkList from "@kiwicom/orbit-components/lib/LinkList"
-import Button from "@kiwicom/orbit-components/lib/Button"
+import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
-import { ChevronDown, ChevronUp } from "@kiwicom/orbit-components/lib/icons"
 
 import { LANGUAGES_DATA } from "../services/consts"
 import type { Language } from "../services/types"
@@ -37,15 +36,9 @@ const LanguagePicker = () => {
       }
       preferredAlign="end"
     >
-      <Button
-        onClick={togglePopover}
-        iconRight={isPopoverOpen ? <ChevronUp ariaHidden /> : <ChevronDown ariaHidden />}
-        type="secondary"
-        size="small"
-        title={LANGUAGES_DATA[language].title}
-      >
+      <ButtonLink onClick={togglePopover} type="secondary" title={LANGUAGES_DATA[language].title}>
         <CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />
-      </Button>
+      </ButtonLink>
     </Popover>
   )
 }

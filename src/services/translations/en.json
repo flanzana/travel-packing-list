@@ -105,5 +105,6 @@
     "placeholder.type_item": "Enter item...",
     "input.error.already_exist": "Item already exists.",
     "input.error.enter_item": "Please enter an item.",
-    "footer.text": "© 2019-2020 <1>Žana Flander</1> and <3>Orbit</3>"
+    "sidebar.title.language": "Language",
+    "sidebar.title.more_about": "More about"
 }
