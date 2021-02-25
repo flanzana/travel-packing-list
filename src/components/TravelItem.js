@@ -60,10 +60,10 @@ const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: P
       {editMode === EDIT_MODE.REMOVE_ITEMS && (
         <StyledButtonLink>
           <ButtonLink
-            type="secondary"
+            type="critical"
             size="small"
-            iconLeft={<Close color="critical" ariaHidden />}
-            title={`Delete item ${t(item)}`}
+            iconLeft={<Close ariaHidden />}
+            title={t("button.delete_item", { item: t(item) })}
             onClick={() => handleDeleteItem(item)}
           />
         </StyledButtonLink>

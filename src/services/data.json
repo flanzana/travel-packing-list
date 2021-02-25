@@ -1,7 +1,6 @@
-[
- {
+{
+  "essentials": {
     "category": "essentials",
-    "title": "category.essentials",
     "items": [
       "item.passport",
       "item.cash",
@@ -12,9 +11,8 @@
       "item.copies"
     ]
   },
-  {
+  "clothes": {
     "category": "clothes",
-    "title": "category.clothes",
     "items": [
       "item.underwear",
       "item.socks",
@@ -48,9 +46,8 @@
       "item.laundry_bag"
     ]
   },
-  {
+  "toiletries": {
     "category": "toiletries",
-    "title": "category.toiletries",
     "items": [
       "item.toothbrush",
       "item.toothpaste",
@@ -83,9 +80,8 @@
       "item.laundry_kit"
     ]
   },
-  {
+  "other": {
     "category": "other",
-    "title": "category.other",
     "items": [
       "item.face_mask",
       "item.binoculars",
@@ -114,4 +110,4 @@
       "item.backpack"
     ]
   }
-]
+}

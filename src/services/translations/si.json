@@ -101,6 +101,7 @@
     "button.save": "Shrani",
     "button.remove_items": "Izberi in izbriši stvari",
     "button.settings": "Nastavitve",
+    "button.delete_item": "Izbriši stvar {{item}}",
     "title.settings_list": "Nastavitve za seznam {{category}}",
     "placeholder.type_item": "Vnesi stvar...",
     "input.error.already_exist": "Predmet že obstaja.",

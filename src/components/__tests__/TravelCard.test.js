@@ -9,7 +9,6 @@ describe("TravelCard", () => {
   beforeEach(() => {
     renderWithProviders(
       <TravelCard
-        heading="Essentials"
         category={LIST_CATEGORIES.ESSENTIALS}
         cardData={["item.passport", "item.cash", "item.credit_card"]}
       />,

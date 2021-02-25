@@ -101,6 +101,7 @@
     "button.save": "Save",
     "button.remove_items": "Select and remove items",
     "button.settings": "Settings",
+    "button.delete_item": "Delete item {{item}}",
     "title.settings_list": "Settings of the list {{category}}",
     "placeholder.type_item": "Enter item...",
     "input.error.already_exist": "Item already exists.",

@@ -10,20 +10,22 @@ import TravelItem from "./TravelItem"
 import SettingsPopover from "./SettingsPopover"
 import type { ListCategory } from "../services/types"
 import useLocalStorage from "../services/hooks/useLocalStorage"
-import { capitalize, renderCardIcon } from "../services/helpers"
+import { capitalize } from "../services/helpers"
 import { EDIT_MODE } from "../services/consts"
+import CategoryIcon from "./CategoryIcon"
+import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
 
 type Props = {|
-  heading: string,
   category: ListCategory,
   cardData: Array<string>,
 |}
 
-const TravelCard = ({ heading, category, cardData }: Props) => {
+const TravelCard = ({ category, cardData }: Props) => {
   const { t } = useTranslation()
   const [data, setData] = useLocalStorage(`data-${category}`, cardData)
   const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
   const [newItem, setNewItem] = useState({ value: "", error: null })
+  const translatedCategory = useTranslatedCategory(category)
 
   const togglePopover = () => {
     if (editMode === EDIT_MODE.OPEN_SETTINGS) {
@@ -70,12 +72,11 @@ const TravelCard = ({ heading, category, cardData }: Props) => {
 
   return (
     <Card
-      dataTest={`TravelCard-${category}`}
-      title={heading}
-      icon={renderCardIcon(category)}
+      title={translatedCategory}
+      icon={<CategoryIcon category={category} />}
       actions={
         <SettingsPopover
-          translatedCategory={heading}
+          translatedCategory={translatedCategory}
           togglePopover={togglePopover}
           handleShowDelete={handleShowDelete}
           handleResetCard={handleResetCard}

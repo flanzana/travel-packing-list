@@ -1,13 +1,15 @@
 // @flow
 import React from "react"
 import styled, { css } from "styled-components"
-import { useTranslation } from "react-i18next"
 import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
 import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
 
 import TravelCard from "./TravelCard"
 import data from "../services/data.json"
+import { LIST_CATEGORIES } from "../services/consts"
+
+const { ESSENTIALS, CLOTHES, TOILETRIES, OTHER } = LIST_CATEGORIES
 
 const { spaceSmall, spaceMedium, spaceLarge } = defaultTokens
 
@@ -25,7 +27,6 @@ const MainWrapper = styled.main`
 `
 
 const Main = () => {
-  const { t } = useTranslation()
   return (
     <MainWrapper>
       <Grid
@@ -35,13 +36,8 @@ const Main = () => {
         desktop={{ columns: "1fr 1fr 1fr 1fr" }}
         largeDesktop={{ rowGap: spaceLarge, columnGap: spaceLarge }}
       >
-        {data.map(list => (
-          <TravelCard
-            key={list.category}
-            category={list.category}
-            heading={t(list.title)}
-            cardData={list.items}
-          />
+        {[ESSENTIALS, CLOTHES, TOILETRIES, OTHER].map(category => (
+          <TravelCard key={category} category={category} cardData={data[category].items} />
         ))}
       </Grid>
     </MainWrapper>
