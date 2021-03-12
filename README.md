@@ -22,6 +22,7 @@ App Travel Packing List offers you many different possibilities of usage:
 - store all items into LocalStorage
 - switch between English, Spanish and Slovenian version of the app
 - responsive design
+- a mobile version has bottom navbar with list icon buttons where click on each button scrolls to the corresponding list
 
 ## Dependencies used in project
 - `create-react-app`

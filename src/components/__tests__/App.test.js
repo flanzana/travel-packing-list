@@ -2,15 +2,17 @@
 import React from "react"
 import { screen, fireEvent } from "@testing-library/react"
 import { within } from "@testing-library/dom"
+import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+
 import renderWithProviders from "../../services/test-utils/renderWithProviders"
 import App from "../../App"
 
-jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery", () => () => ({
-  isLargeMobile: true,
-}))
+jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
 
-describe("App", () => {
+describe("App (desktop view)", () => {
   beforeEach(() => {
+    // $FlowFixMe
+    useMediaQuery.mockReturnValue({ isLargeMobile: true })
     renderWithProviders(<App />)
   })
 
@@ -120,5 +122,65 @@ describe("App", () => {
     expect(screen.queryByRole("heading", { name: "Lista de viaje" })).toBeNull()
     fireEvent.click(within(sidebar).getByRole("link", { name: "Español" }))
     expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
+  })
+
+  it("does not display bottom navbar", () => {
+    expect(
+      screen.queryByRole("navigation", {
+        name: "Category navigation bar",
+      }),
+    ).toBeNull()
+  })
+})
+
+describe("App (mobile view)", () => {
+  beforeEach(() => {
+    // $FlowFixMe
+    useMediaQuery.mockReturnValue({ isLargeMobile: false })
+    renderWithProviders(<App />)
+  })
+
+  it("displays bottom navbar", () => {
+    const bottomNavbar = screen.getByRole("navigation", {
+      name: "Category navigation bar",
+    })
+    expect(bottomNavbar).toBeVisible()
+
+    expect(
+      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Esenciales" }),
+    ).toBeVisible()
+    expect(
+      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Ropa y zapatos" }),
+    ).toBeVisible()
+    expect(
+      within(bottomNavbar).getByRole("button", {
+        name: "Desplaza a la lista Artículos de tocador",
+      }),
+    ).toBeVisible()
+    expect(
+      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Otro" }),
+    ).toBeVisible()
+  })
+
+  it("scrolls to the list of category", () => {
+    const scrollIntoViewMock = jest.fn()
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock
+
+    fireEvent.click(screen.getByRole("button", { name: "Desplaza a la lista Ropa y zapatos" }))
+
+    expect(scrollIntoViewMock).toHaveBeenCalledTimes(1)
+  })
+
+  it("opens sidebar from bottom navbar", () => {
+    const bottomNavbar = screen.getByRole("navigation", {
+      name: "Category navigation bar",
+    })
+    const topNavbar = screen.getByRole("navigation", { name: "" })
+
+    expect(within(topNavbar).queryAllByRole("button")).toHaveLength(0)
+
+    expect(within(bottomNavbar).getByRole("button", { name: "Más" })).toBeVisible()
+    fireEvent.click(within(bottomNavbar).getByRole("button", { name: "Más" }))
+    expect(screen.getByTestId("SidebarContent")).toBeVisible()
   })
 })

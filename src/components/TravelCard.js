@@ -72,7 +72,11 @@ const TravelCard = ({ category, cardData }: Props) => {
 
   return (
     <Card
-      title={translatedCategory}
+      title={
+        <span id={category} style={{ scrollMarginTop: "65px" }}>
+          {translatedCategory}
+        </span>
+      }
       icon={<CategoryIcon category={category} />}
       actions={
         <SettingsPopover

@@ -102,6 +102,8 @@
     "button.remove_items": "Selecciona y elimina los objetos",
     "button.settings": "Configuración",
     "button.delete_item": "Elimina el objeto {{item}}",
+    "button.scroll_to_list": "Desplaza a la lista {{category}}",
+    "button.more": "Más",
     "title.settings_list": "Configuración de la lista {{category}}",
     "placeholder.type_item": "Añade el objeto...",
     "input.error.already_exist": "Este objeto ya existe.",
