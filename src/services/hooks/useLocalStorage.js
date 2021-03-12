@@ -1,17 +1,19 @@
 // @flow
 import { useState } from "react"
 
-// eslint-disable-next-line flowtype/no-weak-types
-const useLocalStorage = (key: string, initialValue: any) => {
+export default function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+): [T, (value: T) => void, () => void] {
   // get value from local storage by key
   const item = window.localStorage.getItem(key)
 
-  const [storedValue, setStoredValue] = useState(item ? JSON.parse(item) : initialValue)
+  const [storedValue, setStoredValue] = useState<T>(item ? JSON.parse(item) : initialValue)
 
-  // eslint-disable-next-line flowtype/no-weak-types
-  const setValue = (value: any) => {
+  const setValue = (value: T) => {
     // save state
     setStoredValue(value)
+
     // save to local storage
     window.localStorage.setItem(key, JSON.stringify(value))
   }
@@ -22,5 +24,3 @@ const useLocalStorage = (key: string, initialValue: any) => {
 
   return [storedValue, setValue, removeValue]
 }
-
-export default useLocalStorage

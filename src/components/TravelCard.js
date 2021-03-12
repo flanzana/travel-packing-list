@@ -15,14 +15,16 @@ import { EDIT_MODE } from "../services/consts"
 import CategoryIcon from "./CategoryIcon"
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
 
+type CardData = Array<string>
+
 type Props = {|
   category: ListCategory,
-  cardData: Array<string>,
+  cardData: CardData,
 |}
 
-const TravelCard = ({ category, cardData }: Props) => {
+const TravelCard = ({ category, cardData }: Props): React$Node => {
   const { t } = useTranslation()
-  const [data, setData] = useLocalStorage(`data-${category}`, cardData)
+  const [data, setData] = useLocalStorage<CardData>(`data-${category}`, cardData)
   const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
   const [newItem, setNewItem] = useState({ value: "", error: null })
   const translatedCategory = useTranslatedCategory(category)

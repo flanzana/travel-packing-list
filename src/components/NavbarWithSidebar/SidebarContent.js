@@ -13,7 +13,11 @@ import LanguageLink from "../LanguageLink"
 import type { Language } from "../../services/types"
 import { useLanguage } from "../../services/providers/LanguageProvider"
 
-const SidebarContentPart = ({ title, children }) => (
+type SidebarContentPartProps = {|
+  title: string,
+  children: React$Node,
+|}
+const SidebarContentPart = ({ title, children }: SidebarContentPartProps): React$Node => (
   <>
     <Separator />
     <Stack>
@@ -25,7 +29,11 @@ const SidebarContentPart = ({ title, children }) => (
   </>
 )
 
-const AboutLink = ({ href, label }) => (
+type AboutLinkProps = {|
+  href: string,
+  label: string,
+|}
+const AboutLink = ({ href, label }: AboutLinkProps): React$Node => (
   <TextLink href={href} type="secondary" title={label} standAlone external>
     <Stack direction="row" align="center" spacing="XSmall">
       <Code size="small" />
@@ -38,7 +46,7 @@ type Props = {|
   closeSidebar: () => void,
 |}
 
-const SidebarContent = ({ closeSidebar }: Props) => {
+const SidebarContent = ({ closeSidebar }: Props): React$Node => {
   const { t } = useTranslation()
   const { setLanguage } = useLanguage()
 

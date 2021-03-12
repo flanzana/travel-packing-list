@@ -8,7 +8,7 @@ import NavbarContent from "./NavbarContent"
 import SidebarContent from "./SidebarContent"
 import BottomNavbar from "../BottomNavbar"
 
-const NavbarWithSidebar = () => {
+const NavbarWithSidebar = (): React$Node => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const { isLargeMobile } = useMediaQuery()
 

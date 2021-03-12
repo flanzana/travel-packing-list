@@ -6,3 +6,13 @@ export type ListCategory = $Values<typeof LIST_CATEGORIES>
 export type Language = $Values<typeof LANGUAGES>
 
 export type EditMode = $Values<typeof EDIT_MODE>
+
+type LanguageData = {|
+  value: Language,
+  flagCode: "gb" | "es" | "si",
+  title: "English" | "Español" | "Slovenščina",
+|}
+
+export type LanguagesData = {|
+  [key: Language]: LanguageData,
+|}

@@ -12,7 +12,7 @@ type Props = {|
   language: Language,
 |}
 
-const LanguageLink = ({ language, onClick }: Props) => (
+const LanguageLink = ({ language, onClick }: Props): React$Node => (
   <TextLink
     onClick={event => {
       event.preventDefault()

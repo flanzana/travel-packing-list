@@ -3,12 +3,12 @@ import React from "react"
 import { I18nextProvider } from "react-i18next"
 import { ThemeProvider } from "styled-components"
 import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
-
-import i18n from "../../i18n"
 import { render } from "@testing-library/react"
 
-// $FlowFixMe
-const renderWithProviders = component => {
+import i18n from "../../i18n"
+
+// $FlowFixMe[signature-verification-failure] - RenderResult is untyped
+const renderWithProviders = (component: React$Element<*>) => {
   const comp = React.cloneElement(component, {
     changeLanguage: lng => {
       i18n.changeLanguage(lng)

@@ -23,7 +23,7 @@ const SettingsPopover = ({
   handleShowDelete,
   handleResetCard,
   editMode,
-}: Props) => {
+}: Props): React$Node => {
   const { t } = useTranslation()
 
   return (

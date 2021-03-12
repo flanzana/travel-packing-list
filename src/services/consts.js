@@ -1,4 +1,6 @@
 // @flow
+import type { LanguagesData } from "./types"
+
 export const LIST_CATEGORIES = {
   ESSENTIALS: "essentials",
   CLOTHES: "clothes",
@@ -12,7 +14,7 @@ export const LANGUAGES = {
   SPANISH: "es",
 }
 
-export const LANGUAGES_DATA = {
+export const LANGUAGES_DATA: LanguagesData = {
   [LANGUAGES.ENGLISH]: {
     value: LANGUAGES.ENGLISH,
     flagCode: "gb",

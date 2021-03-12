@@ -15,7 +15,7 @@ const StyledIllustration = styled.div`
   }
 `
 
-const NavbarContent = () => {
+const NavbarContent = (): React$Node => {
   const { t } = useTranslation()
   const { isLargeMobile } = useMediaQuery()
 

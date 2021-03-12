@@ -9,7 +9,7 @@ import Footer from "./components/Footer"
 import NavbarWithSidebar from "./components/NavbarWithSidebar/NavbarWithSidebar"
 import LanguageProvider from "./services/providers/LanguageProvider"
 
-function App() {
+function App(): React$Node {
   return (
     <ThemeProvider theme={defaultTheme}>
       <LanguageProvider>

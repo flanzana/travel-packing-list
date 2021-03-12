@@ -25,7 +25,7 @@ const HeaderWrapper = styled.header`
   `)};
 `
 
-const Header = () => {
+const Header = (): React$Node => {
   const { t } = useTranslation()
 
   return (

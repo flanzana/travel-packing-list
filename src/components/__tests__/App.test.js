@@ -11,7 +11,7 @@ jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
 
 describe("App (desktop view)", () => {
   beforeEach(() => {
-    // $FlowFixMe
+    // $FlowFixMe[prop-missing]
     useMediaQuery.mockReturnValue({ isLargeMobile: true })
     renderWithProviders(<App />)
   })
@@ -135,7 +135,7 @@ describe("App (desktop view)", () => {
 
 describe("App (mobile view)", () => {
   beforeEach(() => {
-    // $FlowFixMe
+    // $FlowFixMe[prop-missing]
     useMediaQuery.mockReturnValue({ isLargeMobile: false })
     renderWithProviders(<App />)
   })

@@ -61,7 +61,7 @@ const StyledButton = styled.button`
 type HamburgerButtonProps = {|
   toggleSidebar: () => void,
 |}
-const HamburgerButton = ({ toggleSidebar }: HamburgerButtonProps) => {
+const HamburgerButton = ({ toggleSidebar }: HamburgerButtonProps): React$Node => {
   const { t } = useTranslation()
 
   return (
@@ -75,7 +75,7 @@ const HamburgerButton = ({ toggleSidebar }: HamburgerButtonProps) => {
 type CategoryButtonProps = {|
   category: ListCategory,
 |}
-const CategoryButton = ({ category }: CategoryButtonProps) => {
+const CategoryButton = ({ category }: CategoryButtonProps): React$Node => {
   const { t } = useTranslation()
   const translatedCategory = useTranslatedCategory(category)
 
@@ -98,7 +98,7 @@ type Props = {|
   toggleSidebar: () => void,
 |}
 
-const BottomNavbar = ({ toggleSidebar }: Props) => {
+const BottomNavbar = ({ toggleSidebar }: Props): React$Node => {
   return (
     <StyledBottomNavbar aria-label="Category navigation bar">
       {[ESSENTIALS, CLOTHES, TOILETRIES, OTHER].map(category => (

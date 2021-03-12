@@ -10,7 +10,7 @@ import type { Language } from "../services/types"
 import { useLanguage } from "../services/providers/LanguageProvider"
 import LanguageLink from "./LanguageLink"
 
-const LanguagePicker = () => {
+const LanguagePicker = (): React$Node => {
   const { language, setLanguage } = useLanguage()
   const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 

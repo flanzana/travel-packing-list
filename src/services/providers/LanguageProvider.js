@@ -17,8 +17,8 @@ type LanguageProviderProps = {|
   children: React$Node,
 |}
 
-const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [selectedLanguage, setSelectedLanguage] = useLocalStorage(
+const LanguageProvider = ({ children }: LanguageProviderProps): React$Node => {
+  const [selectedLanguage, setSelectedLanguage] = useLocalStorage<Language>(
     "selected-language",
     LANGUAGES.ENGLISH,
   )
@@ -41,7 +41,7 @@ const LanguageProvider = ({ children }: LanguageProviderProps) => {
   )
 }
 
-export const useLanguage = () => {
+export const useLanguage = (): LanguageContextType => {
   const context = React.useContext(LanguageContext)
 
   if (!context) {

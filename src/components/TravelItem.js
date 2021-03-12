@@ -24,8 +24,13 @@ type Props = {|
   handleDeleteItemFromData: string => void,
 |}
 
-const TravelItem = ({ item, editMode, setEditMode, handleDeleteItemFromData }: Props) => {
-  const [checked, setChecked, removeItem] = useLocalStorage(`${item}-checked`, false)
+const TravelItem = ({
+  item,
+  editMode,
+  setEditMode,
+  handleDeleteItemFromData,
+}: Props): React$Node => {
+  const [checked, setChecked, removeItem] = useLocalStorage<boolean>(`${item}-checked`, false)
   const { t } = useTranslation()
 
   useEffect(() => {

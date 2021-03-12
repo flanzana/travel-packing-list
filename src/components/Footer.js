@@ -18,7 +18,7 @@ const FooterWrapper = styled.footer`
   `)};
 `
 
-const Footer = () => {
+const Footer = (): React$Node => {
   return (
     <FooterWrapper>
       <Text size="small" align="center">

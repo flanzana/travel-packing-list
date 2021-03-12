@@ -26,7 +26,7 @@ const MainWrapper = styled.main`
   `)};
 `
 
-const Main = () => {
+const Main = (): React$Node => {
   return (
     <MainWrapper>
       <Grid
