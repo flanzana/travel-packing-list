@@ -53,5 +53,11 @@
     "react/jsx-no-undef": "warn",
     "react/jsx-no-target-blank": "error",
     "react/jsx-tag-spacing": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect",
+      "flowVersion": "0.146.0"
+    }
   }
 }
