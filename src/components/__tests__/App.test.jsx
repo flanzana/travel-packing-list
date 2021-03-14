@@ -4,7 +4,7 @@ import { screen, fireEvent } from "@testing-library/react"
 import { within } from "@testing-library/dom"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
-import renderWithProviders from "../../services/test-utils/renderWithProviders"
+import renderWithProviders from "../../services/testUtils/renderWithProviders"
 import App from "../../App"
 
 jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
@@ -17,76 +17,85 @@ describe("App (desktop view)", () => {
   })
 
   it("renders all text in English", () => {
-    //language picker
+    // Given: I have opened an English version of the app
     expect(screen.getByRole("button", { name: "English" })).toBeVisible()
 
-    // title in header
+    // And: I see main title in English
     expect(screen.getByRole("heading", { name: "Travel packing list" })).toBeVisible()
 
-    // title in navbar
+    // And: I see navbar title in English
     expect(within(screen.getByRole("navigation")).getByText("Travel packing list")).toBeVisible()
 
-    // card headings
+    // And: I see card's titles in English
     expect(screen.getByRole("heading", { name: "Essentials" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Clothes and shoes" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Toiletries" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Other" })).toBeVisible()
 
-    // checkboxes
+    // And: I see checkbox labels in English
     expect(screen.getByRole("checkbox", { name: "Passport" })).toBeInTheDocument()
   })
 
   it("changes all text to Spanish after selecting Spanish language", () => {
+    // Given: I have opened an English version of the app
     expect(screen.queryByRole("button", { name: "Español" })).toBeNull()
+
+    // When: I change to Spanish version of the app in language picker
     fireEvent.click(screen.getByRole("button", { name: "English" }))
-    expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(screen.getByRole("link", { name: "Español" }))
+    fireEvent.click(within(screen.getByRole("tooltip")).getByRole("link", { name: "Español" }))
 
-    // language picker
+    // Then: I see Spanish language button
     expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
+    // language popover stays open in test for some reason, but in reality it closes
+    // expect(screen.queryByRole("tooltip")).toBeNull()
+    // expect(screen.getByRole("tooltip")).not.toBeVisible()
 
-    // title in header
+    // And: I see main title in Spanish
     expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
 
-    // title in navbar
+    // And: I see navbar title in Spanish
     expect(within(screen.getByRole("navigation")).getByText("Lista de viaje")).toBeVisible()
 
-    // card headings
+    // And: I see card's titles in Spanish
     expect(screen.getByRole("heading", { name: "Esenciales" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Ropa y zapatos" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Artículos de tocador" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Otro" })).toBeVisible()
 
-    // checkboxes
+    // And: I see checkbox labels in Spanish
     expect(screen.getByRole("checkbox", { name: "Pasaporte" })).toBeInTheDocument()
   })
 
   it("changes all text to Slovenian after selecting Slovenian language", () => {
+    // Given: I have opened a Spanish version of the app
     expect(screen.queryByRole("button", { name: "Slovenščina" })).toBeNull()
-    fireEvent.click(screen.getByRole("button", { name: "Español" }))
-    expect(screen.getByRole("tooltip")).toBeVisible()
-    fireEvent.click(screen.getByRole("link", { name: "Slovenščina" }))
 
-    // language picker
+    // When: I change to Slovenian version of the app in language picker
+    fireEvent.click(screen.getByRole("button", { name: "Español" }))
+    fireEvent.click(within(screen.getByRole("tooltip")).getByRole("link", { name: "Slovenščina" }))
+
+    // Then: I see Slovenian language button
     expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()
 
-    // title in header
+    // And: I see main title in Slovenian
     expect(screen.getByRole("heading", { name: "Potovalni seznam" })).toBeVisible()
 
-    // title in navbar
+    // And: I see navbar title in Slovenian
     expect(within(screen.getByRole("navigation")).getByText("Potovalni seznam")).toBeVisible()
 
-    // card headings
+    // And: I see card's titles in Slovenian
     expect(screen.getByRole("heading", { name: "Osnovne potrebščine" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Oblačila in obutev" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Toaletne potrebščine" })).toBeVisible()
     expect(screen.getByRole("heading", { name: "Razno" })).toBeVisible()
 
-    // checkboxes
+    // And: I see checkbox labels in Slovenian
     expect(screen.getByRole("checkbox", { name: "Potni list" })).toBeInTheDocument()
   })
 
   it("displays link to my portfolio in the footer", () => {
+    // Given: I have opened an app
+    // And: I see link to my portfolio
     expect(screen.getByRole("link", { name: "Žana Flander" })).toHaveAttribute(
       "href",
       "https://flanzana.github.io/",
@@ -94,20 +103,23 @@ describe("App (desktop view)", () => {
   })
 
   it("displays sidebar", () => {
-    expect(screen.queryByTestId("SidebarContent")).not.toBeVisible()
+    // Given: I have opened an app
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
 
-    // open sidebar
+    // When: I click hamburger icon
     fireEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-    const sidebar = screen.getByTestId("SidebarContent")
-    expect(sidebar).toBeVisible()
 
-    // language
+    // Then: sidebar opens
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false")
+    const sidebar = screen.getByTestId("SidebarContent")
+
+    // And: I see language section in the sidebar with all 3 languages
     expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
     expect(within(sidebar).getByRole("link", { name: "English" })).toBeVisible()
     expect(within(sidebar).getByRole("link", { name: "Español" })).toBeVisible()
     expect(within(sidebar).getByRole("link", { name: "Slovenščina" })).toBeVisible()
 
-    // more about
+    // And: I see more about section in the sidebar with link to my portfolio and to Orbit
     expect(within(sidebar).getByText(/več o/i)).toBeVisible()
     expect(within(sidebar).getByRole("link", { name: "Žana Flander" })).toHaveAttribute(
       "href",
@@ -117,14 +129,41 @@ describe("App (desktop view)", () => {
       "href",
       "https://orbit.kiwi",
     )
+  })
 
-    // click language closes sidebar and changes language
+  it("closes sidebar by clicking Close button", () => {
+    // Given: sidebar is opened
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+    fireEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false")
+
+    // When: I click X button in sidebar
+    fireEvent.click(screen.getByRole("button", { name: "Hide" }))
+
+    // Then: sidebar closes
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+  })
+
+  it("closes sidebar by selecting language", () => {
+    // Given: sidebar is opened on English version of the app
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+    fireEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false")
     expect(screen.queryByRole("heading", { name: "Lista de viaje" })).toBeNull()
-    fireEvent.click(within(sidebar).getByRole("link", { name: "Español" }))
+
+    // When: I select Spanish language in the sidebar
+    fireEvent.click(within(screen.getByTestId("Sidebar")).getByRole("link", { name: "Español" }))
+
+    // Then: sidebar closes
+    expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+
+    // And: I see main title in Spanish
     expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
   })
 
   it("does not display bottom navbar", () => {
+    // Given: I am on the desktop version of the app
+    // And: bottom navbar is not visible
     expect(
       screen.queryByRole("navigation", {
         name: "Category navigation bar",
@@ -141,11 +180,14 @@ describe("App (mobile view)", () => {
   })
 
   it("displays bottom navbar", () => {
+    // Given: I am on the mobile version of the app
+    // And: bottom navbar is visible
     const bottomNavbar = screen.getByRole("navigation", {
       name: "Category navigation bar",
     })
     expect(bottomNavbar).toBeVisible()
 
+    // And: I see icon button to all 4 card's titles
     expect(
       within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Esenciales" }),
     ).toBeVisible()
@@ -166,21 +208,31 @@ describe("App (mobile view)", () => {
     const scrollIntoViewMock = jest.fn()
     window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock
 
+    // Given: I am on the mobile version of the app
+    // When: I click icon of clothes category
     fireEvent.click(screen.getByRole("button", { name: "Desplaza a la lista Ropa y zapatos" }))
 
+    // Then: screen scrolls to the corresponding card's title clothes
     expect(scrollIntoViewMock).toHaveBeenCalledTimes(1)
   })
 
   it("opens sidebar from bottom navbar", () => {
+    // Given: I am on the mobile version of the app
     const bottomNavbar = screen.getByRole("navigation", {
       name: "Category navigation bar",
     })
     const topNavbar = screen.getByRole("navigation", { name: "" })
 
+    // And: hamburger menu icon is not visible in top navbar
     expect(within(topNavbar).queryAllByRole("button")).toHaveLength(0)
 
+    // But: it is visible in bottom navbar
     expect(within(bottomNavbar).getByRole("button", { name: "Más" })).toBeVisible()
+
+    // When: I click hamburger menu icon in bottom navbar
     fireEvent.click(within(bottomNavbar).getByRole("button", { name: "Más" }))
+
+    // Then: sidebar opens
     expect(screen.getByTestId("SidebarContent")).toBeVisible()
   })
 })

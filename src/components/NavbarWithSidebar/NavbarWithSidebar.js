@@ -27,7 +27,7 @@ const NavbarWithSidebar = (): React$Node => {
       {isBottomNavbarVisible && (
         <BottomNavbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
       )}
-      <Drawer shown={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}>
+      <Drawer shown={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} dataTest="Sidebar">
         <SidebarContent closeSidebar={() => setIsSidebarOpen(false)} />
       </Drawer>
     </>
