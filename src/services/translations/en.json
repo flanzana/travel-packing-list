@@ -104,6 +104,7 @@
     "button.delete_item": "Delete item {{item}}",
     "button.scroll_to_list": "Scroll to the list {{category}}",
     "button.more": "More",
+    "button.close": "Close",
     "title.settings_list": "Settings of the list {{category}}",
     "placeholder.type_item": "Enter item...",
     "input.error.already_exist": "Item already exists.",

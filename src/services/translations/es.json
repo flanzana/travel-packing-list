@@ -104,6 +104,7 @@
     "button.delete_item": "Elimina el objeto {{item}}",
     "button.scroll_to_list": "Desplaza a la lista {{category}}",
     "button.more": "Más",
+    "button.close": "Cerrar",
     "title.settings_list": "Configuración de la lista {{category}}",
     "placeholder.type_item": "Añade el objeto...",
     "input.error.already_exist": "Este objeto ya existe.",
