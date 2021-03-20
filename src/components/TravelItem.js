@@ -1,14 +1,13 @@
 // @flow
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import { Close } from "@kiwicom/orbit-components/lib/icons"
-import useLocalStorage from "../services/hooks/useLocalStorage"
-import type { EditMode } from "../services/types"
-import { EDIT_MODE } from "../services/consts"
+
+import type { CardItem } from "../services/types"
 
 const StyledButtonLink = styled.div`
   button {
@@ -18,58 +17,39 @@ const StyledButtonLink = styled.div`
 `
 
 type Props = {|
-  item: string,
-  editMode: EditMode,
-  setEditMode: EditMode => void,
-  handleDeleteItemFromData: string => void,
+  item: CardItem,
+  shouldShowDeleteButton: boolean,
+  toggleCheckedItem: string => void,
+  handleDeleteItem: string => void,
 |}
 
 const TravelItem = ({
   item,
-  editMode,
-  setEditMode,
-  handleDeleteItemFromData,
+  shouldShowDeleteButton,
+  toggleCheckedItem,
+  handleDeleteItem,
 }: Props): React$Node => {
-  const [checked, setChecked, removeItem] = useLocalStorage<boolean>(`${item}-checked`, false)
   const { t } = useTranslation()
-
-  useEffect(() => {
-    // reset whole card after pressing button reset
-    if (editMode === EDIT_MODE.RESET_CARD) {
-      setChecked(false)
-      setEditMode(EDIT_MODE.DEFAULT)
-    }
-  }, [editMode, setEditMode, setChecked])
-
-  const handleDeleteItem = item => {
-    handleDeleteItemFromData(item)
-    removeItem()
-  }
-
-  const toggleCheckItem = () => {
-    setChecked(!checked)
-    // to close settings popover in case it is still open
-    setEditMode(EDIT_MODE.DEFAULT)
-  }
+  const { tKey, isChecked } = item
 
   return (
     <Stack direction="row" align="start" justify="between" spacing="medium">
       <Checkbox
-        label={t(item)}
-        name={item}
-        value={item}
-        checked={checked}
-        onChange={toggleCheckItem}
-        disabled={editMode === EDIT_MODE.REMOVE_ITEMS}
+        label={t(tKey)}
+        name={tKey}
+        value={tKey}
+        checked={isChecked}
+        onChange={() => toggleCheckedItem(tKey)}
+        disabled={shouldShowDeleteButton}
       />
-      {editMode === EDIT_MODE.REMOVE_ITEMS && (
+      {shouldShowDeleteButton && (
         <StyledButtonLink>
           <ButtonLink
             type="critical"
             size="small"
             iconLeft={<Close ariaHidden />}
-            title={t("button.delete_item", { item: t(item) })}
-            onClick={() => handleDeleteItem(item)}
+            title={t("button.delete_item", { item: t(tKey) })}
+            onClick={() => handleDeleteItem(tKey)}
           />
         </StyledButtonLink>
       )}

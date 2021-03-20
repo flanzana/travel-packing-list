@@ -19,7 +19,7 @@ type LanguageProviderProps = {|
 
 const LanguageProvider = ({ children }: LanguageProviderProps): React$Node => {
   const [selectedLanguage, setSelectedLanguage] = useLocalStorage<Language>(
-    "selected-language",
+    "travel-packing-list:language",
     LANGUAGES.ENGLISH,
   )
   const { i18n } = useTranslation()

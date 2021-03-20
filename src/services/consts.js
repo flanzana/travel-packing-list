@@ -35,7 +35,6 @@ export const LANGUAGES_DATA: LanguagesData = {
 export const EDIT_MODE = {
   DEFAULT: "default",
   OPEN_SETTINGS: "openSettings",
-  RESET_CARD: "resetCard",
   REMOVE_ITEMS: "removeItems",
   ADD_ITEM: "addItem",
 }

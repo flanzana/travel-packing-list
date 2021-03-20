@@ -1,10 +1,7 @@
 // @flow
 import { useState } from "react"
 
-export default function useLocalStorage<T>(
-  key: string,
-  initialValue: T,
-): [T, (value: T) => void, () => void] {
+export default function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
   // get value from local storage by key
   const item = window.localStorage.getItem(key)
 
@@ -18,9 +15,5 @@ export default function useLocalStorage<T>(
     window.localStorage.setItem(key, JSON.stringify(value))
   }
 
-  const removeValue = () => {
-    window.localStorage.removeItem(key)
-  }
-
-  return [storedValue, setValue, removeValue]
+  return [storedValue, setValue]
 }

@@ -8,6 +8,7 @@ import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
 import TravelCard from "./TravelCard"
 import data from "../services/data.json"
 import { LIST_CATEGORIES } from "../services/consts"
+import type { CardItems } from "../services/types"
 
 const { ESSENTIALS, CLOTHES, TOILETRIES, OTHER } = LIST_CATEGORIES
 
@@ -26,6 +27,10 @@ const MainWrapper = styled.main`
   `)};
 `
 
+function cardItemsMapper(items: Array<string>): CardItems {
+  return items.map(item => ({ tKey: item, isChecked: false }))
+}
+
 const Main = (): React$Node => {
   return (
     <MainWrapper>
@@ -37,7 +42,11 @@ const Main = (): React$Node => {
         largeDesktop={{ rowGap: spaceLarge, columnGap: spaceLarge }}
       >
         {[ESSENTIALS, CLOTHES, TOILETRIES, OTHER].map(category => (
-          <TravelCard key={category} category={category} cardData={data[category].items} />
+          <TravelCard
+            key={category}
+            category={category}
+            initialCardItems={cardItemsMapper(data[category].items)}
+          />
         ))}
       </Grid>
     </MainWrapper>

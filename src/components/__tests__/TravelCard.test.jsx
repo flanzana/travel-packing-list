@@ -10,7 +10,11 @@ describe("TravelCard", () => {
     renderWithProviders(
       <TravelCard
         category={LIST_CATEGORIES.ESSENTIALS}
-        cardData={["item.passport", "item.cash", "item.credit_card"]}
+        initialCardItems={[
+          { tKey: "item.passport", isChecked: false },
+          { tKey: "item.cash", isChecked: false },
+          { tKey: "item.credit_card", isChecked: false },
+        ]}
       />,
     )
   })

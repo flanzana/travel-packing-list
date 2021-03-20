@@ -6,28 +6,32 @@ import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import InputField from "@kiwicom/orbit-components/lib/InputField"
 import { Plus } from "@kiwicom/orbit-components/lib/icons"
+
 import TravelItem from "./TravelItem"
 import SettingsPopover from "./SettingsPopover"
-import type { ListCategory } from "../services/types"
+import type { CardItems, ListCategory } from "../services/types"
 import useLocalStorage from "../services/hooks/useLocalStorage"
 import { capitalize } from "../services/helpers"
 import { EDIT_MODE } from "../services/consts"
 import CategoryIcon from "./CategoryIcon"
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
 
-type CardData = Array<string>
+const initialNewItem = { value: "", error: null }
 
 type Props = {|
   category: ListCategory,
-  cardData: CardData,
+  initialCardItems: CardItems,
 |}
 
-const TravelCard = ({ category, cardData }: Props): React$Node => {
+const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
   const { t } = useTranslation()
-  const [data, setData] = useLocalStorage<CardData>(`data-${category}`, cardData)
-  const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
-  const [newItem, setNewItem] = useState({ value: "", error: null })
   const translatedCategory = useTranslatedCategory(category)
+  const [cardItems, setCardItems] = useLocalStorage<CardItems>(
+    `travel-packing-list:list-${category}`,
+    initialCardItems,
+  )
+  const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
+  const [newItem, setNewItem] = useState(initialNewItem)
 
   const togglePopover = () => {
     if (editMode === EDIT_MODE.OPEN_SETTINGS) {
@@ -37,39 +41,43 @@ const TravelCard = ({ category, cardData }: Props): React$Node => {
     }
   }
 
-  const handleDeleteItemFromData = item => {
-    setData(data.filter(i => i !== item))
+  const handleDeleteItem = (itemTKey: string) => {
+    setCardItems(cardItems.filter(item => item.tKey !== itemTKey))
+  }
+
+  const toggleCheckedItem = (itemTKey: string) => {
+    setCardItems(
+      cardItems.map(item =>
+        item.tKey === itemTKey ? { ...item, isChecked: !item.isChecked } : item,
+      ),
+    )
   }
 
   const handleResetCard = () => {
-    setEditMode(EDIT_MODE.RESET_CARD)
-    setData(cardData) // set data to default
+    setCardItems(initialCardItems)
+    setEditMode(EDIT_MODE.DEFAULT)
   }
 
   const handleSubmitNewItem = e => {
-    // show error if field is empty
-    if (newItem.value === "") {
+    const doesAlreadyExist = Boolean(cardItems.find(item => t(item.tKey) === newItem.value))
+
+    if (!newItem.value) {
       setNewItem({ ...newItem, error: t("input.error.enter_item") })
-      // show error if the new value already exists on the list
-    } else if (data.find(item => t(item) === newItem.value)) {
+    } else if (doesAlreadyExist) {
       setNewItem({ ...newItem, error: t("input.error.already_exist") })
     } else {
       e.preventDefault()
       // update data
-      setData([...data, newItem.value])
+      setCardItems([...cardItems, { tKey: newItem.value, isChecked: false }])
 
       // clear states
       setEditMode(EDIT_MODE.DEFAULT)
-      setNewItem({ value: "", error: null })
+      setNewItem(initialNewItem)
     }
   }
 
   const handleInputChange = e => {
-    setNewItem({ ...newItem, value: capitalize(e.target.value) })
-  }
-
-  const handleShowDelete = () => {
-    setEditMode(EDIT_MODE.REMOVE_ITEMS)
+    setNewItem({ error: null, value: capitalize(e.target.value) })
   }
 
   return (
@@ -84,21 +92,21 @@ const TravelCard = ({ category, cardData }: Props): React$Node => {
         <SettingsPopover
           translatedCategory={translatedCategory}
           togglePopover={togglePopover}
-          handleShowDelete={handleShowDelete}
+          handleShowDelete={() => setEditMode(EDIT_MODE.REMOVE_ITEMS)}
           handleResetCard={handleResetCard}
-          editMode={editMode}
+          isSettingsOpened={editMode === EDIT_MODE.OPEN_SETTINGS}
         />
       }
     >
       <CardSection>
         <Stack direction="column" spacing="medium" desktop={{ spacing: "XSmall" }}>
-          {data.map(item => (
+          {cardItems.map(item => (
             <TravelItem
-              key={item}
+              key={item.tKey}
               item={item}
-              editMode={editMode}
-              setEditMode={setEditMode}
-              handleDeleteItemFromData={handleDeleteItemFromData}
+              shouldShowDeleteButton={editMode === EDIT_MODE.REMOVE_ITEMS}
+              toggleCheckedItem={toggleCheckedItem}
+              handleDeleteItem={handleDeleteItem}
             />
           ))}
           {editMode === EDIT_MODE.ADD_ITEM ? (

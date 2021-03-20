@@ -16,3 +16,10 @@ type LanguageData = {|
 export type LanguagesData = {|
   [key: Language]: LanguageData,
 |}
+
+export type CardItem = {|
+  tKey: string,
+  isChecked: boolean,
+|}
+
+export type CardItems = Array<CardItem>
