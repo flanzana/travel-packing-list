@@ -100,6 +100,8 @@
     "button.add_item": "Añadir el objeto",
     "button.save": "Guardar",
     "button.remove_items": "Selecciona y elimina los objetos",
+    "button.uncheck_all": "Deselecciona todo",
+    "button.check_all": "Selecciona todo",
     "button.settings": "Configuración",
     "button.delete_item": "Elimina el objeto {{item}}",
     "button.scroll_to_list": "Desplaza a la lista {{category}}",

@@ -97,6 +97,8 @@
     "item.face_mask": "Face mask",
     "item.backpack": "Backpack",
     "button.reset_list": "Reset the list",
+    "button.uncheck_all": "Uncheck all",
+    "button.check_all": "Check all",
     "button.add_item": "Add item",
     "button.save": "Save",
     "button.remove_items": "Select and remove items",

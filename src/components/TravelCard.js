@@ -33,7 +33,7 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
   const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
   const [newItem, setNewItem] = useState(initialNewItem)
 
-  const togglePopover = () => {
+  const toggleSettings = () => {
     if (editMode === EDIT_MODE.OPEN_SETTINGS) {
       setEditMode(EDIT_MODE.DEFAULT)
     } else {
@@ -55,6 +55,16 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
 
   const handleResetCard = () => {
     setCardItems(initialCardItems)
+    setEditMode(EDIT_MODE.DEFAULT)
+  }
+
+  const handleDeselectAll = () => {
+    setCardItems(cardItems.map(item => ({ ...item, isChecked: false })))
+    setEditMode(EDIT_MODE.DEFAULT)
+  }
+
+  const handleSelectAll = () => {
+    setCardItems(cardItems.map(item => ({ ...item, isChecked: true })))
     setEditMode(EDIT_MODE.DEFAULT)
   }
 
@@ -91,9 +101,11 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
       actions={
         <SettingsPopover
           translatedCategory={translatedCategory}
-          togglePopover={togglePopover}
+          toggleSettings={toggleSettings}
           handleShowDelete={() => setEditMode(EDIT_MODE.REMOVE_ITEMS)}
           handleResetCard={handleResetCard}
+          handleDeselectAll={handleDeselectAll}
+          handleSelectAll={handleSelectAll}
           isSettingsOpened={editMode === EDIT_MODE.OPEN_SETTINGS}
         />
       }

@@ -1,16 +1,27 @@
 // @flow
 import React from "react"
-import { screen, fireEvent } from "@testing-library/react"
+import { screen, fireEvent, waitForElementToBeRemoved } from "@testing-library/react"
 import { within } from "@testing-library/dom"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import renderWithProviders from "../../services/testUtils/renderWithProviders"
 import App from "../../App"
+import localStorageMock from "../../services/testUtils/localStorageMock"
 
 jest.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
 
+const expectToSeeCardTitles = (headings: Array<string>) => {
+  headings.forEach(heading => {
+    expect(screen.getByRole("heading", { name: heading })).toBeVisible()
+  })
+}
+
 describe("App (desktop view)", () => {
   beforeEach(() => {
+    Object.defineProperty(window, "localStorage", {
+      value: localStorageMock({ "travel-packing-list:language": JSON.stringify("en") }),
+      writable: true,
+    })
     // $FlowFixMe[prop-missing]
     useMediaQuery.mockReturnValue({ isLargeMobile: true })
     renderWithProviders(<App />)
@@ -27,16 +38,13 @@ describe("App (desktop view)", () => {
     expect(within(screen.getByRole("navigation")).getByText("Travel packing list")).toBeVisible()
 
     // And: I see card's titles in English
-    expect(screen.getByRole("heading", { name: "Essentials" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Clothes and shoes" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Toiletries" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Other" })).toBeVisible()
+    expectToSeeCardTitles(["Essentials", "Clothes and shoes", "Toiletries", "Other"])
 
     // And: I see checkbox labels in English
     expect(screen.getByRole("checkbox", { name: "Passport" })).toBeInTheDocument()
   })
 
-  it("changes all text to Spanish after selecting Spanish language", () => {
+  it("changes all text to Spanish after selecting Spanish language", async () => {
     // Given: I have opened an English version of the app
     expect(screen.queryByRole("button", { name: "Español" })).toBeNull()
 
@@ -46,9 +54,9 @@ describe("App (desktop view)", () => {
 
     // Then: I see Spanish language button
     expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
-    // language popover stays open in test for some reason, but in reality it closes
-    // expect(screen.queryByRole("tooltip")).toBeNull()
-    // expect(screen.getByRole("tooltip")).not.toBeVisible()
+
+    // And: language popover picker closes
+    await waitForElementToBeRemoved(() => screen.queryByRole("tooltip"))
 
     // And: I see main title in Spanish
     expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
@@ -57,21 +65,18 @@ describe("App (desktop view)", () => {
     expect(within(screen.getByRole("navigation")).getByText("Lista de viaje")).toBeVisible()
 
     // And: I see card's titles in Spanish
-    expect(screen.getByRole("heading", { name: "Esenciales" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Ropa y zapatos" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Artículos de tocador" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Otro" })).toBeVisible()
+    expectToSeeCardTitles(["Esenciales", "Ropa y zapatos", "Artículos de tocador", "Otro"])
 
     // And: I see checkbox labels in Spanish
     expect(screen.getByRole("checkbox", { name: "Pasaporte" })).toBeInTheDocument()
   })
 
   it("changes all text to Slovenian after selecting Slovenian language", () => {
-    // Given: I have opened a Spanish version of the app
+    // Given: I have opened an English version of the app
     expect(screen.queryByRole("button", { name: "Slovenščina" })).toBeNull()
 
     // When: I change to Slovenian version of the app in language picker
-    fireEvent.click(screen.getByRole("button", { name: "Español" }))
+    fireEvent.click(screen.getByRole("button", { name: "English" }))
     fireEvent.click(within(screen.getByRole("tooltip")).getByRole("link", { name: "Slovenščina" }))
 
     // Then: I see Slovenian language button
@@ -84,10 +89,12 @@ describe("App (desktop view)", () => {
     expect(within(screen.getByRole("navigation")).getByText("Potovalni seznam")).toBeVisible()
 
     // And: I see card's titles in Slovenian
-    expect(screen.getByRole("heading", { name: "Osnovne potrebščine" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Oblačila in obutev" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Toaletne potrebščine" })).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Razno" })).toBeVisible()
+    expectToSeeCardTitles([
+      "Osnovne potrebščine",
+      "Oblačila in obutev",
+      "Toaletne potrebščine",
+      "Razno",
+    ])
 
     // And: I see checkbox labels in Slovenian
     expect(screen.getByRole("checkbox", { name: "Potni list" })).toBeInTheDocument()
@@ -115,9 +122,9 @@ describe("App (desktop view)", () => {
 
     // And: I see language section in the sidebar with all 3 languages
     expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
-    expect(within(sidebar).getByRole("link", { name: "English" })).toBeVisible()
-    expect(within(sidebar).getByRole("link", { name: "Español" })).toBeVisible()
-    expect(within(sidebar).getByRole("link", { name: "Slovenščina" })).toBeVisible()
+    ;["English", "Español", "Slovenščina"].forEach(language => {
+      expect(within(sidebar).getByRole("link", { name: language })).toBeVisible()
+    })
 
     // And: I see more about section in the sidebar with link to my portfolio and to Orbit
     expect(within(sidebar).getByText(/več o/i)).toBeVisible()
@@ -174,6 +181,10 @@ describe("App (desktop view)", () => {
 
 describe("App (mobile view)", () => {
   beforeEach(() => {
+    Object.defineProperty(window, "localStorage", {
+      value: localStorageMock({ "travel-packing-list:language": JSON.stringify("en") }),
+      writable: true,
+    })
     // $FlowFixMe[prop-missing]
     useMediaQuery.mockReturnValue({ isLargeMobile: false })
     renderWithProviders(<App />)
@@ -188,20 +199,14 @@ describe("App (mobile view)", () => {
     expect(bottomNavbar).toBeVisible()
 
     // And: I see icon button to all 4 card's titles
-    expect(
-      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Esenciales" }),
-    ).toBeVisible()
-    expect(
-      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Ropa y zapatos" }),
-    ).toBeVisible()
-    expect(
-      within(bottomNavbar).getByRole("button", {
-        name: "Desplaza a la lista Artículos de tocador",
-      }),
-    ).toBeVisible()
-    expect(
-      within(bottomNavbar).getByRole("button", { name: "Desplaza a la lista Otro" }),
-    ).toBeVisible()
+    ;[
+      "Desplaza a la lista Esenciales",
+      "Desplaza a la lista Ropa y zapatos",
+      "Desplaza a la lista Artículos de tocador",
+      "Desplaza a la lista Otro",
+    ].forEach(name => {
+      expect(within(bottomNavbar).getByRole("button", { name })).toBeVisible()
+    })
   })
 
   it("scrolls to the list of category", () => {

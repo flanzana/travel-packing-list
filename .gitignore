@@ -3,6 +3,7 @@
 .editorconfig
 package-lock.json
 yarn.lock
+/.idea
 
 # dependencies
 /node_modules
