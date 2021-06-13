@@ -4,19 +4,16 @@ import { useTranslation } from "react-i18next"
 import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
-import InputField from "@kiwicom/orbit-components/lib/InputField"
 import { Plus } from "@kiwicom/orbit-components/lib/icons"
 
 import TravelItem from "./TravelItem"
 import SettingsPopover from "./SettingsPopover"
 import type { CardItems, ListCategory } from "../services/types"
 import useLocalStorage from "../services/hooks/useLocalStorage"
-import { capitalize } from "../services/helpers"
 import { EDIT_MODE } from "../services/consts"
 import CategoryIcon from "./CategoryIcon"
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
-
-const initialNewItem = { value: "", error: null }
+import AddItemControls from "./AddItemControls"
 
 type Props = {|
   category: ListCategory,
@@ -31,7 +28,8 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
     initialCardItems,
   )
   const [editMode, setEditMode] = useState(EDIT_MODE.DEFAULT)
-  const [newItem, setNewItem] = useState(initialNewItem)
+
+  const isRemoveItemsMode = editMode === EDIT_MODE.REMOVE_ITEMS
 
   const toggleSettings = () => {
     if (editMode === EDIT_MODE.OPEN_SETTINGS) {
@@ -68,26 +66,9 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
     setEditMode(EDIT_MODE.DEFAULT)
   }
 
-  const handleSubmitNewItem = e => {
-    const doesAlreadyExist = Boolean(cardItems.find(item => t(item.tKey) === newItem.value))
-
-    if (!newItem.value) {
-      setNewItem({ ...newItem, error: t("input.error.enter_item") })
-    } else if (doesAlreadyExist) {
-      setNewItem({ ...newItem, error: t("input.error.already_exist") })
-    } else {
-      e.preventDefault()
-      // update data
-      setCardItems([...cardItems, { tKey: newItem.value, isChecked: false }])
-
-      // clear states
-      setEditMode(EDIT_MODE.DEFAULT)
-      setNewItem(initialNewItem)
-    }
-  }
-
-  const handleInputChange = e => {
-    setNewItem({ error: null, value: capitalize(e.target.value) })
+  const handleSubmitNewItem = (newItemValue: string) => {
+    setCardItems([...cardItems, { tKey: newItemValue, isChecked: false }])
+    setEditMode(EDIT_MODE.DEFAULT)
   }
 
   return (
@@ -116,26 +97,18 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
             <TravelItem
               key={item.tKey}
               item={item}
-              shouldShowDeleteButton={editMode === EDIT_MODE.REMOVE_ITEMS}
+              shouldShowDeleteButton={isRemoveItemsMode}
               toggleCheckedItem={toggleCheckedItem}
               handleDeleteItem={handleDeleteItem}
             />
           ))}
           {editMode === EDIT_MODE.ADD_ITEM ? (
-            <Stack direction="row" spacing="XSmall">
-              <InputField
-                name="New item"
-                size="small"
-                placeholder={t("placeholder.type_item")}
-                value={newItem.value}
-                onChange={handleInputChange}
-                error={newItem.error}
-                ref={input => input && input.focus()}
-              />
-              <Button size="small" onClick={handleSubmitNewItem}>
-                {t("button.save")}
-              </Button>
-            </Stack>
+            <AddItemControls
+              handleSubmitNewItem={handleSubmitNewItem}
+              doesAlreadyExistInItems={newItemValue =>
+                Boolean(cardItems.find(item => newItemValue === t(item.tKey)))
+              }
+            />
           ) : (
             <Stack direction="row" justify="between">
               <Button
@@ -143,11 +116,11 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
                 iconLeft={<Plus ariaHidden />}
                 size="small"
                 onClick={() => setEditMode(EDIT_MODE.ADD_ITEM)}
-                disabled={editMode === EDIT_MODE.REMOVE_ITEMS}
+                disabled={isRemoveItemsMode}
               >
                 {t("button.add_item")}
               </Button>
-              {editMode === EDIT_MODE.REMOVE_ITEMS && (
+              {isRemoveItemsMode && (
                 <Button type="critical" size="small" onClick={() => setEditMode(EDIT_MODE.DEFAULT)}>
                   {t("button.save")}
                 </Button>
