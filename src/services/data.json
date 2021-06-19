@@ -6,9 +6,11 @@
       "item.cash",
       "item.credit_card",
       "item.phone_charger",
-      "item.insurance",
+      "item.insurance_health",
+      "item.insurance_travel",
       "item.tickets",
-      "item.copies"
+      "item.copies",
+      "item.covid_certificate"
     ]
   },
   "clothes": {
@@ -60,12 +62,14 @@
       "item.hair_bands",
       "item.hair_dryer",
       "item.hair_straightener",
+      "item.facial_cleanser",
       "item.cream_face",
       "item.cream_hand",
       "item.sunscreen",
       "item.lenses",
       "item.shaving",
       "item.makeup",
+      "item.makeup_remover",
       "item.perfume",
       "item.lip_balsam",
       "item.earpicks",

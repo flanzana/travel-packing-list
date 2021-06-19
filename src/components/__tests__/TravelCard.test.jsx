@@ -171,8 +171,8 @@ describe("TravelCard", () => {
     // When: I delete Cash item
     clickButton("Delete item Cash")
 
-    // And: I click Save
-    clickButton("Save")
+    // And: I click Done
+    clickButton("Done")
 
     // Then: I have 3 checkboxes (not disabled), without Cash checkbox
     expect(screen.getAllByRole("checkbox")).toHaveLength(3)

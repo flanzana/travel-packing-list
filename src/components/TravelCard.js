@@ -122,7 +122,7 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
               </Button>
               {isRemoveItemsMode && (
                 <Button type="critical" size="small" onClick={() => setEditMode(EDIT_MODE.DEFAULT)}>
-                  {t("button.save")}
+                  {t("button.done")}
                 </Button>
               )}
             </Stack>
