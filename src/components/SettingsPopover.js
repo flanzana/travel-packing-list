@@ -71,6 +71,7 @@ const SettingsPopover = ({
         </Stack>
       }
       opened={isSettingsOpened}
+      onOpen={toggleSettings}
       onClose={toggleSettings}
       width="250px"
     >
@@ -79,7 +80,6 @@ const SettingsPopover = ({
         type="secondary"
         iconLeft={<Settings ariaHidden />}
         title={t("title.settings_list", { category: translatedCategory })}
-        onClick={toggleSettings}
       />
     </Popover>
   )

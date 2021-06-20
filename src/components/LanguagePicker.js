@@ -19,13 +19,10 @@ const LanguagePicker = (): React$Node => {
     setIsPopoverOpen(false)
   }
 
-  const togglePopover = () => {
-    setIsPopoverOpen(!isPopoverOpen)
-  }
-
   return (
     <Popover
       opened={isPopoverOpen}
+      onOpen={() => setIsPopoverOpen(true)}
       onClose={() => setIsPopoverOpen(false)}
       content={
         <LinkList spacing="none">
@@ -35,8 +32,9 @@ const LanguagePicker = (): React$Node => {
         </LinkList>
       }
       preferredAlign="end"
+      fixed
     >
-      <ButtonLink onClick={togglePopover} type="secondary" title={LANGUAGES_DATA[language].title}>
+      <ButtonLink type="secondary" title={LANGUAGES_DATA[language].title}>
         <CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />
       </ButtonLink>
     </Popover>

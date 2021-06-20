@@ -36,8 +36,7 @@ const TravelItem = ({
     <Stack direction="row" align="start" justify="between" spacing="medium">
       <Checkbox
         label={t(tKey)}
-        name={tKey}
-        value={tKey}
+        name={t(tKey)}
         checked={isChecked}
         onChange={() => toggleCheckedItem(tKey)}
         disabled={shouldShowDeleteButton}

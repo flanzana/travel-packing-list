@@ -78,6 +78,7 @@ const TravelCard = ({ category, initialCardItems }: Props): React$Node => {
           {translatedCategory}
         </span>
       }
+      titleAs="h2"
       icon={<CategoryIcon category={category} />}
       actions={
         <SettingsPopover
