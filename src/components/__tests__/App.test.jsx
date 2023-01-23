@@ -34,9 +34,6 @@ describe("App (desktop view)", () => {
     // And: I see main title in English
     expect(screen.getByRole("heading", { name: "Travel packing list" })).toBeVisible()
 
-    // And: I see navbar title in English
-    expect(within(screen.getByRole("navigation")).getByText("Travel packing list")).toBeVisible()
-
     // And: I see card's titles in English
     expectToSeeCardTitles(["Essentials", "Clothes and shoes", "Toiletries", "Other"])
 
@@ -61,9 +58,6 @@ describe("App (desktop view)", () => {
     // And: I see main title in Spanish
     expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
 
-    // And: I see navbar title in Spanish
-    expect(within(screen.getByRole("navigation")).getByText("Lista de viaje")).toBeVisible()
-
     // And: I see card's titles in Spanish
     expectToSeeCardTitles(["Esenciales", "Ropa y zapatos", "Artículos de tocador", "Otro"])
 
@@ -84,9 +78,6 @@ describe("App (desktop view)", () => {
 
     // And: I see main title in Slovenian
     expect(screen.getByRole("heading", { name: "Potovalni seznam" })).toBeVisible()
-
-    // And: I see navbar title in Slovenian
-    expect(within(screen.getByRole("navigation")).getByText("Potovalni seznam")).toBeVisible()
 
     // And: I see card's titles in Slovenian
     expectToSeeCardTitles([

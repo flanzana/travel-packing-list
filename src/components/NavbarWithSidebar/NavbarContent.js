@@ -9,6 +9,11 @@ import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 
 import LanguagePicker from "../LanguagePicker"
 
+const StyledHeading = styled.div`
+  h1 {
+    text-transform: uppercase;
+  }
+`
 const StyledIllustration = styled.div`
   img {
     max-height: 30px !important;
@@ -31,7 +36,11 @@ const NavbarContent = (): React$Node => {
         <StyledIllustration>
           <Illustration name="CabinBaggage" size="extraSmall" alt="" />
         </StyledIllustration>
-        <Heading type="title3">{t("title")}</Heading>
+        <StyledHeading>
+          <Heading type="title3" as="h1">
+            {t("title")}
+          </Heading>
+        </StyledHeading>
       </Stack>
       {isLargeMobile && <LanguagePicker />}
     </Stack>
