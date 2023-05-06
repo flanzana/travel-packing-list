@@ -2,7 +2,7 @@
   "name": "travel-packing-list",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://travel-packing-list.com",
+  "homepage": "https://flanzana.github.io/travel-packing-list",
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
