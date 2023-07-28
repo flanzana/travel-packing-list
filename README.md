@@ -9,7 +9,7 @@ because you cannot forget to pack any important item into your suitcase, either 
 ## Installation
 - open project [Travel Packing List](https://flanzana.github.io/travel-packing-list/) directly in your browser (Google Chrome recommended)
 - or clone project [travel-packing-list](https://github.com/flanzana/travel-packing-list) from GitHub and
-run `cd travel-packing-list && yarn install && yarn start`
+run `cd travel-packing-list && yarn install && yarn dev`
 
 
 ## Features
@@ -27,18 +27,18 @@ App Travel Packing List offers you many different possibilities of usage:
 - a mobile version has a bottom navbar with list-icon buttons where click on each button scrolls to the corresponding list
 
 ## Dependencies used in the project
-- `create-react-app`
+- `vite`, `react` and `typescript`
 - `styled-components`
-- `@kiwicom/orbit-components` and `@kiwicom/orbit-design-tokens`
+- `@kiwicom/orbit-components`
 - `i18next` and `react-i18next`
 - `eslint` with many eslint plugins
 - `prettier`
-- `flow-bin`
-- `@testing-library`
+- `vitest` with `@testing-library`
 
 
 ## Sources
-- [Create React App](https://github.com/facebook/create-react-app)
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
 - [React Hooks CheatSheet](https://react-hooks-cheatsheet.com/)
 - [Design system Orbit](https://orbit.kiwi/)
 - [LocalStorage](https://javascript.info/localstorage)

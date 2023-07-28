@@ -9,13 +9,13 @@ yarn.lock
 /node_modules
 /.pnp
 .pnp.js
-/flow-typed
 
 # testing
 /coverage
 
 # production
 /build
+dist
 
 # misc
 .DS_Store
