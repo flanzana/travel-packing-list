@@ -10,7 +10,8 @@
       "item.insurance_travel",
       "item.tickets",
       "item.copies",
-      "item.covid_certificate"
+      "item.medications",
+      "item.binoculars"
     ]
   },
   "clothes": {
@@ -63,7 +64,6 @@
       "item.hair_brush",
       "item.hair_bands",
       "item.hair_dryer",
-      "item.hair_straightener",
       "item.facial_cleanser",
       "item.cream_face",
       "item.cream_hand",
@@ -82,15 +82,12 @@
       "item.first-aid",
       "item.repellent",
       "item.pain_killers",
-      "item.medications",
       "item.laundry_kit"
     ]
   },
   "other": {
     "category": "other",
     "items": [
-      "item.face_mask",
-      "item.binoculars",
       "item.sunglasses",
       "item.camera_charger",
       "item.laptop_charger",
@@ -106,6 +103,7 @@
       "item.blanket",
       "item.mask",
       "item.tissues",
+      "item.face_mask",
       "item.guidebooks",
       "item.paper_pen",
       "item.umbrella",
