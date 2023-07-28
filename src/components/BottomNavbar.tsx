@@ -1,57 +1,42 @@
 import { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-import styled from "styled-components"
 import MenuHamburger from "@kiwicom/orbit-components/lib/icons/MenuHamburger"
+import ButtonPrimitive from "@kiwicom/orbit-components/lib/primitives/ButtonPrimitive"
+import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
+import Box from "@kiwicom/orbit-components/lib/Box"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
 import CategoryIcon from "./CategoryIcon"
 import { ListCategory } from "../types"
-import { BOTTOM_NAVBAR_HEIGHT } from "../consts"
 
-const StyledBottomNavbar = styled.nav`
-  height: ${BOTTOM_NAVBAR_HEIGHT}px;
-  width: 100%;
-  background: ${({ theme }) => theme.orbit.paletteWhite};
-  box-shadow: ${({ theme }) => theme.orbit.boxShadowFixedReverse};
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-content: center;
-  flex-direction: row;
-  justify-content: space-around;
-  z-index: 700;
-`
+const { backgroundButtonLinkSecondary, backgroundButtonLinkSecondaryHover } = defaultTheme.orbit
 
-const StyledButton = styled.button`
-  width: 60px;
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0;
-  background: ${({ theme }) => theme.orbit.backgroundButtonLinkSecondary};
-  border-radius: ${({ theme }) => theme.orbit.borderRadiusLarge};
-  outline: 0;
-
-  @media (hover: hover) {
-    &:hover,
-    &:focus {
-      background: ${({ theme }) => theme.orbit.backgroundButtonLinkSecondaryHover};
-    }
-  }
-
-  span {
-    font-size: 8px;
-    letter-spacing: 0.5px;
-    text-align: center;
-    color: ${({ theme }) => theme.orbit.colorIconPrimary};
-    user-select: none; // disable selecting text (Chrome was selecting it when you clicked button text)
-  }
-`
+type BottomNavbarButtonProps = {
+  icon: ReactNode
+  ariaLabel?: string
+  label: string
+  onClick: () => void
+}
+const BottomNavbarButton = ({ ariaLabel, icon, label, onClick }: BottomNavbarButtonProps) => (
+  <ButtonPrimitive
+    dataTest="BottomNavbarButton"
+    onClick={onClick}
+    title={ariaLabel}
+    width="60px"
+    height="50px"
+    background={backgroundButtonLinkSecondary}
+    backgroundHover={backgroundButtonLinkSecondaryHover}
+    backgroundFocus={backgroundButtonLinkSecondaryHover}
+    fontSize="8px"
+    fontWeight="normal"
+  >
+    <Stack direction="column" spacing="XXSmall" align="center">
+      {icon}
+      <span>{label}</span>
+    </Stack>
+  </ButtonPrimitive>
+)
 
 type HamburgerButtonProps = {
   toggleSidebar: () => void
@@ -60,10 +45,11 @@ const HamburgerButton = ({ toggleSidebar }: HamburgerButtonProps): ReactNode => 
   const { t } = useTranslation()
 
   return (
-    <StyledButton onClick={toggleSidebar}>
-      <MenuHamburger ariaHidden />
-      <span>{t("button.more")}</span>
-    </StyledButton>
+    <BottomNavbarButton
+      onClick={toggleSidebar}
+      icon={<MenuHamburger ariaHidden size="large" />}
+      label={t("button.more")}
+    />
   )
 }
 
@@ -75,17 +61,16 @@ const CategoryButton = ({ category }: CategoryButtonProps): ReactNode => {
   const translatedCategory = useTranslatedCategory(category)
 
   return (
-    <StyledButton
+    <BottomNavbarButton
       key={category}
       onClick={() => {
         const element = document.getElementById(category)
         return element && element.scrollIntoView({ behavior: "smooth" })
       }}
-      aria-label={t("button.scroll_to_list", { category: translatedCategory })}
-    >
-      <CategoryIcon category={category} />
-      <span>{translatedCategory}</span>
-    </StyledButton>
+      ariaLabel={t("button.scroll_to_list", { category: translatedCategory })}
+      icon={<CategoryIcon category={category} />}
+      label={translatedCategory}
+    />
   )
 }
 
@@ -93,9 +78,17 @@ type Props = {
   toggleSidebar: () => void
 }
 
-const BottomNavbar = ({ toggleSidebar }: Props): ReactNode => {
-  return (
-    <StyledBottomNavbar aria-label="Category navigation bar" data-test="BottomNavbar">
+const BottomNavbar = ({ toggleSidebar }: Props): ReactNode => (
+  <Box
+    as="nav"
+    position="fixed"
+    bottom="0"
+    width="full"
+    zIndex={700}
+    background="white"
+    elevation="fixedReverse"
+  >
+    <Stack direction="row" justify="around" align="center" spacing="none">
       {[
         ListCategory.ESSENTIALS,
         ListCategory.CLOTHES,
@@ -105,8 +98,8 @@ const BottomNavbar = ({ toggleSidebar }: Props): ReactNode => {
         <CategoryButton key={category} category={category} />
       ))}
       <HamburgerButton toggleSidebar={toggleSidebar} />
-    </StyledBottomNavbar>
-  )
-}
+    </Stack>
+  </Box>
+)
 
 export default BottomNavbar

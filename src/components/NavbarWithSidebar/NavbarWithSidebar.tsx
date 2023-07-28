@@ -19,7 +19,7 @@ const NavbarWithSidebar = (): ReactNode => {
       <NavigationBar
         // hide hamburger icon because it is visible in bottom navbar
         {...(!isBottomNavbarVisible && { onMenuOpen: () => setIsSidebarOpen(true) })}
-        dataTest="NavigationBar"
+        hideOnScroll={false}
       >
         <NavbarContent />
       </NavigationBar>

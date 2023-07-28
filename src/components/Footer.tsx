@@ -1,33 +1,17 @@
 import { ReactNode } from "react"
-import styled, { css } from "styled-components"
-import media from "@kiwicom/orbit-components/lib/utils/mediaQuery"
+import Box from "@kiwicom/orbit-components/lib/Box"
 import Text from "@kiwicom/orbit-components/lib/Text"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
-import { BOTTOM_NAVBAR_HEIGHT } from "../consts"
 
-const FooterWrapper = styled.footer`
-  background-color: ${({ theme }) => theme.orbit.paletteCloudLight};
-  padding: ${({ theme }) => `0 ${theme.orbit.spaceXXLarge} ${theme.orbit.spaceSmall}`};
-  margin-bottom: ${BOTTOM_NAVBAR_HEIGHT}px;
-  user-select: none; // disable selecting text (Chrome was selecting it when you clicked bottom navbar button)
-
-  ${media.largeMobile(css`
-    padding: ${({ theme }) => `0 ${theme.orbit.spaceMedium} ${theme.orbit.spaceMedium}`};
-    margin-bottom: 0;
-  `)};
-`
-
-const Footer = (): ReactNode => {
-  return (
-    <FooterWrapper>
-      <Text size="small" align="center">
-        <TextLink href="https://flanzana.github.io/" external type="secondary" noUnderline>
-          Žana Flander
-        </TextLink>
-        <span> © 2023</span>
-      </Text>
-    </FooterWrapper>
-  )
-}
+const Footer = (): ReactNode => (
+  <Box as="footer" padding={{ top: "none", bottom: "small", left: "XXLarge", right: "XXLarge" }}>
+    <Text size="small" align="center">
+      <TextLink href="https://flanzana.github.io/" external type="secondary" noUnderline>
+        Žana Flander
+      </TextLink>
+      <span> © 2023</span>
+    </Text>
+  </Box>
+)
 
 export default Footer

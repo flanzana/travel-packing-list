@@ -17,5 +17,3 @@ export const LANGUAGES_DATA: LanguagesData = {
     title: "Slovenščina",
   },
 }
-
-export const BOTTOM_NAVBAR_HEIGHT = 50 // px

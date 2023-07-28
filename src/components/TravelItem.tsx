@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import styled from "styled-components"
 import { useTranslation } from "react-i18next"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
@@ -7,13 +6,6 @@ import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import { Close } from "@kiwicom/orbit-components/lib/icons"
 
 import { CardItem } from "../types"
-
-const StyledButtonLink = styled.div`
-  button {
-    height: ${({ theme }) => theme.orbit.heightCheckbox};
-    width: ${({ theme }) => theme.orbit.widthCheckbox};
-  }
-`
 
 type Props = {
   item: CardItem
@@ -41,15 +33,14 @@ const TravelItem = ({
         disabled={shouldShowDeleteButton}
       />
       {shouldShowDeleteButton && (
-        <StyledButtonLink>
-          <ButtonLink
-            type="critical"
-            size="small"
-            iconLeft={<Close ariaHidden />}
-            title={t("button.delete_item", { item: t(tKey) })}
-            onClick={() => handleDeleteItem(tKey)}
-          />
-        </StyledButtonLink>
+        <ButtonLink
+          dataTest="TravelItemDelete"
+          type="critical"
+          size="small"
+          iconLeft={<Close ariaHidden />}
+          title={t("button.delete_item", { item: t(tKey) })}
+          onClick={() => handleDeleteItem(tKey)}
+        />
       )}
     </Stack>
   )

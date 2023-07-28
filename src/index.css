@@ -9,13 +9,50 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e8edf1; /* borderColorCard */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+nav h1 {
+  text-transform: uppercase;
 }
 
-[data-test='NavigationBar'] {
-  transform: translate3d(0,0,0) !important;
+nav img {
+  max-height: 30px !important; /* extraSmall illustration is still 90px */
+}
+
+main {
+  margin-top: 52px; /* because of navbar */
+}
+
+footer {
+  margin-bottom: 50px; /* because of bottom navbar */
+}
+
+a, button, span, p {
+  user-select: none; /* disable selecting text */
+}
+
+button[data-test='TravelItemDelete'] {
+  height: 20px !important; /* same as checkbox */
+  width: 20px !important; /* same as checkbox */
+}
+
+button[data-test='BottomNavbarButton'] {
+  letter-spacing: 0.5px;
+}
+
+[class^='Checkbox__StyledLabelText'] {
+  font-weight: normal !important; /* overwrite bold checkbox label to normal */
+}
+
+@media screen and (min-width: 576px) {
+  footer {
+    margin-bottom: 0; /* bottom navbar is now hidden */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    margin-top: 64px; /* because of navbar */
+  }
 }
