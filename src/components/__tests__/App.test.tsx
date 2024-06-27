@@ -47,9 +47,9 @@ describe("App", () => {
 
       // When: I change to Spanish version of the app in language picker
       userEvent.click(screen.getByRole("button", { name: "English" }))
-      await waitFor(() => screen.getByRole("tooltip"))
-      userEvent.click(within(screen.getByRole("tooltip")).getByRole("button", { name: "Español" }))
-      await waitForElementToBeRemoved(() => screen.queryByRole("tooltip"))
+      await waitFor(() => screen.getByRole("dialog"))
+      userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Español" }))
+      await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
 
       // Then: I see Spanish language button
       expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
@@ -70,11 +70,11 @@ describe("App", () => {
 
       // When: I change to Slovenian version of the app in language picker
       userEvent.click(screen.getByRole("button", { name: "English" }))
-      await waitFor(() => screen.getByRole("tooltip"))
+      await waitFor(() => screen.getByRole("dialog"))
       userEvent.click(
-        within(screen.getByRole("tooltip")).getByRole("button", { name: "Slovenščina" }),
+        within(screen.getByRole("dialog")).getByRole("button", { name: "Slovenščina" }),
       )
-      await waitForElementToBeRemoved(() => screen.queryByRole("tooltip"))
+      await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
 
       // Then: I see Slovenian language button
       expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()

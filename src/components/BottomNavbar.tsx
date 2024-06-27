@@ -23,7 +23,6 @@ const BottomNavbarButton = ({ ariaLabel, icon, label, onClick }: BottomNavbarBut
     dataTest="BottomNavbarButton"
     onClick={onClick}
     title={ariaLabel}
-    width="60px"
     height="50px"
     background={backgroundButtonLinkSecondary}
     backgroundHover={backgroundButtonLinkSecondaryHover}
@@ -83,7 +82,7 @@ const BottomNavbar = ({ toggleSidebar }: Props): ReactNode => (
     as="nav"
     position="fixed"
     bottom="0"
-    width="full"
+    width="100%"
     zIndex={700}
     background="white"
     elevation="fixedReverse"

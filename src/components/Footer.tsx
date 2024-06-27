@@ -9,7 +9,7 @@ const Footer = (): ReactNode => (
       <TextLink href="https://flanzana.github.io/" external type="secondary" noUnderline>
         Žana Flander
       </TextLink>
-      <span> © 2023</span>
+      <span> © 2024</span>
     </Text>
   </Box>
 )

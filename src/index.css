@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
   scroll-behavior: smooth;
 }
@@ -38,10 +42,11 @@ button[data-test='TravelItemDelete'] {
 }
 
 button[data-test='BottomNavbarButton'] {
+  width: 60px;
   letter-spacing: 0.5px;
 }
 
-[class^='Checkbox__StyledLabelText'] {
+.orbit-checkbox-label span {
   font-weight: normal !important; /* overwrite bold checkbox label to normal */
 }
 

@@ -13,7 +13,7 @@ vi.mock(
   () =>
     // eslint-disable-next-line react/display-name
     ({ children, shown }: TooltipProps) =>
-      shown ? <div data-test="orbit-tooltip">{children}</div> : null,
+      shown ? <div data-test="orbit-dialog">{children}</div> : null,
 )
 
 const initialCardItems: CardItem[] = [
@@ -64,11 +64,12 @@ const clickButton = (name: string) => {
 
 const openSettingsAndClickButton = async (buttonLabel: string) => {
   clickButton("Settings of the list Essentials")
+  expect(await screen.findByRole("dialog")).toBeVisible()
   expect(
-    await screen.findByRole("tooltip", { name: /Settings of the list Essentials/i }),
+    within(screen.getByRole("dialog")).getByText("Settings of the list Essentials"),
   ).toBeVisible()
   clickButton(buttonLabel)
-  await waitForElementToBeRemoved(() => screen.queryByRole("tooltip"))
+  await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
 }
 
 const checkUncheckedCheckbox = async (name: string) => {
@@ -115,19 +116,20 @@ describe("TravelCard", () => {
     renderComponent()
 
     // Given: settings popover is not visible
-    expect(screen.queryByRole("tooltip", { name: /Settings of the list Essentials/i })).toBeNull()
+    expect(screen.queryByRole("dialog")).toBeNull()
 
     // When: I open settings
     clickButton("Settings of the list Essentials")
 
     // Then: I see settings popover with 5 buttons (4 settings buttons + Close)
+    expect(await screen.findByRole("dialog")).toBeVisible()
+    expect(within(screen.getByRole("dialog")).getAllByRole("button")).toHaveLength(5)
     expect(
-      await screen.findByRole("tooltip", { name: /Settings of the list Essentials/i }),
+      within(screen.getByRole("dialog")).getByText("Settings of the list Essentials"),
     ).toBeVisible()
-    expect(within(screen.getByRole("tooltip")).getAllByRole("button")).toHaveLength(5)
     ;["Check all", "Uncheck all", "Select and remove items", "Reset the list", "Close"].forEach(
       name => {
-        expect(within(screen.getByRole("tooltip")).getByRole("button", { name })).toBeVisible()
+        expect(within(screen.getByRole("dialog")).getByRole("button", { name })).toBeVisible()
       },
     )
 
@@ -135,7 +137,7 @@ describe("TravelCard", () => {
     clickButton("Close")
 
     // Then: settings popover is not visible
-    await waitForElementToBeRemoved(() => screen.queryByRole("tooltip"))
+    await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
   })
 
   it("cannot add new item to the list if nothing typed", async () => {

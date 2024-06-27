@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react"
+import React, { ReactElement, useId } from "react"
 import { I18nextProvider } from "react-i18next"
 import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
 import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
@@ -13,7 +13,7 @@ const renderWithProviders = (component: ReactElement) => {
       i18n.changeLanguage(lng)
       rerender(
         <I18nextProvider i18n={i18n}>
-          <OrbitProvider theme={{ ...defaultTheme }}>
+          <OrbitProvider theme={{ ...defaultTheme }} useId={useId}>
             <LanguageProvider>{comp}</LanguageProvider>
           </OrbitProvider>
         </I18nextProvider>,
@@ -22,7 +22,7 @@ const renderWithProviders = (component: ReactElement) => {
   })
   const defaultRender = render(
     <I18nextProvider i18n={i18n}>
-      <OrbitProvider theme={{ ...defaultTheme }}>
+      <OrbitProvider theme={{ ...defaultTheme }} useId={useId}>
         <LanguageProvider>{comp}</LanguageProvider>
       </OrbitProvider>
     </I18nextProvider>,

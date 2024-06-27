@@ -28,7 +28,7 @@ App Travel Packing List offers you many different possibilities of usage:
 
 ## Dependencies used in the project
 - `vite`, `react` and `typescript`
-- `styled-components`
+- `tailwindcss`
 - `@kiwicom/orbit-components`
 - `i18next` and `react-i18next`
 - `eslint` with many eslint plugins

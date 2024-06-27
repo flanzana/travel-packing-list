@@ -1,6 +1,7 @@
 import { useState, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-import Card, { CardSection } from "@kiwicom/orbit-components/lib/Card"
+import Box from "@kiwicom/orbit-components/lib/Box"
+import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import { Plus } from "@kiwicom/orbit-components/lib/icons"
@@ -70,27 +71,27 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
   }
 
   return (
-    <Card
-      title={
-        <span id={category} style={{ scrollMarginTop: "65px" }}>
-          {translatedCategory}
-        </span>
-      }
-      titleAs="h2"
-      icon={<CategoryIcon category={category} />}
-      actions={
-        <SettingsPopover
-          translatedCategory={translatedCategory}
-          toggleSettings={toggleSettings}
-          handleShowDelete={() => setEditMode(EditMode.REMOVE_ITEMS)}
-          handleResetCard={handleResetCard}
-          handleDeselectAll={handleDeselectAll}
-          handleSelectAll={handleSelectAll}
-          isSettingsOpened={editMode === EditMode.OPEN_SETTINGS}
-        />
-      }
-    >
-      <CardSection>
+    <Box background="white" padding="medium" largeDesktop={{ padding: "large" }}>
+      <Stack direction="column" spacing="large">
+        <Stack direction="row" justify="between" align="center" spacing="none">
+          <Stack direction="row" spacing="small" align="center" grow={false} shrink>
+            <CategoryIcon category={category} />
+            <Heading as="h2" type="title3">
+              <span id={category} style={{ scrollMarginTop: "65px" }}>
+                {translatedCategory}
+              </span>
+            </Heading>
+          </Stack>
+          <SettingsPopover
+            translatedCategory={translatedCategory}
+            toggleSettings={toggleSettings}
+            handleShowDelete={() => setEditMode(EditMode.REMOVE_ITEMS)}
+            handleResetCard={handleResetCard}
+            handleDeselectAll={handleDeselectAll}
+            handleSelectAll={handleSelectAll}
+            isSettingsOpened={editMode === EditMode.OPEN_SETTINGS}
+          />
+        </Stack>
         <Stack direction="column" spacing="medium" desktop={{ spacing: "XSmall" }}>
           {cardItems.map(item => (
             <TravelItem
@@ -127,8 +128,8 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
             </Stack>
           )}
         </Stack>
-      </CardSection>
-    </Card>
+      </Stack>
+    </Box>
   )
 }
 
