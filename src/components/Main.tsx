@@ -8,25 +8,20 @@ import data from "../assets/data.json"
 import { ListCategory } from "../types"
 import type { CardItems } from "../types"
 
-const { spaceSmall, spaceMedium, spaceLarge } = defaultTokens
+const { space300, space400, space600 } = defaultTokens
 
 function cardItemsMapper(items: string[]): CardItems {
   return items.map(item => ({ tKey: item, isChecked: false }))
 }
 
 const Main = (): ReactNode => (
-  <Box
-    as="main"
-    padding="small"
-    largeMobile={{ padding: "medium" }}
-    largeDesktop={{ padding: "large" }}
-  >
+  <Box as="main" padding="300" largeMobile={{ padding: "400" }} largeDesktop={{ padding: "600" }}>
     <Grid
-      columnGap={spaceMedium}
-      rowGap={spaceSmall}
-      largeMobile={{ columns: "1fr 1fr", rowGap: spaceMedium }}
+      columnGap={space400}
+      rowGap={space300}
+      largeMobile={{ columns: "1fr 1fr", rowGap: space400 }}
       desktop={{ columns: "1fr 1fr 1fr 1fr" }}
-      largeDesktop={{ rowGap: spaceLarge, columnGap: spaceLarge }}
+      largeDesktop={{ rowGap: space600, columnGap: space600 }}
     >
       {[
         ListCategory.ESSENTIALS,

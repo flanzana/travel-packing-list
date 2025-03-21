@@ -63,7 +63,9 @@ const clickButton = (name: string) => {
 }
 
 const openSettingsAndClickButton = async (buttonLabel: string) => {
-  clickButton("Settings of the list Essentials")
+  await act(() =>
+    userEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" })),
+  )
   expect(await screen.findByRole("dialog")).toBeVisible()
   expect(
     within(screen.getByRole("dialog")).getByText("Settings of the list Essentials"),
@@ -119,7 +121,9 @@ describe("TravelCard", () => {
     expect(screen.queryByRole("dialog")).toBeNull()
 
     // When: I open settings
-    clickButton("Settings of the list Essentials")
+    await act(() =>
+      userEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" })),
+    )
 
     // Then: I see settings popover with 5 buttons (4 settings buttons + Close)
     expect(await screen.findByRole("dialog")).toBeVisible()

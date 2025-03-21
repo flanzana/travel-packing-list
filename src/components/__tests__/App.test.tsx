@@ -1,5 +1,5 @@
 import { vi, Mock } from "vitest"
-import { screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { act, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { within } from "@testing-library/dom"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
@@ -46,9 +46,13 @@ describe("App", () => {
       expect(screen.queryByRole("button", { name: "Español" })).toBeNull()
 
       // When: I change to Spanish version of the app in language picker
-      userEvent.click(screen.getByRole("button", { name: "English" }))
+      await act(() => userEvent.click(screen.getByRole("button", { name: "English" })))
       await waitFor(() => screen.getByRole("dialog"))
-      userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Español" }))
+      await act(() =>
+        userEvent.click(
+          within(screen.getByRole("dialog")).getByRole("button", { name: "Español" }),
+        ),
+      )
       await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
 
       // Then: I see Spanish language button
@@ -69,7 +73,7 @@ describe("App", () => {
       expect(screen.queryByRole("button", { name: "Slovenščina" })).toBeNull()
 
       // When: I change to Slovenian version of the app in language picker
-      userEvent.click(screen.getByRole("button", { name: "English" }))
+      await act(() => userEvent.click(screen.getByRole("button", { name: "English" })))
       await waitFor(() => screen.getByRole("dialog"))
       userEvent.click(
         within(screen.getByRole("dialog")).getByRole("button", { name: "Slovenščina" }),
@@ -105,15 +109,13 @@ describe("App", () => {
 
     it("displays sidebar", async () => {
       // Given: I have opened an app
-      expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
 
       // When: I click hamburger icon
       userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
 
       // Then: sidebar opens
-      await waitFor(() =>
-        expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false"),
-      )
+      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
       const sidebar = screen.getByTestId("SidebarContent")
 
       // And: I see language section in the sidebar with all 3 languages
@@ -136,28 +138,22 @@ describe("App", () => {
 
     it("closes sidebar by clicking Close button", async () => {
       // Given: sidebar is opened
-      expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
       userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-      await waitFor(() =>
-        expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false"),
-      )
+      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
 
       // When: I click X button in sidebar
       userEvent.click(screen.getByRole("button", { name: "Hide" }))
 
       // Then: sidebar closes
-      await waitFor(() =>
-        expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true"),
-      )
+      await waitFor(() => expect(screen.getByTestId("Sidebar")).not.toBeVisible())
     })
 
     it("closes sidebar by selecting language", async () => {
       // Given: sidebar is opened on English version of the app
-      expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true")
+      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
       userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-      await waitFor(() =>
-        expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "false"),
-      )
+      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
       expect(screen.queryByRole("heading", { name: "Lista de viaje" })).toBeNull()
 
       // When: I select Spanish language in the sidebar
@@ -166,9 +162,7 @@ describe("App", () => {
       )
 
       // Then: sidebar closes
-      await waitFor(() =>
-        expect(screen.getByTestId("Sidebar")).toHaveAttribute("aria-hidden", "true"),
-      )
+      await waitFor(() => expect(screen.getByTestId("Sidebar")).not.toBeVisible())
 
       // And: I see main title in Spanish
       expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()

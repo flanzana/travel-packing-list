@@ -43,7 +43,7 @@ const SettingsPopover = ({
   return (
     <Popover
       content={
-        <Stack direction="column" spacing="medium">
+        <Stack direction="column" spacing="400">
           <Heading type="title4" as="h3">
             {t("title.settings_list", { category: translatedCategory })}
           </Heading>

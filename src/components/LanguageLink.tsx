@@ -19,7 +19,7 @@ const LanguageLink = ({ language, onClick }: Props): ReactNode => (
     standAlone
     noUnderline
   >
-    <Stack direction="row" align="center" spacing="XSmall">
+    <Stack direction="row" align="center" spacing="200">
       <CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />
       <span>{LANGUAGES_DATA[language].title}</span>
     </Stack>

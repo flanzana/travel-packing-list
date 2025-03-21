@@ -10,7 +10,7 @@ import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
 import CategoryIcon from "./CategoryIcon"
 import { ListCategory } from "../types"
 
-const { backgroundButtonLinkSecondary, backgroundButtonLinkSecondaryHover } = defaultTheme.orbit
+const { buttonLinkSecondaryBackground, buttonLinkSecondaryBackgroundHover } = defaultTheme.orbit
 
 type BottomNavbarButtonProps = {
   icon: ReactNode
@@ -24,13 +24,13 @@ const BottomNavbarButton = ({ ariaLabel, icon, label, onClick }: BottomNavbarBut
     onClick={onClick}
     title={ariaLabel}
     height="50px"
-    background={backgroundButtonLinkSecondary}
-    backgroundHover={backgroundButtonLinkSecondaryHover}
-    backgroundFocus={backgroundButtonLinkSecondaryHover}
+    background={buttonLinkSecondaryBackground}
+    backgroundHover={buttonLinkSecondaryBackgroundHover}
+    backgroundFocus={buttonLinkSecondaryBackgroundHover}
     fontSize="8px"
     fontWeight="normal"
   >
-    <Stack direction="column" spacing="XXSmall" align="center">
+    <Stack direction="column" spacing="100" align="center">
       {icon}
       <span>{label}</span>
     </Stack>

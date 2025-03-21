@@ -14,6 +14,9 @@ const renderWithProviders = (component: ReactElement) => {
       rerender(
         <I18nextProvider i18n={i18n}>
           <OrbitProvider theme={{ ...defaultTheme }} useId={useId}>
+            <style>
+              .invisible &#123; display: none; &#125; .hidden &#123; display: none; &#125;
+            </style>
             <LanguageProvider>{comp}</LanguageProvider>
           </OrbitProvider>
         </I18nextProvider>,
@@ -23,6 +26,7 @@ const renderWithProviders = (component: ReactElement) => {
   const defaultRender = render(
     <I18nextProvider i18n={i18n}>
       <OrbitProvider theme={{ ...defaultTheme }} useId={useId}>
+        <style>.invisible &#123; display: none; &#125; .hidden &#123; display: none; &#125;</style>
         <LanguageProvider>{comp}</LanguageProvider>
       </OrbitProvider>
     </I18nextProvider>,

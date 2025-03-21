@@ -33,7 +33,7 @@ const AddItemControls = ({ handleSubmitNewItem, doesAlreadyExistInItems }: Props
   }
 
   return (
-    <Stack direction="row" spacing="XSmall">
+    <Stack direction="row" spacing="200">
       <InputField
         name="New item"
         placeholder={t("placeholder.type_item")}

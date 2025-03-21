@@ -33,7 +33,7 @@ type AboutLinkProps = {
 }
 const AboutLink = ({ href, label }: AboutLinkProps): ReactNode => (
   <TextLink href={href} type="secondary" title={label} standAlone external noUnderline>
-    <Stack direction="row" align="center" spacing="XSmall">
+    <Stack direction="row" align="center" spacing="200">
       <Code size="small" />
       <span>{label}</span>
     </Stack>

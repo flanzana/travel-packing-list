@@ -24,7 +24,7 @@ const TravelItem = ({
   const { tKey, isChecked } = item
 
   return (
-    <Stack direction="row" align="start" justify="between" spacing="medium" shrink grow={false}>
+    <Stack direction="row" align="start" justify="between" spacing="400" shrink grow={false}>
       <Checkbox
         label={t(tKey)}
         name={t(tKey)}

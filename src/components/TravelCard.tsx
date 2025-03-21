@@ -71,10 +71,10 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
   }
 
   return (
-    <Box background="white" padding="medium" largeDesktop={{ padding: "large" }}>
-      <Stack direction="column" spacing="large">
+    <Box background="white" padding="400" largeDesktop={{ padding: "600" }}>
+      <Stack direction="column" spacing="600">
         <Stack direction="row" justify="between" align="center" spacing="none">
-          <Stack direction="row" spacing="small" align="center" grow={false} shrink>
+          <Stack direction="row" spacing="300" align="center" grow={false} shrink>
             <CategoryIcon category={category} />
             <Heading as="h2" type="title3">
               <span id={category} style={{ scrollMarginTop: "65px" }}>
@@ -92,7 +92,7 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
             isSettingsOpened={editMode === EditMode.OPEN_SETTINGS}
           />
         </Stack>
-        <Stack direction="column" spacing="medium" desktop={{ spacing: "XSmall" }}>
+        <Stack direction="column" spacing="300" desktop={{ spacing: "200" }}>
           {cardItems.map(item => (
             <TravelItem
               key={item.tKey}

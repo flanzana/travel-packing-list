@@ -15,14 +15,14 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@kiwicom/orbit-components": "^15.6.0",
+    "@kiwicom/orbit-components": "^22.0.0",
     "i18next": "^23.11.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.2"
   },
   "devDependencies": {
-    "@kiwicom/orbit-tailwind-preset": "^4.3.2",
+    "@kiwicom/orbit-tailwind-preset": "^7.0.1",
     "@testing-library/dom": "^10.2.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",

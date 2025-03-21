@@ -17,9 +17,9 @@ const NavbarContent = (): ReactNode => {
         direction="row"
         align="center"
         justify="center"
-        spacing="XSmall"
+        spacing="200"
         shrink
-        largeMobile={{ spacing: "medium", justify: "start" }}
+        largeMobile={{ spacing: "400", justify: "start" }}
       >
         <Illustration name="CabinBaggage" size="extraSmall" alt="" />
         <Heading type="title3" as="h1">
