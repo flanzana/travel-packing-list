@@ -50,7 +50,7 @@ describe("App", () => {
       await waitFor(() => screen.getByRole("dialog"))
       await act(() =>
         userEvent.click(
-          within(screen.getByRole("dialog")).getByRole("button", { name: "Español" }),
+          within(screen.getByRole("dialog")).getByRole("button", { name: "es Español" }),
         ),
       )
       await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
@@ -76,7 +76,7 @@ describe("App", () => {
       await act(() => userEvent.click(screen.getByRole("button", { name: "English" })))
       await waitFor(() => screen.getByRole("dialog"))
       userEvent.click(
-        within(screen.getByRole("dialog")).getByRole("button", { name: "Slovenščina" }),
+        within(screen.getByRole("dialog")).getByRole("button", { name: "si Slovenščina" }),
       )
       await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
 
@@ -120,7 +120,7 @@ describe("App", () => {
 
       // And: I see language section in the sidebar with all 3 languages
       expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
-      ;["English", "Español", "Slovenščina"].forEach(language => {
+      ;["gb English", "es Español", "si Slovenščina"].forEach(language => {
         expect(within(sidebar).getByRole("button", { name: language })).toBeVisible()
       })
 
@@ -158,7 +158,7 @@ describe("App", () => {
 
       // When: I select Spanish language in the sidebar
       userEvent.click(
-        within(screen.getByTestId("Sidebar")).getByRole("button", { name: "Español" }),
+        within(screen.getByTestId("Sidebar")).getByRole("button", { name: "es Español" }),
       )
 
       // Then: sidebar closes

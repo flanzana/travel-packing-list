@@ -34,10 +34,14 @@ const LanguagePicker = (): ReactNode => {
       }
       placement="bottom-end"
       fixed
+      ariaLabel={t("sidebar.title.language")}
       labelClose={t("button.close")}
     >
-      <ButtonLink type="secondary" title={LANGUAGES_DATA[language].title}>
-        <CountryFlag code={LANGUAGES_DATA[language].flagCode} name="" />
+      <ButtonLink asComponent="div" type="secondary">
+        <CountryFlag
+          code={LANGUAGES_DATA[language].flagCode}
+          name={LANGUAGES_DATA[language].title}
+        />
       </ButtonLink>
     </Popover>
   )

@@ -76,7 +76,7 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
         <Stack direction="row" justify="between" align="center" spacing="none">
           <Stack direction="row" spacing="300" align="center" grow={false} shrink>
             <CategoryIcon category={category} />
-            <Heading as="h2" type="title3">
+            <Heading as="h2" type="title4">
               <span id={category} style={{ scrollMarginTop: "65px" }}>
                 {translatedCategory}
               </span>

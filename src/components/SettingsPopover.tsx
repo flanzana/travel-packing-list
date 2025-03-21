@@ -29,6 +29,8 @@ const commonButtonProps: Required<Pick<ButtonProps, "fullWidth" | "size" | "type
   type: "secondary",
 }
 
+const ARIA_LABEL_ID = "settings-popover-title"
+
 const SettingsPopover = ({
   translatedCategory,
   toggleSettings,
@@ -44,7 +46,7 @@ const SettingsPopover = ({
     <Popover
       content={
         <Stack direction="column" spacing="400">
-          <Heading type="title4" as="h3">
+          <Heading type="title5" as="h3" id={ARIA_LABEL_ID}>
             {t("title.settings_list", { category: translatedCategory })}
           </Heading>
           <Button
@@ -82,9 +84,11 @@ const SettingsPopover = ({
       onOpen={toggleSettings}
       onClose={toggleSettings}
       width="250px"
+      ariaLabelledby={ARIA_LABEL_ID}
       labelClose={t("button.close")}
     >
       <Button
+        asComponent="div"
         size="small"
         type="secondary"
         iconLeft={<Settings ariaHidden />}

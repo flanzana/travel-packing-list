@@ -19,7 +19,9 @@ const SidebarContentPart = ({ title, children }: SidebarContentPartProps): React
   <>
     <Separator />
     <Stack>
-      <Heading type="title5">{title}</Heading>
+      <Heading type="title4" as="h2">
+        {title}
+      </Heading>
       <LinkList indent spacing="none">
         {children}
       </LinkList>
