@@ -1,5 +1,5 @@
 import { vi, Mock } from "vitest"
-import { act, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import { act, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { within } from "@testing-library/dom"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
@@ -53,7 +53,7 @@ describe("App", () => {
           within(screen.getByRole("dialog")).getByRole("button", { name: "es Español" }),
         ),
       )
-      await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
+      await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
 
       // Then: I see Spanish language button
       expect(screen.getByRole("button", { name: "Español" })).toBeVisible()
@@ -78,7 +78,7 @@ describe("App", () => {
       userEvent.click(
         within(screen.getByRole("dialog")).getByRole("button", { name: "si Slovenščina" }),
       )
-      await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
+      await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
 
       // Then: I see Slovenian language button
       expect(screen.getByRole("button", { name: "Slovenščina" })).toBeVisible()
