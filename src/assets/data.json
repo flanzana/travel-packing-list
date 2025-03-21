@@ -10,8 +10,9 @@
       "item.insurance_travel",
       "item.tickets",
       "item.copies",
+      "item.binoculars",
       "item.medications",
-      "item.binoculars"
+      "item.dental_retainer"
     ]
   },
   "clothes": {
@@ -20,6 +21,7 @@
       "item.underwear",
       "item.socks",
       "item.bras",
+      "item.tights",
       "item.thermal_underwear",
       "item.pyjamas",
       "item.tshirts",
@@ -94,10 +96,12 @@
       "item.tablet_charger",
       "item.mp3_charger",
       "item.earphones",
+      "item.speakers",
       "item.powerbank",
       "item.books",
       "item.games",
       "item.bottle",
+      "item.cutlery",
       "item.snack",
       "item.pillow",
       "item.blanket",
