@@ -1,15 +1,13 @@
 import Button from "@kiwicom/orbit-components/lib/Button"
 import type { Props as ButtonProps } from "@kiwicom/orbit-components/lib/Button/types.d"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
+import CheckCircle from "@kiwicom/orbit-components/lib/icons/CheckCircle"
+import CircleEmpty from "@kiwicom/orbit-components/lib/icons/CircleEmpty"
+import Remove from "@kiwicom/orbit-components/lib/icons/Remove"
+import Replace from "@kiwicom/orbit-components/lib/icons/Replace"
+import Settings from "@kiwicom/orbit-components/lib/icons/Settings"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
-import {
-  CheckCircle,
-  CircleEmpty,
-  Remove,
-  Replace,
-  Settings,
-} from "@kiwicom/orbit-components/lib/icons"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 

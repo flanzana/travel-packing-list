@@ -1,8 +1,8 @@
 import Box from "@kiwicom/orbit-components/lib/Box"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
 import MenuHamburger from "@kiwicom/orbit-components/lib/icons/MenuHamburger"
 import ButtonPrimitive from "@kiwicom/orbit-components/lib/primitives/ButtonPrimitive"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 

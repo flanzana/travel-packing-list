@@ -1,6 +1,6 @@
 import Drawer from "@kiwicom/orbit-components/lib/Drawer"
-import NavigationBar from "@kiwicom/orbit-components/lib/NavigationBar"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+import NavigationBar from "@kiwicom/orbit-components/lib/NavigationBar"
 import { type ReactNode, useState } from "react"
 
 import BottomNavbar from "../BottomNavbar"

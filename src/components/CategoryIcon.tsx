@@ -1,6 +1,8 @@
-import { Spa, Suitcase, TermsAndConditions, Wallet } from "@kiwicom/orbit-components/lib/icons"
+import Spa from "@kiwicom/orbit-components/lib/icons/Spa"
+import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase"
+import TermsAndConditions from "@kiwicom/orbit-components/lib/icons/TermsAndConditions"
+import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet"
 import type { ReactNode } from "react"
-
 import { ListCategory } from "../types"
 
 type Props = {

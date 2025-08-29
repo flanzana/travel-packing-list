@@ -1,5 +1,8 @@
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
 @tailwind base;
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
 @tailwind components;
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
 @tailwind utilities;
 
 html {
@@ -8,8 +11,9 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #e8edf1; /* borderColorCard */
@@ -20,6 +24,7 @@ nav h1 {
 }
 
 nav img {
+  /* biome-ignore lint/complexity/noImportantStyles: Need to override Orbit component styles */
   max-height: 30px !important; /* extraSmall illustration is still 90px */
 }
 
@@ -39,7 +44,9 @@ p {
 }
 
 button[data-test="TravelItemDelete"] {
+  /* biome-ignore lint/complexity/noImportantStyles: Need to match checkbox dimensions */
   height: 20px !important; /* same as checkbox */
+  /* biome-ignore lint/complexity/noImportantStyles: Need to match checkbox dimensions */
   width: 20px !important; /* same as checkbox */
 }
 
@@ -49,6 +56,7 @@ button[data-test="BottomNavbarButton"] {
 }
 
 .orbit-checkbox-label span {
+  /* biome-ignore lint/complexity/noImportantStyles: Need to override bold checkbox label */
   font-weight: normal !important; /* overwrite bold checkbox label to normal */
 }
 

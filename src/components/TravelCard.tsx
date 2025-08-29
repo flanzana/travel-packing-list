@@ -1,8 +1,8 @@
 import Box from "@kiwicom/orbit-components/lib/Box"
 import Button from "@kiwicom/orbit-components/lib/Button"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
+import Plus from "@kiwicom/orbit-components/lib/icons/Plus"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
-import { Plus } from "@kiwicom/orbit-components/lib/icons"
 import { type ReactNode, useState } from "react"
 import { useTranslation } from "react-i18next"
 

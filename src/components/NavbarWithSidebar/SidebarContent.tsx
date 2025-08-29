@@ -1,9 +1,9 @@
 import Heading from "@kiwicom/orbit-components/lib/Heading"
+import Code from "@kiwicom/orbit-components/lib/icons/Code"
 import LinkList from "@kiwicom/orbit-components/lib/LinkList"
 import Separator from "@kiwicom/orbit-components/lib/Separator"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
-import { Code } from "@kiwicom/orbit-components/lib/icons"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 

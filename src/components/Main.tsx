@@ -4,8 +4,8 @@ import { defaultTokens } from "@kiwicom/orbit-design-tokens"
 import type { ReactNode } from "react"
 
 import data from "../assets/data.json"
-import { ListCategory } from "../types"
 import type { CardItems } from "../types"
+import { ListCategory } from "../types"
 import TravelCard from "./TravelCard"
 
 const { space300, space400, space600 } = defaultTokens

@@ -1,5 +1,5 @@
-import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
 import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
+import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
 import { useId } from "react"
 
 import Footer from "./components/Footer"
@@ -10,11 +10,9 @@ import { LanguageProvider } from "./services/context/LanguageContext"
 const App = () => (
   <OrbitProvider theme={{ ...defaultTheme }} useId={useId}>
     <LanguageProvider>
-      <>
-        <NavbarWithSidebar />
-        <Main />
-        <Footer />
-      </>
+      <NavbarWithSidebar />
+      <Main />
+      <Footer />
     </LanguageProvider>
   </OrbitProvider>
 )
