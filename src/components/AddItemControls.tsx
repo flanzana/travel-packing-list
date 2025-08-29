@@ -1,8 +1,8 @@
-import { useState, ReactNode, SyntheticEvent } from "react"
-import { useTranslation } from "react-i18next"
 import Button from "@kiwicom/orbit-components/lib/Button"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import InputField from "@kiwicom/orbit-components/lib/InputField"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
+import { type ReactNode, type SyntheticEvent, useState } from "react"
+import { useTranslation } from "react-i18next"
 import { capitalize } from "../services/helpers"
 
 type Props = {
@@ -40,7 +40,7 @@ const AddItemControls = ({ handleSubmitNewItem, doesAlreadyExistInItems }: Props
         value={newItem.value}
         onChange={handleInputChange}
         error={newItem.error}
-        ref={input => input && input.focus()}
+        ref={input => input?.focus()}
       />
       <Button onClick={handleValidateAndSubmit}>{t("button.save")}</Button>
     </Stack>

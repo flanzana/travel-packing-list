@@ -8,9 +8,8 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #e8edf1; /* borderColorCard */
@@ -32,16 +31,19 @@ footer {
   margin-bottom: 50px; /* because of bottom navbar */
 }
 
-a, button, span, p {
+a,
+button,
+span,
+p {
   user-select: none; /* disable selecting text */
 }
 
-button[data-test='TravelItemDelete'] {
+button[data-test="TravelItemDelete"] {
   height: 20px !important; /* same as checkbox */
   width: 20px !important; /* same as checkbox */
 }
 
-button[data-test='BottomNavbarButton'] {
+button[data-test="BottomNavbarButton"] {
   width: 60px;
   letter-spacing: 0.5px;
 }

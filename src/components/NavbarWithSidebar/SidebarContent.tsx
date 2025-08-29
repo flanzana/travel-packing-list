@@ -1,15 +1,15 @@
-import { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
-import LinkList from "@kiwicom/orbit-components/lib/LinkList"
-import TextLink from "@kiwicom/orbit-components/lib/TextLink"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
+import LinkList from "@kiwicom/orbit-components/lib/LinkList"
 import Separator from "@kiwicom/orbit-components/lib/Separator"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
+import TextLink from "@kiwicom/orbit-components/lib/TextLink"
 import { Code } from "@kiwicom/orbit-components/lib/icons"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
-import LanguageLink from "../LanguageLink"
-import { Language } from "../../types"
 import { useLanguage } from "../../services/context/LanguageContext"
+import { Language } from "../../types"
+import LanguageLink from "../LanguageLink"
 
 type SidebarContentPartProps = {
   title: string

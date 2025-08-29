@@ -1,8 +1,8 @@
-import React, { ReactElement, useId } from "react"
-import { I18nextProvider } from "react-i18next"
 import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
 import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
 import { render } from "@testing-library/react"
+import React, { type ReactElement, useId } from "react"
+import { I18nextProvider } from "react-i18next"
 
 import i18n from "../../i18n"
 import { LanguageProvider } from "../context/LanguageContext"

@@ -1,9 +1,8 @@
-import { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
 import Button from "@kiwicom/orbit-components/lib/Button"
-import { Props as ButtonProps } from "@kiwicom/orbit-components/lib/Button/types.d"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
+import type { Props as ButtonProps } from "@kiwicom/orbit-components/lib/Button/types.d"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
+import Popover from "@kiwicom/orbit-components/lib/Popover"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 import {
   CheckCircle,
   CircleEmpty,
@@ -11,7 +10,8 @@ import {
   Replace,
   Settings,
 } from "@kiwicom/orbit-components/lib/icons"
-import Popover from "@kiwicom/orbit-components/lib/Popover"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 type Props = {
   translatedCategory: string

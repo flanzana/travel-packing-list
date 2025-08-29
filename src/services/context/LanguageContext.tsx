@@ -1,8 +1,8 @@
-import { createContext, ReactNode, useContext } from "react"
+import { type ReactNode, createContext, useContext } from "react"
 import { useTranslation } from "react-i18next"
 
-import useLocalStorage from "../hooks/useLocalStorage"
 import { Language } from "../../types"
+import useLocalStorage from "../hooks/useLocalStorage"
 
 type LanguageContextType = {
   language: Language
@@ -39,8 +39,6 @@ export const LanguageProvider = ({ children }: LanguageProviderProps): ReactNode
   )
 }
 
-// example in official React doc keeps hook within context/provider file
-// eslint-disable-next-line react-refresh/only-export-components
 export function useLanguage() {
   const context = useContext(LanguageContext)
 

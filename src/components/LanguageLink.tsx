@@ -1,7 +1,7 @@
-import { ReactNode } from "react"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
+import type { ReactNode } from "react"
 
 import { LANGUAGES_DATA } from "../consts"
 import type { Language } from "../types"

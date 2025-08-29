@@ -1,11 +1,11 @@
-import { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
-import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
 import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
+import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 import { Close } from "@kiwicom/orbit-components/lib/icons"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
-import { CardItem } from "../types"
+import type { CardItem } from "../types"
 
 type Props = {
   item: CardItem

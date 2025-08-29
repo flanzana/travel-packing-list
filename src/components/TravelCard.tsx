@@ -1,18 +1,18 @@
-import { useState, ReactNode } from "react"
-import { useTranslation } from "react-i18next"
 import Box from "@kiwicom/orbit-components/lib/Box"
-import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Button from "@kiwicom/orbit-components/lib/Button"
+import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
 import { Plus } from "@kiwicom/orbit-components/lib/icons"
+import { type ReactNode, useState } from "react"
+import { useTranslation } from "react-i18next"
 
-import TravelItem from "./TravelItem"
-import SettingsPopover from "./SettingsPopover"
-import { CardItems, EditMode, ListCategory } from "../types"
 import useLocalStorage from "../services/hooks/useLocalStorage"
-import CategoryIcon from "./CategoryIcon"
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
+import { type CardItems, EditMode, type ListCategory } from "../types"
 import AddItemControls from "./AddItemControls"
+import CategoryIcon from "./CategoryIcon"
+import SettingsPopover from "./SettingsPopover"
+import TravelItem from "./TravelItem"
 
 type Props = {
   category: ListCategory

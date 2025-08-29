@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
-import { Spa, Suitcase, Wallet, TermsAndConditions } from "@kiwicom/orbit-components/lib/icons"
+import { Spa, Suitcase, TermsAndConditions, Wallet } from "@kiwicom/orbit-components/lib/icons"
+import type { ReactNode } from "react"
 
 import { ListCategory } from "../types"
 
@@ -16,8 +16,9 @@ const CategoryIcon = ({ category }: Props): ReactNode => {
     case ListCategory.OTHER:
       return <TermsAndConditions ariaHidden size="large" />
     case ListCategory.CLOTHES:
-    default:
       return <Suitcase ariaHidden size="large" />
+    default:
+      throw new Error("Invalid category")
   }
 }
 

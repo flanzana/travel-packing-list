@@ -1,11 +1,11 @@
-import { useState, ReactNode } from "react"
-import NavigationBar from "@kiwicom/orbit-components/lib/NavigationBar"
 import Drawer from "@kiwicom/orbit-components/lib/Drawer"
+import NavigationBar from "@kiwicom/orbit-components/lib/NavigationBar"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+import { type ReactNode, useState } from "react"
 
+import BottomNavbar from "../BottomNavbar"
 import NavbarContent from "./NavbarContent"
 import SidebarContent from "./SidebarContent"
-import BottomNavbar from "../BottomNavbar"
 
 const NavbarWithSidebar = (): ReactNode => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)

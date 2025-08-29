@@ -1,12 +1,12 @@
-import path from "node:path"
-import orbitComponentsPreset from "@kiwicom/orbit-tailwind-preset"
+const path = require("node:path")
+const orbitComponentsPreset = require("@kiwicom/orbit-tailwind-preset")
 
 const orbitComponentsPath = require
   .resolve("@kiwicom/orbit-components")
   .replace("/lib/index.js", "")
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
     path.join(orbitComponentsPath, "**", "*.{js,jsx,ts,tsx}"),

@@ -1,4 +1,4 @@
-import { Language, LanguagesData } from "./types"
+import { Language, type LanguagesData } from "./types"
 
 export const LANGUAGES_DATA: LanguagesData = {
   [Language.ENGLISH]: {

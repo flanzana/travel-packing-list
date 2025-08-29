@@ -1,14 +1,14 @@
-import { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
-import MenuHamburger from "@kiwicom/orbit-components/lib/icons/MenuHamburger"
-import ButtonPrimitive from "@kiwicom/orbit-components/lib/primitives/ButtonPrimitive"
-import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
 import Box from "@kiwicom/orbit-components/lib/Box"
 import Stack from "@kiwicom/orbit-components/lib/Stack"
+import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
+import MenuHamburger from "@kiwicom/orbit-components/lib/icons/MenuHamburger"
+import ButtonPrimitive from "@kiwicom/orbit-components/lib/primitives/ButtonPrimitive"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
-import CategoryIcon from "./CategoryIcon"
 import { ListCategory } from "../types"
+import CategoryIcon from "./CategoryIcon"
 
 const { buttonLinkSecondaryBackground, buttonLinkSecondaryBackgroundHover } = defaultTheme.orbit
 
@@ -64,7 +64,7 @@ const CategoryButton = ({ category }: CategoryButtonProps): ReactNode => {
       key={category}
       onClick={() => {
         const element = document.getElementById(category)
-        return element && element.scrollIntoView({ behavior: "smooth" })
+        return element?.scrollIntoView({ behavior: "smooth" })
       }}
       ariaLabel={t("button.scroll_to_list", { category: translatedCategory })}
       icon={<CategoryIcon category={category} />}

@@ -1,13 +1,13 @@
-import { useState, ReactNode } from "react"
-import { useTranslation } from "react-i18next"
+import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import CountryFlag from "@kiwicom/orbit-components/lib/CountryFlag"
 import LinkList from "@kiwicom/orbit-components/lib/LinkList"
-import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
 import Popover from "@kiwicom/orbit-components/lib/Popover"
+import { type ReactNode, useState } from "react"
+import { useTranslation } from "react-i18next"
 
 import { LANGUAGES_DATA } from "../consts"
-import { Language } from "../types"
 import { useLanguage } from "../services/context/LanguageContext"
+import { Language } from "../types"
 import LanguageLink from "./LanguageLink"
 
 const LanguagePicker = (): ReactNode => {

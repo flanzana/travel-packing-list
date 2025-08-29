@@ -31,8 +31,7 @@ App Travel Packing List offers you many different possibilities of usage:
 - `tailwindcss`
 - `@kiwicom/orbit-components`
 - `i18next` and `react-i18next`
-- `eslint` with many eslint plugins
-- `prettier`
+- `biome`
 - `vitest` with `@testing-library`
 
 

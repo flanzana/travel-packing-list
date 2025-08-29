@@ -1,17 +1,16 @@
-import { vi } from "vitest"
-import { act, screen, within, waitFor, waitForElementToBeRemoved } from "@testing-library/react"
+import type { Props as TooltipProps } from "@kiwicom/orbit-components/lib/ErrorFormTooltip/Tooltip/types"
+import { act, screen, waitFor, waitForElementToBeRemoved, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { Props as TooltipProps } from "@kiwicom/orbit-components/lib/ErrorFormTooltip/Tooltip/types"
+import { vi } from "vitest"
 
-import renderWithProviders from "../../services/testUtils/renderWithProviders"
-import TravelCard from "../TravelCard"
-import { CardItem, ListCategory } from "../../types"
 import localStorageMock from "../../services/testUtils/localStorageMock"
+import renderWithProviders from "../../services/testUtils/renderWithProviders"
+import { type CardItem, ListCategory } from "../../types"
+import TravelCard from "../TravelCard"
 
 vi.mock(
   "@kiwicom/orbit-components/lib/ErrorFormTooltip/Tooltip",
   () =>
-    // eslint-disable-next-line react/display-name
     ({ children, shown }: TooltipProps) =>
       shown ? <div data-test="orbit-dialog">{children}</div> : null,
 )

@@ -1,12 +1,12 @@
-import { vi, Mock } from "vitest"
+import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+import { within } from "@testing-library/dom"
 import { act, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { within } from "@testing-library/dom"
-import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+import { type Mock, vi } from "vitest"
 
-import renderWithProviders from "../../services/testUtils/renderWithProviders"
 import App from "../../App"
 import localStorageMock from "../../services/testUtils/localStorageMock"
+import renderWithProviders from "../../services/testUtils/renderWithProviders"
 
 vi.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
 

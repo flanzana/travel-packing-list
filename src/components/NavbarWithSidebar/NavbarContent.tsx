@@ -1,9 +1,9 @@
-import { ReactNode } from "react"
-import { useTranslation } from "react-i18next"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
 import Heading from "@kiwicom/orbit-components/lib/Heading"
 import Illustration from "@kiwicom/orbit-components/lib/Illustration"
+import Stack from "@kiwicom/orbit-components/lib/Stack"
 import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
 import LanguagePicker from "../LanguagePicker"
 

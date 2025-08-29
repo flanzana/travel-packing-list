@@ -1,12 +1,12 @@
-import { ReactNode } from "react"
-import { defaultTokens } from "@kiwicom/orbit-design-tokens"
-import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
 import Box from "@kiwicom/orbit-components/lib/Box"
+import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
+import { defaultTokens } from "@kiwicom/orbit-design-tokens"
+import type { ReactNode } from "react"
 
-import TravelCard from "./TravelCard"
 import data from "../assets/data.json"
 import { ListCategory } from "../types"
 import type { CardItems } from "../types"
+import TravelCard from "./TravelCard"
 
 const { space300, space400, space600 } = defaultTokens
 

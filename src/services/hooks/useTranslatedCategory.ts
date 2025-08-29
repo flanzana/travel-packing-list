@@ -13,8 +13,9 @@ const useTranslatedCategory = (category: ListCategory): string => {
     case ListCategory.OTHER:
       return t("category.other")
     case ListCategory.CLOTHES:
-    default:
       return t("category.clothes")
+    default:
+      throw new Error("Invalid category")
   }
 }
 

@@ -1,7 +1,7 @@
-import { ReactNode } from "react"
 import Box from "@kiwicom/orbit-components/lib/Box"
 import Text from "@kiwicom/orbit-components/lib/Text"
 import TextLink from "@kiwicom/orbit-components/lib/TextLink"
+import type { ReactNode } from "react"
 
 const Footer = (): ReactNode => (
   <Box as="footer" padding={{ top: "none", bottom: "300", left: "1000", right: "1000" }}>
