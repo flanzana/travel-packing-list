@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext } from "react"
+import { createContext, type ReactNode, useContext, useEffect } from "react"
 import { useTranslation } from "react-i18next"
 
 import { Language } from "../../types"
@@ -26,6 +26,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps): ReactNode
     setSelectedLanguage(language)
     i18n.changeLanguage(language)
   }
+
+  useEffect(() => {
+    document.documentElement.lang = selectedLanguage
+  }, [selectedLanguage])
 
   return (
     <LanguageContext.Provider

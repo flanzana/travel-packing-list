@@ -53,7 +53,7 @@ describe("App", () => {
       await act(() =>
         userEvent.click(
           within(screen.getByRole("dialog")).getByRole("button", {
-            name: "es Español",
+            name: "Español",
           }),
         ),
       )
@@ -81,7 +81,7 @@ describe("App", () => {
       await waitFor(() => screen.getByRole("dialog"))
       userEvent.click(
         within(screen.getByRole("dialog")).getByRole("button", {
-          name: "si Slovenščina",
+          name: "Slovenščina",
         }),
       )
       await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
@@ -126,7 +126,7 @@ describe("App", () => {
 
       // And: I see language section in the sidebar with all 3 languages
       expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
-      ;["gb English", "es Español", "si Slovenščina"].forEach(language => {
+      ;["English", "Español", "Slovenščina"].forEach(language => {
         expect(within(sidebar).getByRole("button", { name: language })).toBeVisible()
       })
 
@@ -165,7 +165,7 @@ describe("App", () => {
       // When: I select Spanish language in the sidebar
       userEvent.click(
         within(screen.getByTestId("Sidebar")).getByRole("button", {
-          name: "es Español",
+          name: "Español",
         }),
       )
 

@@ -14,11 +14,8 @@ type Props = {
 const LanguageLink = ({ language, onClick }: Props): ReactNode => (
   <TextLink onClick={onClick} type="secondary" standAlone noUnderline>
     <Stack direction="row" align="center" spacing="200">
-      <CountryFlag
-        code={LANGUAGES_DATA[language].flagCode}
-        name={LANGUAGES_DATA[language].flagCode}
-      />
-      <span>{LANGUAGES_DATA[language].title}</span>
+      <CountryFlag code={LANGUAGES_DATA[language].flagCode} />
+      <span lang={language}>{LANGUAGES_DATA[language].title}</span>
     </Stack>
   </TextLink>
 )

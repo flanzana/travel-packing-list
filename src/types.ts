@@ -8,7 +8,7 @@ export enum ListCategory {
 export enum Language {
   ENGLISH = "en",
   SPANISH = "es",
-  SLOVENIAN = "si",
+  SLOVENIAN = "sl", // as expected by html lang attribute
 }
 
 export enum EditMode {
