@@ -18,31 +18,29 @@
   },
   "dependencies": {
     "@kiwicom/orbit-components": "^22.0.0",
-    "i18next": "^23.11.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-i18next": "^14.1.2"
+    "i18next": "^25.4.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-i18next": "^15.7.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.2",
     "@kiwicom/orbit-tailwind-preset": "^7.0.1",
-    "@testing-library/dom": "^10.2.0",
-    "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/node": "18.19.39",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.19",
     "gh-pages": "^6.1.1",
-    "jsdom": "^24.1.0",
+    "jsdom": "^26.1.0",
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.2",
-    "vite": "^5.3.2",
-    "vitest": "^1.6.0"
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
   }
 }
