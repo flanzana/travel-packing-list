@@ -17,7 +17,7 @@
     "biome:fix": "biome check --error-on-warnings --write"
   },
   "dependencies": {
-    "@kiwicom/orbit-components": "^22.0.0",
+    "@kiwicom/orbit-components": "^27.3.0",
     "i18next": "^25.4.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.2",
-    "@kiwicom/orbit-tailwind-preset": "^7.0.1",
+    "@kiwicom/orbit-tailwind-preset": "^7.4.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",

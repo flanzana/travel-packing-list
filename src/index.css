@@ -19,11 +19,11 @@ body {
   background-color: #e8edf1; /* borderColorCard */
 }
 
-nav h1 {
+header h1 {
   text-transform: uppercase;
 }
 
-nav img {
+header img {
   /* biome-ignore lint/complexity/noImportantStyles: Need to override Orbit component styles */
   max-height: 30px !important; /* extraSmall illustration is still 90px */
 }

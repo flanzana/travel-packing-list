@@ -20,7 +20,9 @@ describe("App", () => {
   describe("App (desktop view)", () => {
     beforeEach(() => {
       Object.defineProperty(window, "localStorage", {
-        value: localStorageMock({ "travel-packing-list:language": JSON.stringify("en") }),
+        value: localStorageMock({
+          "travel-packing-list:language": JSON.stringify("en"),
+        }),
         writable: true,
       })
       ;(useMediaQuery as Mock).mockReturnValue({ isLargeMobile: true })
@@ -50,7 +52,9 @@ describe("App", () => {
       await waitFor(() => screen.getByRole("dialog"))
       await act(() =>
         userEvent.click(
-          within(screen.getByRole("dialog")).getByRole("button", { name: "es Español" }),
+          within(screen.getByRole("dialog")).getByRole("button", {
+            name: "es Español",
+          }),
         ),
       )
       await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
@@ -76,7 +80,9 @@ describe("App", () => {
       await act(() => userEvent.click(screen.getByRole("button", { name: "English" })))
       await waitFor(() => screen.getByRole("dialog"))
       userEvent.click(
-        within(screen.getByRole("dialog")).getByRole("button", { name: "si Slovenščina" }),
+        within(screen.getByRole("dialog")).getByRole("button", {
+          name: "si Slovenščina",
+        }),
       )
       await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument())
 
@@ -158,7 +164,9 @@ describe("App", () => {
 
       // When: I select Spanish language in the sidebar
       userEvent.click(
-        within(screen.getByTestId("Sidebar")).getByRole("button", { name: "es Español" }),
+        within(screen.getByTestId("Sidebar")).getByRole("button", {
+          name: "es Español",
+        }),
       )
 
       // Then: sidebar closes
@@ -178,7 +186,9 @@ describe("App", () => {
   describe("App (mobile view)", () => {
     beforeEach(() => {
       Object.defineProperty(window, "localStorage", {
-        value: localStorageMock({ "travel-packing-list:language": JSON.stringify("en") }),
+        value: localStorageMock({
+          "travel-packing-list:language": JSON.stringify("en"),
+        }),
         writable: true,
       })
       ;(useMediaQuery as Mock).mockReturnValue({ isLargeMobile: false })
@@ -189,7 +199,7 @@ describe("App", () => {
       // Given: I am on the mobile version of the app
       // And: bottom navbar is visible
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [_, bottomNavbar] = screen.getAllByRole("navigation")
+      const bottomNavbar = screen.getByRole("navigation")
       expect(bottomNavbar).toBeVisible()
 
       // And: I see icon button to all 4 card's titles
@@ -209,7 +219,11 @@ describe("App", () => {
 
       // Given: I am on the mobile version of the app
       // When: I click icon of clothes category
-      userEvent.click(screen.getByRole("button", { name: "Desplaza a la lista Ropa y zapatos" }))
+      userEvent.click(
+        screen.getByRole("button", {
+          name: "Desplaza a la lista Ropa y zapatos",
+        }),
+      )
 
       // Then: screen scrolls to the corresponding card's title clothes
       await waitFor(() => expect(scrollIntoViewMock).toHaveBeenCalledTimes(1))
@@ -217,7 +231,8 @@ describe("App", () => {
 
     it("opens sidebar from bottom navbar", async () => {
       // Given: I am on the mobile version of the app
-      const [topNavbar, bottomNavbar] = screen.getAllByRole("navigation")
+      const topNavbar = screen.getByRole("banner")
+      const bottomNavbar = screen.getByRole("navigation")
 
       // And: hamburger menu icon is not visible in top navbar
       expect(within(topNavbar).queryAllByRole("button")).toHaveLength(0)

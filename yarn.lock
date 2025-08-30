@@ -544,31 +544,31 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@kiwicom/orbit-components@^22.0.0":
-  version "22.0.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-22.0.0.tgz#5b2d6d3890dd07a6a1dd09f8bd52297d709e83ad"
-  integrity sha512-cSkPm10HQLAip2eOw+Rs1CYghEKRM4X7iUsrfGbmaYMLjbbF0M3SODH/L/3BWm4p00CR6tnq7OJkpqKLoKNvdA==
+"@kiwicom/orbit-components@^27.3.0":
+  version "27.3.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-27.3.0.tgz#9e7fbcd47ed9c22f5105c50a04dd674b86f3f1b6"
+  integrity sha512-AHN9DQ8xN9cuQJ/fwYXJoWvjWbGTsb/+gRUd1LsFXUfw2mSh61bi3hOcItBu0DTmJ39W5vtD+fa2zTmZlKIptA==
   dependencies:
     "@floating-ui/react" "0.26.24"
-    "@kiwicom/orbit-design-tokens" "^9.0.1"
-    "@kiwicom/orbit-tailwind-preset" "^7.0.1"
+    "@kiwicom/orbit-design-tokens" "^11.0.0"
+    "@kiwicom/orbit-tailwind-preset" "^7.4.0"
     clsx "^2.0.0"
     color2k "^2.0.3"
     react-hot-toast "^2.4.0"
 
-"@kiwicom/orbit-design-tokens@^9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-9.0.1.tgz#20a77ad65a104ca10c8885c3de7cbb32cced58a0"
-  integrity sha512-HOcg/BwMhHSoTEKcMteienNm+xle4lugrp4p6nOU0oEXvQersffl8s/noXaBElGgM9iD6btClTlqMEmsgoIhXA==
+"@kiwicom/orbit-design-tokens@^11.0.0":
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-11.0.0.tgz#f70d49c9214630a41d511bd0a2cf83f60e5895b8"
+  integrity sha512-5GEmg4JacZq9KhECtuyIn4zj74S/DY11X/IU2P+O9B5OB1Z9sHSbyYd1eTPSXZoEumyvf5Hfv2AzyYHAm4/49A==
   dependencies:
     color2k "^2.0.3"
 
-"@kiwicom/orbit-tailwind-preset@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-tailwind-preset/-/orbit-tailwind-preset-7.0.1.tgz#7ede1a2c0b5fc43217fd289ad86b555a89761290"
-  integrity sha512-4SeKlRhZToQiv26VlnQGnodAM3hyAmL9yjkrYKggHS1Io1I6VxlAgGBffYYIQYq3FjF18wHHEZS5KJdr6ipzTg==
+"@kiwicom/orbit-tailwind-preset@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-tailwind-preset/-/orbit-tailwind-preset-7.4.0.tgz#82346ef664b5cf1610cf8b22f277e24cffbbf455"
+  integrity sha512-5665D8lINP9QYFW4sUCOhZOdPrnULXmPeD02sqqw5rW8aZgC87eOmTk3zO2LMQhsgePykIekVwPL0N1y5kytMg==
   dependencies:
-    "@kiwicom/orbit-design-tokens" "^9.0.1"
+    "@kiwicom/orbit-design-tokens" "^11.0.0"
     color2k "^2.0.3"
 
 "@nodelib/fs.scandir@2.1.4":
