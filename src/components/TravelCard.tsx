@@ -100,7 +100,9 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
           <AddItemControls
             handleSubmitNewItem={handleSubmitNewItem}
             doesAlreadyExistInItems={(newItemValue: string) =>
-              Boolean(cardItems.find(item => newItemValue === t(item.tKey)))
+              Boolean(
+                cardItems.find(item => newItemValue.toLowerCase() === t(item.tKey).toLowerCase()),
+              )
             }
           />
         ) : (

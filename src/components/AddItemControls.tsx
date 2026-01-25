@@ -9,7 +9,6 @@ import {
 } from "react"
 import { useTranslation } from "react-i18next"
 import { PRIMARY_COLOR_PALETTE } from "../consts"
-import { capitalize } from "../services/helpers"
 
 type Props = {
   handleSubmitNewItem: (item: string) => void
@@ -29,7 +28,7 @@ const AddItemControls = ({ handleSubmitNewItem, doesAlreadyExistInItems }: Props
   }, [])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewItem({ error: null, value: capitalize(e.target.value) })
+    setNewItem({ error: null, value: e.target.value })
   }
 
   const handleValidateAndSubmit = (e: FormEvent) => {
