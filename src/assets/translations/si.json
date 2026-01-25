@@ -123,6 +123,5 @@
   "placeholder.type_item": "Vnesi stvar...",
   "input.error.already_exist": "Predmet že obstaja.",
   "input.error.enter_item": "Prosim vnesi predmet.",
-  "sidebar.title.language": "Jezik",
-  "sidebar.title.more_about": "Več o"
+  "navbar.language": "Jezik"
 }

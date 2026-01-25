@@ -123,6 +123,5 @@
   "placeholder.type_item": "Enter item...",
   "input.error.already_exist": "Item already exists.",
   "input.error.enter_item": "Please enter an item.",
-  "sidebar.title.language": "Language",
-  "sidebar.title.more_about": "More about"
+  "navbar.language": "Language"
 }

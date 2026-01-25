@@ -1,10 +1,8 @@
-import ButtonLink from "@kiwicom/orbit-components/lib/ButtonLink"
-import Checkbox from "@kiwicom/orbit-components/lib/Checkbox"
-import Close from "@kiwicom/orbit-components/lib/icons/Close"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
+import { Checkbox, HStack, Icon, IconButton } from "@chakra-ui/react"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-
+import { FaTimes } from "react-icons/fa"
+import { PRIMARY_COLOR_PALETTE } from "../consts"
 import type { CardItem } from "../types"
 
 type Props = {
@@ -24,25 +22,35 @@ const TravelItem = ({
   const { tKey, isChecked } = item
 
   return (
-    <Stack direction="row" align="start" justify="between" spacing="400" shrink grow={false}>
-      <Checkbox
-        label={t(tKey)}
-        name={t(tKey)}
+    <HStack align="start" justify="space-between" gap="16px" flexShrink={0}>
+      <Checkbox.Root
         checked={isChecked}
-        onChange={() => toggleCheckedItem(tKey)}
+        onCheckedChange={() => toggleCheckedItem(tKey)}
         disabled={shouldShowDeleteButton}
-      />
+        colorPalette={PRIMARY_COLOR_PALETTE}
+      >
+        <Checkbox.HiddenInput />
+        <Checkbox.Control rounded="md" />
+        <Checkbox.Label fontWeight="normal" fontSize="md">
+          {t(tKey)}
+        </Checkbox.Label>
+      </Checkbox.Root>
       {shouldShowDeleteButton && (
-        <ButtonLink
-          dataTest="TravelItemDelete"
-          type="critical"
-          size="small"
-          iconLeft={<Close ariaHidden />}
-          title={t("button.delete_item", { item: t(tKey) })}
+        <IconButton
+          aria-label={t("button.delete_item", { item: t(tKey) })}
+          size="xs"
+          colorPalette="red"
+          variant="ghost"
+          height="20px"
+          width="20px"
+          minWidth="20px"
+          rounded="md"
           onClick={() => handleDeleteItem(tKey)}
-        />
+        >
+          <Icon as={FaTimes} boxSize="12px" aria-hidden />
+        </IconButton>
       )}
-    </Stack>
+    </HStack>
   )
 }
 

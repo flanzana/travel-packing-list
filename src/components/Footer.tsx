@@ -1,15 +1,21 @@
-import Box from "@kiwicom/orbit-components/lib/Box"
-import Text from "@kiwicom/orbit-components/lib/Text"
-import TextLink from "@kiwicom/orbit-components/lib/TextLink"
+import { Box, Link, Text } from "@chakra-ui/react"
 import type { ReactNode } from "react"
+import { PRIMARY_COLOR_PALETTE } from "../consts"
 
 const Footer = (): ReactNode => (
-  <Box as="footer" padding={{ top: "none", bottom: "300", left: "1000", right: "1000" }}>
-    <Text size="small" align="center">
-      <TextLink href="https://flanzana.github.io/" external type="secondary" noUnderline>
+  <Box as="footer" pt={0} pb="12px" px="40px" mb={{ base: "50px", md: "0" }}>
+    <Text fontSize="sm" textAlign="center">
+      <Link
+        href="https://flanzana.github.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        colorPalette={PRIMARY_COLOR_PALETTE}
+        variant="underline"
+        fontWeight="medium"
+      >
         Žana Flander
-      </TextLink>
-      <span> © 2025</span>
+      </Link>
+      <span> © 2026</span>
     </Text>
   </Box>
 )

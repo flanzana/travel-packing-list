@@ -123,6 +123,5 @@
   "placeholder.type_item": "Añade el objeto...",
   "input.error.already_exist": "Este objeto ya existe.",
   "input.error.enter_item": "Por favor añade el objeto.",
-  "sidebar.title.language": "Idioma",
-  "sidebar.title.more_about": "Más sobre"
+  "navbar.language": "Idioma"
 }

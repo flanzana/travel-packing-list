@@ -1,5 +1,4 @@
-import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
-import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
+import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react"
 import { render } from "@testing-library/react"
 import type { ReactElement } from "react"
 import { I18nextProvider } from "react-i18next"
@@ -7,13 +6,15 @@ import { I18nextProvider } from "react-i18next"
 import i18n from "../../i18n"
 import { LanguageProvider } from "../context/LanguageContext"
 
+const system = createSystem(defaultConfig)
+
 const renderWithProviders = (component: ReactElement) => {
   return render(
     <I18nextProvider i18n={i18n}>
-      <OrbitProvider theme={{ ...defaultTheme }}>
+      <ChakraProvider value={system}>
         <style>.invisible &#123; display: none; &#125; .hidden &#123; display: none; &#125;</style>
         <LanguageProvider>{component}</LanguageProvider>
-      </OrbitProvider>
+      </ChakraProvider>
     </I18nextProvider>,
   )
 }

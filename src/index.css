@@ -1,39 +1,12 @@
-/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
-@tailwind base;
-/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
-@tailwind components;
-/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind is not a CSS module */
-@tailwind utilities;
-
 html {
   scroll-behavior: smooth;
+  background-color: var(--chakra-colors-color-palette-subtle);
 }
 
 body {
   margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #e8edf1; /* borderColorCard */
-}
-
-header h1 {
-  text-transform: uppercase;
-}
-
-header img {
-  /* biome-ignore lint/complexity/noImportantStyles: Need to override Orbit component styles */
-  max-height: 30px !important; /* extraSmall illustration is still 90px */
-}
-
-main {
-  margin-top: 52px; /* because of navbar */
-}
-
-footer {
-  margin-bottom: 50px; /* because of bottom navbar */
+  font-family: "Roboto", sans-serif;
+  min-height: auto; /* overwrite default min-height: 100dvh */
 }
 
 a,
@@ -41,33 +14,4 @@ button,
 span,
 p {
   user-select: none; /* disable selecting text */
-}
-
-button[data-test="TravelItemDelete"] {
-  /* biome-ignore lint/complexity/noImportantStyles: Need to match checkbox dimensions */
-  height: 20px !important; /* same as checkbox */
-  /* biome-ignore lint/complexity/noImportantStyles: Need to match checkbox dimensions */
-  width: 20px !important; /* same as checkbox */
-}
-
-button[data-test="BottomNavbarButton"] {
-  width: 60px;
-  letter-spacing: 0.5px;
-}
-
-.orbit-checkbox-label span {
-  /* biome-ignore lint/complexity/noImportantStyles: Need to override bold checkbox label */
-  font-weight: normal !important; /* overwrite bold checkbox label to normal */
-}
-
-@media screen and (min-width: 576px) {
-  footer {
-    margin-bottom: 0; /* bottom navbar is now hidden */
-  }
-}
-
-@media screen and (min-width: 768px) {
-  main {
-    margin-top: 64px; /* because of navbar */
-  }
 }

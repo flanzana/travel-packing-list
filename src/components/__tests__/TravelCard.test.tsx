@@ -1,4 +1,3 @@
-import type { Props as TooltipProps } from "@kiwicom/orbit-components/lib/ErrorFormTooltip/Tooltip/types"
 import { act, screen, waitFor, waitForElementToBeRemoved, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { vi } from "vitest"
@@ -7,13 +6,6 @@ import localStorageMock from "../../services/testUtils/localStorageMock"
 import renderWithProviders from "../../services/testUtils/renderWithProviders"
 import { type CardItem, ListCategory } from "../../types"
 import TravelCard from "../TravelCard"
-
-vi.mock(
-  "@kiwicom/orbit-components/lib/ErrorFormTooltip/Tooltip",
-  () =>
-    ({ children, shown }: TooltipProps) =>
-      shown ? <div data-test="orbit-dialog">{children}</div> : null,
-)
 
 const initialCardItems: CardItem[] = [
   { tKey: "item.passport", isChecked: false },
@@ -124,20 +116,18 @@ describe("TravelCard", () => {
       userEvent.click(screen.getByRole("button", { name: "Settings of the list Essentials" })),
     )
 
-    // Then: I see settings popover with 5 buttons (4 settings buttons + Close)
+    // Then: I see settings popover with 4 buttons (4 settings buttons)
     expect(await screen.findByRole("dialog")).toBeVisible()
-    expect(within(screen.getByRole("dialog")).getAllByRole("button")).toHaveLength(5)
+    expect(within(screen.getByRole("dialog")).getAllByRole("button")).toHaveLength(4)
     expect(
       within(screen.getByRole("dialog")).getByText("Settings of the list Essentials"),
     ).toBeVisible()
-    ;["Check all", "Uncheck all", "Select and remove items", "Reset the list", "Close"].forEach(
-      name => {
-        expect(within(screen.getByRole("dialog")).getByRole("button", { name })).toBeVisible()
-      },
-    )
+    ;["Check all", "Uncheck all", "Select and remove items", "Reset the list"].forEach(name => {
+      expect(within(screen.getByRole("dialog")).getByRole("button", { name })).toBeVisible()
+    })
 
     // When: I close settings popover
-    clickButton("Close")
+    clickButton("Settings of the list Essentials")
 
     // Then: settings popover is not visible
     await waitForElementToBeRemoved(() => screen.queryByRole("dialog"))
@@ -155,13 +145,13 @@ describe("TravelCard", () => {
 
     // Then: I see input field, no Add item anymore
     await waitForElementToBeRemoved(() => screen.queryByRole("button", { name: "Add item" }))
-    expect(screen.getByRole("textbox")).toHaveAttribute("data-state", "ok")
+    expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-invalid")
 
     // When: I try to submit new item without typing the name
     clickButton("Save")
 
     // Then: I see error Please enter an item.
-    await waitFor(() => expect(screen.getByRole("textbox")).toHaveAttribute("data-state", "error"))
+    await waitFor(() => expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true"))
     expect(screen.getByText("Please enter an item.")).toBeVisible()
     expect(screen.getAllByRole("checkbox")).toHaveLength(3)
   })
@@ -179,7 +169,7 @@ describe("TravelCard", () => {
 
     // Then: I see input field, no Add item anymore
     await waitForElementToBeRemoved(() => screen.queryByRole("button", { name: "Add item" }))
-    expect(screen.getByRole("textbox")).toHaveAttribute("data-state", "ok")
+    expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-invalid")
 
     // When: I type same item as already in the list
     userEvent.type(screen.getByRole("textbox"), "Passport")
@@ -188,7 +178,7 @@ describe("TravelCard", () => {
 
     // Then: I see error Item already exists.
     await waitFor(() => expect(screen.getByText("Item already exists.")).toBeVisible())
-    expect(screen.getByRole("textbox")).toHaveAttribute("data-state", "error")
+    expect(screen.getByRole("textbox")).toHaveAttribute("aria-invalid", "true")
     expect(screen.getAllByRole("checkbox")).toHaveLength(3)
   })
 

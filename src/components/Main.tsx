@@ -1,6 +1,4 @@
-import Box from "@kiwicom/orbit-components/lib/Box"
-import Grid from "@kiwicom/orbit-components/lib/utils/Grid"
-import { defaultTokens } from "@kiwicom/orbit-design-tokens"
+import { Box, SimpleGrid } from "@chakra-ui/react"
 import type { ReactNode } from "react"
 
 import data from "../assets/data.json"
@@ -8,21 +6,13 @@ import type { CardItems } from "../types"
 import { ListCategory } from "../types"
 import TravelCard from "./TravelCard"
 
-const { space300, space400, space600 } = defaultTokens
-
 function cardItemsMapper(items: string[]): CardItems {
   return items.map(item => ({ tKey: item, isChecked: false }))
 }
 
 const Main = (): ReactNode => (
-  <Box as="main" padding="300" largeMobile={{ padding: "400" }} largeDesktop={{ padding: "600" }}>
-    <Grid
-      columnGap={space400}
-      rowGap={space300}
-      largeMobile={{ columns: "1fr 1fr", rowGap: space400 }}
-      desktop={{ columns: "1fr 1fr 1fr 1fr" }}
-      largeDesktop={{ rowGap: space600, columnGap: space600 }}
-    >
+  <Box as="main" p={{ base: "12px", md: "16px", xl: "24px" }} mt="60px">
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={{ base: "12px", md: "16px", xl: "24px" }}>
       {[
         ListCategory.ESSENTIALS,
         ListCategory.CLOTHES,
@@ -35,7 +25,7 @@ const Main = (): ReactNode => (
           initialCardItems={cardItemsMapper(data[category].items)}
         />
       ))}
-    </Grid>
+    </SimpleGrid>
   </Box>
 )
 

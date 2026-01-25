@@ -1,14 +1,11 @@
-import useMediaQuery from "@kiwicom/orbit-components/lib/hooks/useMediaQuery"
 import { within } from "@testing-library/dom"
 import { act, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { type Mock, vi } from "vitest"
+import { vi } from "vitest"
 
 import App from "../../App"
 import localStorageMock from "../../services/testUtils/localStorageMock"
 import renderWithProviders from "../../services/testUtils/renderWithProviders"
-
-vi.mock("@kiwicom/orbit-components/lib/hooks/useMediaQuery")
 
 const expectToSeeCardTitles = (headings: Array<string>) => {
   headings.forEach(heading => {
@@ -17,7 +14,7 @@ const expectToSeeCardTitles = (headings: Array<string>) => {
 }
 
 describe("App", () => {
-  describe("App (desktop view)", () => {
+  describe("App (mobile view)", () => {
     beforeEach(() => {
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock({
@@ -25,7 +22,6 @@ describe("App", () => {
         }),
         writable: true,
       })
-      ;(useMediaQuery as Mock).mockReturnValue({ isLargeMobile: true })
       renderWithProviders(<App />)
     })
 
@@ -113,88 +109,6 @@ describe("App", () => {
       )
     })
 
-    it("displays sidebar", async () => {
-      // Given: I have opened an app
-      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
-
-      // When: I click hamburger icon
-      userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-
-      // Then: sidebar opens
-      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
-      const sidebar = screen.getByTestId("SidebarContent")
-
-      // And: I see language section in the sidebar with all 3 languages
-      expect(within(sidebar).getByText(/jezik/i)).toBeVisible()
-      ;["English", "Español", "Slovenščina"].forEach(language => {
-        expect(within(sidebar).getByRole("button", { name: language })).toBeVisible()
-      })
-
-      // And: I see more about section in the sidebar with link to my portfolio and to Orbit
-      expect(within(sidebar).getByText(/več o/i)).toBeVisible()
-      expect(within(sidebar).getByRole("link", { name: "Žana Flander" })).toHaveAttribute(
-        "href",
-        "https://flanzana.github.io/",
-      )
-      expect(within(sidebar).getByRole("link", { name: "Design system Orbit" })).toHaveAttribute(
-        "href",
-        "https://orbit.kiwi",
-      )
-    })
-
-    it("closes sidebar by clicking Close button", async () => {
-      // Given: sidebar is opened
-      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
-      userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
-
-      // When: I click X button in sidebar
-      userEvent.click(screen.getByRole("button", { name: "Hide" }))
-
-      // Then: sidebar closes
-      await waitFor(() => expect(screen.getByTestId("Sidebar")).not.toBeVisible())
-    })
-
-    it("closes sidebar by selecting language", async () => {
-      // Given: sidebar is opened on English version of the app
-      expect(screen.getByTestId("Sidebar")).not.toBeVisible()
-      userEvent.click(screen.getByRole("button", { name: "Open navigation menu" }))
-      await waitFor(() => expect(screen.getByTestId("Sidebar")).toBeVisible())
-      expect(screen.queryByRole("heading", { name: "Lista de viaje" })).toBeNull()
-
-      // When: I select Spanish language in the sidebar
-      userEvent.click(
-        within(screen.getByTestId("Sidebar")).getByRole("button", {
-          name: "Español",
-        }),
-      )
-
-      // Then: sidebar closes
-      await waitFor(() => expect(screen.getByTestId("Sidebar")).not.toBeVisible())
-
-      // And: I see main title in Spanish
-      expect(screen.getByRole("heading", { name: "Lista de viaje" })).toBeVisible()
-    })
-
-    it("does not display bottom navbar", () => {
-      // Given: I am on the desktop version of the app
-      // And: bottom navbar is not visible
-      expect(screen.queryByTestId("BottomNavbar")).toBeNull()
-    })
-  })
-
-  describe("App (mobile view)", () => {
-    beforeEach(() => {
-      Object.defineProperty(window, "localStorage", {
-        value: localStorageMock({
-          "travel-packing-list:language": JSON.stringify("en"),
-        }),
-        writable: true,
-      })
-      ;(useMediaQuery as Mock).mockReturnValue({ isLargeMobile: false })
-      renderWithProviders(<App />)
-    })
-
     it("displays bottom navbar", () => {
       // Given: I am on the mobile version of the app
       // And: bottom navbar is visible
@@ -204,10 +118,10 @@ describe("App", () => {
 
       // And: I see icon button to all 4 card's titles
       ;[
-        "Desplaza a la lista Esenciales",
-        "Desplaza a la lista Ropa y zapatos",
-        "Desplaza a la lista Artículos de tocador",
-        "Desplaza a la lista Otro",
+        "Pomakni se na seznam Osnovne potrebščine",
+        "Pomakni se na seznam Oblačila in obutev",
+        "Pomakni se na seznam Toaletne potrebščine",
+        "Pomakni se na seznam Razno",
       ].forEach(name => {
         expect(within(bottomNavbar).getByRole("button", { name })).toBeVisible()
       })
@@ -221,30 +135,12 @@ describe("App", () => {
       // When: I click icon of clothes category
       userEvent.click(
         screen.getByRole("button", {
-          name: "Desplaza a la lista Ropa y zapatos",
+          name: "Pomakni se na seznam Oblačila in obutev",
         }),
       )
 
       // Then: screen scrolls to the corresponding card's title clothes
       await waitFor(() => expect(scrollIntoViewMock).toHaveBeenCalledTimes(1))
-    })
-
-    it("opens sidebar from bottom navbar", async () => {
-      // Given: I am on the mobile version of the app
-      const topNavbar = screen.getByRole("banner")
-      const bottomNavbar = screen.getByRole("navigation")
-
-      // And: hamburger menu icon is not visible in top navbar
-      expect(within(topNavbar).queryAllByRole("button")).toHaveLength(0)
-
-      // But: it is visible in bottom navbar
-      expect(within(bottomNavbar).getByRole("button", { name: "Más" })).toBeVisible()
-
-      // When: I click hamburger menu icon in bottom navbar
-      userEvent.click(within(bottomNavbar).getByRole("button", { name: "Más" }))
-
-      // Then: sidebar opens
-      await waitFor(() => expect(screen.getByTestId("SidebarContent")).toBeVisible())
     })
   })
 })

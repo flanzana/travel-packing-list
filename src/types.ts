@@ -20,7 +20,7 @@ export enum EditMode {
 
 type LanguageData = {
   value: Language
-  flagCode: "gb" | "es" | "si"
+  flagEmoji: string
   title: "English" | "Español" | "Slovenščina"
 }
 

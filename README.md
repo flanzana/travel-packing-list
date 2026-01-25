@@ -28,8 +28,8 @@ App Travel Packing List offers you many different possibilities of usage:
 
 ## Dependencies used in the project
 - `vite`, `react` and `typescript`
-- `tailwindcss`
-- `@kiwicom/orbit-components`
+- `@chakra-ui`
+- `react-icons`
 - `i18next` and `react-i18next`
 - `biome`
 - `vitest` with `@testing-library`
@@ -39,7 +39,6 @@ App Travel Packing List offers you many different possibilities of usage:
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
 - [React Hooks CheatSheet](https://react-hooks-cheatsheet.com/)
-- [Design system Orbit](https://orbit.kiwi/)
 - [LocalStorage](https://javascript.info/localstorage)
 - [i18next](https://www.i18next.com/)
 - [React i18next](https://react.i18next.com/)

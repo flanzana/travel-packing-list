@@ -1,8 +1,6 @@
-import Spa from "@kiwicom/orbit-components/lib/icons/Spa"
-import Suitcase from "@kiwicom/orbit-components/lib/icons/Suitcase"
-import TermsAndConditions from "@kiwicom/orbit-components/lib/icons/TermsAndConditions"
-import Wallet from "@kiwicom/orbit-components/lib/icons/Wallet"
+import { Icon } from "@chakra-ui/react"
 import type { ReactNode } from "react"
+import { FaHeadphones, FaPassport, FaPumpSoap, FaTshirt } from "react-icons/fa"
 import { ListCategory } from "../types"
 
 type Props = {
@@ -12,13 +10,13 @@ type Props = {
 const CategoryIcon = ({ category }: Props): ReactNode => {
   switch (category) {
     case ListCategory.ESSENTIALS:
-      return <Wallet ariaHidden size="large" />
+      return <Icon as={FaPassport} boxSize="20px" aria-hidden />
     case ListCategory.TOILETRIES:
-      return <Spa ariaHidden size="large" />
+      return <Icon as={FaPumpSoap} boxSize="20px" aria-hidden />
     case ListCategory.OTHER:
-      return <TermsAndConditions ariaHidden size="large" />
+      return <Icon as={FaHeadphones} boxSize="20px" aria-hidden />
     case ListCategory.CLOTHES:
-      return <Suitcase ariaHidden size="large" />
+      return <Icon as={FaTshirt} boxSize="20px" aria-hidden />
     default:
       throw new Error("Invalid category")
   }

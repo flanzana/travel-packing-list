@@ -1,4 +1,23 @@
 import "@testing-library/jest-dom/vitest"
-import { configure } from "@testing-library/react"
+import ResizeObserver from "resize-observer-polyfill"
+import { vi } from "vitest"
 
-configure({ testIdAttribute: "data-test" })
+// Mocks for Chakra UI: https://chakra-ui.com/docs/components/concepts/testing#setup-test-file
+
+// ResizeObserver mock
+vi.stubGlobal("ResizeObserver", ResizeObserver)
+
+// matchMedia mock
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+})

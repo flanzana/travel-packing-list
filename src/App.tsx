@@ -1,19 +1,29 @@
-import defaultTheme from "@kiwicom/orbit-components/lib/defaultTheme"
-import OrbitProvider from "@kiwicom/orbit-components/lib/OrbitProvider"
-
+import { ChakraProvider, createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import BottomNavbar from "./components/BottomNavbar"
 import Footer from "./components/Footer"
 import Main from "./components/Main"
-import NavbarWithSidebar from "./components/NavbarWithSidebar/NavbarWithSidebar"
+import TopNavbar from "./components/TopNavbar"
 import { LanguageProvider } from "./services/context/LanguageContext"
 
+const config = defineConfig({
+  globalCss: {
+    html: {
+      colorPalette: "gray",
+    },
+  },
+})
+
+const system = createSystem(defaultConfig, config)
+
 const App = () => (
-  <OrbitProvider theme={{ ...defaultTheme }}>
+  <ChakraProvider value={system}>
     <LanguageProvider>
-      <NavbarWithSidebar />
+      <TopNavbar />
       <Main />
       <Footer />
+      <BottomNavbar />
     </LanguageProvider>
-  </OrbitProvider>
+  </ChakraProvider>
 )
 
 export default App

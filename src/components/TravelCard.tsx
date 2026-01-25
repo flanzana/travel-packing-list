@@ -1,10 +1,7 @@
-import Box from "@kiwicom/orbit-components/lib/Box"
-import Button from "@kiwicom/orbit-components/lib/Button"
-import Heading from "@kiwicom/orbit-components/lib/Heading"
-import Plus from "@kiwicom/orbit-components/lib/icons/Plus"
-import Stack from "@kiwicom/orbit-components/lib/Stack"
+import { Box, Button, Heading, HStack, Icon, VStack } from "@chakra-ui/react"
 import { type ReactNode, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { FaPlus } from "react-icons/fa"
 
 import useLocalStorage from "../services/hooks/useLocalStorage"
 import useTranslatedCategory from "../services/hooks/useTranslatedCategory"
@@ -71,64 +68,66 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
   }
 
   return (
-    <Box background="white" padding="400" largeDesktop={{ padding: "600" }}>
-      <Stack direction="column" spacing="600">
-        <Stack direction="row" justify="between" align="center" spacing="none">
-          <Stack direction="row" spacing="300" align="center" grow={false} shrink>
-            <CategoryIcon category={category} />
-            <Heading as="h2" type="title4">
-              <span id={category} style={{ scrollMarginTop: "65px" }}>
-                {translatedCategory}
-              </span>
-            </Heading>
-          </Stack>
-          <SettingsPopover
-            translatedCategory={translatedCategory}
-            toggleSettings={toggleSettings}
-            handleShowDelete={() => setEditMode(EditMode.REMOVE_ITEMS)}
-            handleResetCard={handleResetCard}
-            handleDeselectAll={handleDeselectAll}
-            handleSelectAll={handleSelectAll}
-            isSettingsOpened={editMode === EditMode.OPEN_SETTINGS}
+    <Box bg="white" p={{ base: "16px", xl: "20px" }}>
+      <HStack justify="space-between" align="center" gap={0} mb="16px">
+        <HStack gap="12px" align="center" flexShrink={1}>
+          <CategoryIcon category={category} />
+          <Heading as="h2" size="md" id={category} scrollMarginTop="70px">
+            {translatedCategory}
+          </Heading>
+        </HStack>
+        <SettingsPopover
+          translatedCategory={translatedCategory}
+          toggleSettings={toggleSettings}
+          handleShowDelete={() => setEditMode(EditMode.REMOVE_ITEMS)}
+          handleResetCard={handleResetCard}
+          handleDeselectAll={handleDeselectAll}
+          handleSelectAll={handleSelectAll}
+          isSettingsOpened={editMode === EditMode.OPEN_SETTINGS}
+        />
+      </HStack>
+      <VStack gap={{ base: "12px", lg: "8px" }} align="stretch">
+        {cardItems.map(item => (
+          <TravelItem
+            key={item.tKey}
+            item={item}
+            shouldShowDeleteButton={isRemoveItemsMode}
+            toggleCheckedItem={toggleCheckedItem}
+            handleDeleteItem={handleDeleteItem}
           />
-        </Stack>
-        <Stack direction="column" spacing="300" desktop={{ spacing: "200" }}>
-          {cardItems.map(item => (
-            <TravelItem
-              key={item.tKey}
-              item={item}
-              shouldShowDeleteButton={isRemoveItemsMode}
-              toggleCheckedItem={toggleCheckedItem}
-              handleDeleteItem={handleDeleteItem}
-            />
-          ))}
-          {editMode === EditMode.ADD_ITEM ? (
-            <AddItemControls
-              handleSubmitNewItem={handleSubmitNewItem}
-              doesAlreadyExistInItems={(newItemValue: string) =>
-                Boolean(cardItems.find(item => newItemValue === t(item.tKey)))
-              }
-            />
-          ) : (
-            <Stack direction="row" justify="between">
+        ))}
+        {editMode === EditMode.ADD_ITEM ? (
+          <AddItemControls
+            handleSubmitNewItem={handleSubmitNewItem}
+            doesAlreadyExistInItems={(newItemValue: string) =>
+              Boolean(cardItems.find(item => newItemValue === t(item.tKey)))
+            }
+          />
+        ) : (
+          <HStack justify="space-between">
+            <Button
+              variant="subtle"
+              size="sm"
+              onClick={() => setEditMode(EditMode.ADD_ITEM)}
+              disabled={isRemoveItemsMode}
+              rounded="md"
+            >
+              <Icon as={FaPlus} boxSize="10px" aria-hidden />
+              {t("button.add_item")}
+            </Button>
+            {isRemoveItemsMode && (
               <Button
-                type="secondary"
-                iconLeft={<Plus ariaHidden />}
-                size="small"
-                onClick={() => setEditMode(EditMode.ADD_ITEM)}
-                disabled={isRemoveItemsMode}
+                colorPalette="red"
+                size="sm"
+                onClick={() => setEditMode(EditMode.DEFAULT)}
+                rounded="md"
               >
-                {t("button.add_item")}
+                {t("button.done")}
               </Button>
-              {isRemoveItemsMode && (
-                <Button type="critical" size="small" onClick={() => setEditMode(EditMode.DEFAULT)}>
-                  {t("button.done")}
-                </Button>
-              )}
-            </Stack>
-          )}
-        </Stack>
-      </Stack>
+            )}
+          </HStack>
+        )}
+      </VStack>
     </Box>
   )
 }

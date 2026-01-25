@@ -1,19 +1,22 @@
+import type { ColorPalette } from "@chakra-ui/react"
 import { Language, type LanguagesData } from "./types"
 
 export const LANGUAGES_DATA: LanguagesData = {
   [Language.ENGLISH]: {
     value: Language.ENGLISH,
-    flagCode: "gb",
+    flagEmoji: "🇬🇧",
     title: "English",
   },
   [Language.SPANISH]: {
     value: Language.SPANISH,
-    flagCode: "es",
+    flagEmoji: "🇪🇸",
     title: "Español",
   },
   [Language.SLOVENIAN]: {
     value: Language.SLOVENIAN,
-    flagCode: "si",
+    flagEmoji: "🇸🇮",
     title: "Slovenščina",
   },
 }
+
+export const PRIMARY_COLOR_PALETTE: ColorPalette = "teal"
