@@ -51,9 +51,9 @@ const BottomNavbar = (): ReactNode => (
     width="100%"
     height="50px"
     zIndex="sticky"
-    bg="white"
+    bg="bg.panel"
     boxShadow="sm"
-    visibility={{ base: "visible", md: "hidden" }}
+    display={{ base: "block", md: "none" }}
   >
     <HStack justify="space-around" align="center" gap={0}>
       {[

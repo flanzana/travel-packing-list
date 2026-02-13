@@ -117,6 +117,8 @@
   "button.settings": "Settings",
   "button.delete_item": "Delete item {{item}}",
   "button.scroll_to_list": "Scroll to the list {{category}}",
+  "button.dark_mode": "Switch to dark mode",
+  "button.light_mode": "Switch to light mode",
   "button.more": "More",
   "button.close": "Close",
   "title.settings_list": "Settings of the list {{category}}",

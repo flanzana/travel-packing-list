@@ -3,6 +3,10 @@ html {
   background-color: var(--chakra-colors-color-palette-subtle);
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;

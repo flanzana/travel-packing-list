@@ -21,3 +21,12 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 })
+
+vi.mock("next-themes", () => ({
+  ThemeProvider: (props: { children: unknown }) => props.children,
+  useTheme: () => ({
+    theme: "light",
+    setTheme: vi.fn(),
+    resolvedTheme: "light",
+  }),
+}))

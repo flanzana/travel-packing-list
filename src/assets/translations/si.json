@@ -117,6 +117,8 @@
   "button.settings": "Nastavitve",
   "button.delete_item": "Izbriši stvar {{item}}",
   "button.scroll_to_list": "Pomakni se na seznam {{category}}",
+  "button.dark_mode": "Preklopi na temni način",
+  "button.light_mode": "Preklopi na svetli način",
   "button.more": "Več",
   "button.close": "Zapri",
   "title.settings_list": "Nastavitve za seznam {{category}}",

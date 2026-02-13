@@ -2,6 +2,7 @@ import { Box, Heading, HStack } from "@chakra-ui/react"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 
+import ColorModeButton from "./ColorModeButton"
 import LanguagePicker from "./LanguagePicker"
 
 const TopNavbar = (): ReactNode => {
@@ -14,7 +15,7 @@ const TopNavbar = (): ReactNode => {
       top="0"
       width="100%"
       zIndex="sticky"
-      bg="white"
+      bg="bg.panel"
       boxShadow="sm"
       height="60px"
       p="12px 16px"
@@ -23,7 +24,10 @@ const TopNavbar = (): ReactNode => {
         <Heading as="h1" size="lg" textTransform="uppercase" fontWeight="bold">
           {t("title")}
         </Heading>
-        <LanguagePicker />
+        <HStack gap="12px">
+          <ColorModeButton />
+          <LanguagePicker />
+        </HStack>
       </HStack>
     </Box>
   )

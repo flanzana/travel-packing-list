@@ -25,6 +25,7 @@ App Travel Packing List offers you many different possibilities of usage:
 - switch between English, Spanish and Slovenian version of the app
 - responsive design
 - a mobile version has a bottom navbar with list-icon buttons where click on each button scrolls to the corresponding list
+- system vs light vs dark mode
 
 ## Dependencies used in the project
 - `vite`, `react` and `typescript`
