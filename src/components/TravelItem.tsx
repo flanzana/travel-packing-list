@@ -2,11 +2,12 @@ import { Checkbox, HStack, Icon, IconButton } from "@chakra-ui/react"
 import type { ReactNode } from "react"
 import { useTranslation } from "react-i18next"
 import { FaTimes } from "react-icons/fa"
-import { PRIMARY_COLOR_PALETTE } from "../consts"
-import type { CardItem } from "../types"
+import { CATEGORY_COLOR_PALETTE } from "../consts"
+import type { CardItem, ListCategory } from "../types"
 
 type Props = {
   item: CardItem
+  category: ListCategory
   shouldShowDeleteButton: boolean
   toggleCheckedItem: (item: string) => void
   handleDeleteItem: (item: string) => void
@@ -14,6 +15,7 @@ type Props = {
 
 const TravelItem = ({
   item,
+  category,
   shouldShowDeleteButton,
   toggleCheckedItem,
   handleDeleteItem,
@@ -27,7 +29,7 @@ const TravelItem = ({
         checked={isChecked}
         onCheckedChange={() => toggleCheckedItem(tKey)}
         disabled={shouldShowDeleteButton}
-        colorPalette={PRIMARY_COLOR_PALETTE}
+        colorPalette={CATEGORY_COLOR_PALETTE[category]}
       >
         <Checkbox.HiddenInput />
         <Checkbox.Control rounded="md" />

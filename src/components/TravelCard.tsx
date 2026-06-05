@@ -92,6 +92,7 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
             <TravelItem
               key={item.tKey}
               item={item}
+              category={category}
               shouldShowDeleteButton={isRemoveItemsMode}
               toggleCheckedItem={toggleCheckedItem}
               handleDeleteItem={handleDeleteItem}
@@ -99,6 +100,7 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
           ))}
           {editMode === EditMode.ADD_ITEM ? (
             <AddItemControls
+              category={category}
               handleSubmitNewItem={handleSubmitNewItem}
               doesAlreadyExistInItems={(newItemValue: string) =>
                 Boolean(
@@ -109,7 +111,7 @@ const TravelCard = ({ category, initialCardItems }: Props): ReactNode => {
           ) : (
             <HStack justify="space-between">
               <Button
-                variant="subtle"
+                variant="outline"
                 size="sm"
                 onClick={() => setEditMode(EditMode.ADD_ITEM)}
                 disabled={isRemoveItemsMode}

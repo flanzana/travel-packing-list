@@ -1,5 +1,5 @@
 import type { ColorPalette } from "@chakra-ui/react"
-import { Language, type LanguagesData } from "./types"
+import { Language, type LanguagesData, ListCategory } from "./types"
 
 export const LANGUAGES_DATA: LanguagesData = {
   [Language.ENGLISH]: {
@@ -19,4 +19,11 @@ export const LANGUAGES_DATA: LanguagesData = {
   },
 }
 
-export const PRIMARY_COLOR_PALETTE: ColorPalette = "teal"
+export const PRIMARY_COLOR_PALETTE: ColorPalette = "pink"
+
+export const CATEGORY_COLOR_PALETTE: Record<ListCategory, ColorPalette> = {
+  [ListCategory.ESSENTIALS]: "teal",
+  [ListCategory.CLOTHES]: "pink",
+  [ListCategory.TOILETRIES]: "cyan",
+  [ListCategory.OTHER]: "purple",
+}

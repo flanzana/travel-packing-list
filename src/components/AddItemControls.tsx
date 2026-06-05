@@ -8,14 +8,20 @@ import {
   useState,
 } from "react"
 import { useTranslation } from "react-i18next"
-import { PRIMARY_COLOR_PALETTE } from "../consts"
+import type { ListCategory } from "@/types"
+import { CATEGORY_COLOR_PALETTE } from "../consts"
 
 type Props = {
+  category: ListCategory
   handleSubmitNewItem: (item: string) => void
   doesAlreadyExistInItems: (item: string) => boolean
 }
 
-const AddItemControls = ({ handleSubmitNewItem, doesAlreadyExistInItems }: Props): ReactNode => {
+const AddItemControls = ({
+  category,
+  handleSubmitNewItem,
+  doesAlreadyExistInItems,
+}: Props): ReactNode => {
   const { t } = useTranslation()
   const inputRef = useRef<HTMLInputElement>(null)
   const [newItem, setNewItem] = useState<{ value: string; error: string | null }>({
@@ -55,7 +61,7 @@ const AddItemControls = ({ handleSubmitNewItem, doesAlreadyExistInItems }: Props
         />
         {newItem.error && <Field.ErrorText>{newItem.error}</Field.ErrorText>}
       </Field.Root>
-      <Button type="submit" colorPalette={PRIMARY_COLOR_PALETTE} rounded="md">
+      <Button type="submit" colorPalette={CATEGORY_COLOR_PALETTE[category]} rounded="md">
         {t("button.save")}
       </Button>
     </HStack>

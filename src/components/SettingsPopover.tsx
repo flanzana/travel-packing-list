@@ -1,7 +1,7 @@
 import { Button, Heading, Icon, IconButton, Popover, Portal, VStack } from "@chakra-ui/react"
 import type { ElementType, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-import { FaCheckSquare, FaCog, FaSquare, FaTrash, FaUndo } from "react-icons/fa"
+import { FaEllipsisH, FaRegCheckSquare, FaRegSquare, FaRegTrashAlt, FaUndo } from "react-icons/fa"
 
 const SettingButton = ({
   icon,
@@ -63,9 +63,9 @@ const SettingsPopover = ({
           aria-label={t("title.settings_list", { category: translatedCategory })}
           size="sm"
           rounded="md"
-          variant="subtle"
+          variant="ghost"
         >
-          <FaCog aria-hidden />
+          <FaEllipsisH aria-hidden />
         </IconButton>
       </Popover.Trigger>
       <Portal>
@@ -80,17 +80,17 @@ const SettingsPopover = ({
               <VStack gap="12px" align="stretch">
                 <SettingButton
                   onClick={handleSelectAll}
-                  icon={FaCheckSquare}
+                  icon={FaRegCheckSquare}
                   label={t("button.check_all")}
                 />
                 <SettingButton
                   onClick={handleDeselectAll}
-                  icon={FaSquare}
+                  icon={FaRegSquare}
                   label={t("button.uncheck_all")}
                 />
                 <SettingButton
                   onClick={handleShowDelete}
-                  icon={FaTrash}
+                  icon={FaRegTrashAlt}
                   label={t("button.remove_items")}
                 />
                 <SettingButton
