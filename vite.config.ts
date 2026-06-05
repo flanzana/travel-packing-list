@@ -7,12 +7,28 @@ import { defineConfig } from "vite"
 export default defineConfig({
   base: "/travel-packing-list",
   plugins: [react()],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "./src/setupTests.ts",
-    // you might want to disable it, if you don't have tests that rely on CSS
-    // since parsing CSS is slow
-    css: true,
+  build: {
+    chunkSizeWarningLimit: 750,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("@chakra-ui") || id.includes("chakra-ui")) {
+              return "chakra-ui"
+            }
+            if (id.includes("@emotion")) {
+              return "emotion"
+            }
+            if (id.includes("react-icons")) {
+              return "react-icons"
+            }
+            if (id.includes("i18next") || id.includes("react-i18next")) {
+              return "i18n"
+            }
+            return "vendor"
+          }
+        },
+      },
+    },
   },
 })
